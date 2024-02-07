@@ -129,7 +129,7 @@ namespace Comixer.Data.Migrations
 
                     b.HasIndex("ComicId");
 
-                    b.ToTable("Chpater");
+                    b.ToTable("Chapter");
                 });
 
             modelBuilder.Entity("Comixer.Data.Entities.ChapterImage", b =>

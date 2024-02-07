@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Comixer.Data.Migrations
 {
-    public partial class InitDatabase : Migration
+    public partial class InitilizeDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -183,7 +183,7 @@ namespace Comixer.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Chpater",
+                name: "Chapter",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -194,9 +194,9 @@ namespace Comixer.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Chpater", x => x.Id);
+                    table.PrimaryKey("PK_Chapter", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Chpater_Comics_ComicId",
+                        name: "FK_Chapter_Comics_ComicId",
                         column: x => x.ComicId,
                         principalTable: "Comics",
                         principalColumn: "Id",
@@ -266,9 +266,9 @@ namespace Comixer.Data.Migrations
                 {
                     table.PrimaryKey("PK_ChapterImages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ChapterImages_Chpater_ChapterId",
+                        name: "FK_ChapterImages_Chapter_ChapterId",
                         column: x => x.ChapterId,
-                        principalTable: "Chpater",
+                        principalTable: "Chapter",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -293,9 +293,9 @@ namespace Comixer.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Comments_Chpater_ChapterId",
+                        name: "FK_Comments_Chapter_ChapterId",
                         column: x => x.ChapterId,
-                        principalTable: "Chpater",
+                        principalTable: "Chapter",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -345,14 +345,14 @@ namespace Comixer.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Chapter_ComicId",
+                table: "Chapter",
+                column: "ComicId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ChapterImages_ChapterId",
                 table: "ChapterImages",
                 column: "ChapterId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Chpater_ComicId",
-                table: "Chpater",
-                column: "ComicId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ComicGenre_GenresId",
@@ -416,7 +416,7 @@ namespace Comixer.Data.Migrations
                 name: "Genres");
 
             migrationBuilder.DropTable(
-                name: "Chpater");
+                name: "Chapter");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

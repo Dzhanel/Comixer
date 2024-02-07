@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Comixer.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240207010556_InitDatabase")]
-    partial class InitDatabase
+    [Migration("20240207081355_InitilizeDatabase")]
+    partial class InitilizeDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -131,7 +131,7 @@ namespace Comixer.Data.Migrations
 
                     b.HasIndex("ComicId");
 
-                    b.ToTable("Chpater");
+                    b.ToTable("Chapter");
                 });
 
             modelBuilder.Entity("Comixer.Data.Entities.ChapterImage", b =>
