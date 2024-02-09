@@ -1,5 +1,5 @@
-@import "../lib/bootstrap/dist/scss/_functions.scss";
-@import "../lib/bootstrap/dist/scss/_variables.scss";
+@import "theme.scss";
+@import "fonts.scss";
 
 html {
     font-size: 0.9rem;
@@ -19,4 +19,7 @@ html {
 body {
     margin-bottom: 60px;
     background-color: $white;
+    font-family: "Noir Pro";
+    background-color: #242424;
+    /*color: white;*/
 }

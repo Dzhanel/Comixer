@@ -1,0 +1,5 @@
+﻿@import "../lib/bootstrap/dist/scss/_functions.scss";
+@import "../lib/bootstrap/dist/scss/_variables.scss";
+$primary: #f5cf49;
+$theme-colors: map-merge($theme-colors, ("primary": $primary ));
+@import "../lib/bootstrap/dist/scss/bootstrap.scss";
