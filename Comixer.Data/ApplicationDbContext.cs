@@ -7,7 +7,7 @@ namespace Comixer.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
-        public DbSet<Chapter> Chpater { get; set; } = null!;
+        public DbSet<Chapter> Chapter { get; set; } = null!;
         public DbSet<ChapterImage> ChapterImages { get; set; } = null!;
         public DbSet<Comic> Comics { get; set; } = null!;
         public DbSet<Comment> Comments { get; set; } = null!; 
