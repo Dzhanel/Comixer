@@ -4,10 +4,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comixer", "Comixer\Comixer.csproj", "{8C1D7EAA-018D-4F03-B7A3-EDB6D50CECEA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{67C8BFAF-6379-4599-A70C-05AAE5BD2663} = {67C8BFAF-6379-4599-A70C-05AAE5BD2663}
+		{F08B82B9-51CD-4937-9B7B-D2F04DB49907} = {F08B82B9-51CD-4937-9B7B-D2F04DB49907}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comixer.Core", "Comixer.Core\Comixer.Core.csproj", "{67C8BFAF-6379-4599-A70C-05AAE5BD2663}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comixer.Core", "Comixer.Core\Comixer.Core.csproj", "{67C8BFAF-6379-4599-A70C-05AAE5BD2663}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comixer.Data", "Comixer.Data\Comixer.Data.csproj", "{F08B82B9-51CD-4937-9B7B-D2F04DB49907}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comixer.Data", "Comixer.Data\Comixer.Data.csproj", "{F08B82B9-51CD-4937-9B7B-D2F04DB49907}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
