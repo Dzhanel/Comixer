@@ -1,1 +1,72 @@
-﻿
+﻿@model RegisterViewModel;
+@{
+    ViewData["Title"] = "Register";
+}
+@*<div class="col-md-4">
+    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <h2>Create a new account.</h2>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-floating">
+            <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" />
+            <label asp-for="Email"></label>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="Username" class="form-control" autocomplete="username" aria-required="true" />
+            <label asp-for="Username"></label>
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="Password" class="form-control" autocomplete="new-password" aria-required="true" />
+            <label asp-for="Password"></label>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+            <label asp-for="ConfirmPassword"></label>
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+    </form>
+</div>*@
+
+<section class="login signup text-center">
+    <div class="container">
+        <div class="login-block">
+            <div class="login-content">
+                <img src="assets/media/icon/user.png" alt="" class="user-icon">
+                <h3>Sign up</h3>
+                <form asp-action="Register" method="POST">
+                    <div class="form-group">
+                        <input asp-for="Email" class="form-control" autocomplete="on" placeholder="Email address" aria-required="true" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Username" class="form-control" placeholder="Username" aria-required="true" />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-group password-type-field mb-0">
+                        <input asp-for="Password" class="form-control" type="password" id="password-field" autocomplete="new-password" placeholder="Enter password" aria-required="true" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <span class="text-end toggle-password" toggle="#password-field"> <i class="bi bi-eye toggle-password"></i></span>
+                    </div>
+                    <div class="form-group password-type-field mb-0">
+                        <input asp-for="ConfirmPassword" class="form-control" type="password" id="confirm-password" required placeholder="Confirm password" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        <span class="text-end toggle-password" toggle="#confirm-password"> <i class="bi bi-eye toggle-password"></i></span>
+                    </div>
+                    <button type="submit" class="anime-btn border-change play-butn" asp-route-returnUrl="@Model.ReturnUrl">
+                        SIGN UP
+                    </button>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                </form>
+                <p class="guide">Already have an account? <a asp-action="Login">Log in</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

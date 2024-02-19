@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
 namespace Comixer.Models.Account
 {
@@ -14,6 +13,7 @@ namespace Comixer.Models.Account
         public string Password { get; set; } = null!;
 
         [Display(Name = "Remember me?")]
+        public string? ReturnUrl { get; set; }
         public bool RememberMe { get; set; }
     }
 }

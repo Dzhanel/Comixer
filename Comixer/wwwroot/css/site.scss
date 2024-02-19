@@ -1,4 +1,4 @@
-@import "theme.scss";
+﻿@import "theme.scss";
 @import "fonts.scss";
 
 html {
@@ -18,8 +18,661 @@ html {
 
 body {
     margin-bottom: 60px;
-    background-color: $white;
     font-family: "Noir Pro";
-    background-color: #242424;
-    /*color: white;*/
+    background-color: #242424;  
+}
+
+.anime-btn {
+    border-radius: 10px;
+    font-weight: 500;
+    height: auto;
+    text-align: center;
+    -webkit-transition: $transition;
+    transition: $transition;
+    position: relative;
+    z-index: 1;
+    border-right: none;
+    background: $color-black-light;
+}
+
+.anime-btn.btn-dark.border-change {
+    border: 2px solid $primary;
+}
+
+.anime-btn.btn-dark {
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 2px solid $purple;
+    border-radius: 8px;
+    color: $white;
+}
+
+.anime-btn.btn-dark:hover {
+    background: $purple;
+    color: $white;
+}
+
+.anime-btn.btn-dark.border-change:hover {
+    background: $primary;
+    color: $white;
+}
+
+
+@media only screen and (max-width: 991px) {
+    .anime-btn.btn-large {
+        padding: 18px 35px;
+    }
+}
+
+.anime-btn2 {
+    border-radius: 10px;
+    background-color: transparent;
+    padding: 8px;
+    overflow: hidden;
+    position: relative;
+    font-size: 18px;
+    line-height: 100%;
+    font-weight: 400;
+    text-transform: uppercase;
+    transition: 300ms ease;
+}
+
+.anime-btn2::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    top: 100%;
+    left: 0;
+    transition: 500ms ease;
+}
+
+.anime-btn2:hover::before {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.anime-btn2.light {
+    border: 2px solid $primary;
+    color: $white;
+}
+
+.anime-btn2.light:hover {
+    color: $color-black-light;
+}
+
+.anime-btn2.light::before {
+    background: $primary;
+}
+
+.anime-btn2.dark {
+    border: 2px solid $purple;
+    color: $white;
+}
+
+.anime-btn2.dark::before {
+    background: $purple;
+}
+
+
+
+
+.anime-btn.light {
+    border: 2px solid $primary;
+    color: $white;
+}
+
+.anime-btn.light:hover {
+    background: $primary;
+}
+
+
+/* -----------------------
+  Heading Styles 
+--------------------------*/
+.heading.style-1 {
+    margin-bottom: 40px;
+}
+
+.heading.style-1 h2 {
+    width: 100%;
+    font-family: $font-Noir-Pro-Bold;
+    font-weight: 700;
+    font-size: 40px;
+    color: $white;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+}
+
+.heading.style-1 h2 span {
+    color: $color-grey-light;
+    font-weight: 400;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.heading.style-1 span {
+    font-weight: 400;
+    font-size: 20px;
+    color: $color-grey-light;
+}
+
+.heading.style-1 h2 span .active i {
+    color: $primary;
+}
+
+.heading.style-1 p {
+    font-size: 16px;
+    color: $color-grey-normal;
+}
+
+.heading.style-2 {
+    margin-bottom: 50px;
+}
+
+.heading.style-2 h2 {
+    font-weight: 600;
+    font-size: 30px;
+    color: var(--color-dark);
+    margin-bottom: 10px;
+}
+
+.heading.style-2 p {
+    font-size: 16px;
+    text-align: right;
+    color: $color-grey-normal;
+}
+
+.heading.style-2 p i {
+    color: var(--color-dark);
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 1199px) {
+    .heading.style-1 {
+        margin-bottom: 30px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+
+    .heading.style-1 h2 {
+        justify-content: center;
+        flex-direction: column;
+        font-size: 30px;
+    }
+
+    .heading.style-1 h2 span {
+        font-size: 14px;
+        padding-top: 10px;
+    }
+}
+
+@media only screen and (max-width: 492px) {
+    .heading.style-1 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .heading.style-1 span {
+        font-size: 12px;
+    }
+
+    .heading.style-1 h2 {
+        font-size: 30px;
+    }
+
+    .heading.style-1 h2 span {
+        padding-top: 5px;
+        font-size: 16px;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .heading.style-1 p {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .heading.style-2 h2 {
+        text-align: center;
+    }
+
+    .heading.style-2 p a {
+        display: none;
+    }
+}
+
+/* -----------------------
+  Card 
+--------------------------*/
+.card {
+    background-color: #f1f1f1;
+    border-radius: 0;
+    border: none;
+}
+
+.card-body {
+    padding: 30px 0px;
+}
+
+//Input
+
+
+input,
+.form-control {
+    border: none;
+    border-radius: 0px;
+    background-color: $color-black-light;
+    color: var(--color-text-dark);
+    padding: 5px 20px;
+    font-weight: 400;
+    width: 100%;
+    color: $color-grey-light;
+    border: 1px solid $color-grey-light;
+    /* box-shadow: 0 24px 48px -15px rgba(153, 161, 170, 0.25); */
+    /* -- Placeholder -- */
+}
+
+input:focus,
+.form-control:focus {
+    outline: none;
+    background-color: $color-black-light;
+    color: $white;
+    border: 1px solid $color-grey-light;
+    border-left: none;
+    box-shadow: none;
+}
+
+input::-webkit-input-placeholder,
+.form-control::-webkit-input-placeholder {
+    color: var(--color-gray-2);
+    /* Firefox */
+    opacity: 1;
+}
+
+.input-group-text {
+    border-color: $color-grey-light;
+}
+
+.input-group input {
+    border-radius: 0 10px 10px 0;
+}
+
+input::-moz-placeholder,
+.form-control::-moz-placeholder {
+    color: var(--color-gray-2);
+    /* Firefox */
+    opacity: 1;
+}
+
+input:-ms-input-placeholder,
+.form-control:-ms-input-placeholder {
+    color: var(--color-gray-2);
+    /* Firefox */
+    opacity: 1;
+}
+
+input::-ms-input-placeholder,
+.form-control::-ms-input-placeholder {
+    color: var(--color-gray-2);
+    /* Firefox */
+    opacity: 1;
+}
+
+input::placeholder,
+.form-control::placeholder {
+    color: var(--color-gray-2);
+    /* Firefox */
+    opacity: 1;
+}
+
+input:-ms-input-placeholder,
+.form-control:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: var(--color-gray-2);
+}
+
+input::-ms-input-placeholder,
+.form-control::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: var(--color-gray-2);
+}
+
+.input-group .anime-btn {
+    border-color: $color-grey-light;
+}
+
+.input-group .anime-btn i {
+    color: $color-grey-light;
+}
+
+input {
+    height: 40px;
+}
+
+input[type='checkbox'] {
+    height: auto;
+    width: auto;
+    background-color: var(--color-grey);
+}
+
+input[type='checkbox']:checked {
+    accent-color: $primary;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    background: $primary;
+}
+
+input[type='radio'] {
+    height: auto;
+    width: auto;
+}
+
+input[type='radio']:checked {
+    accent-color: $primary;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-dark);
+    margin-bottom: 10px;
+}
+
+label.error {
+    display: table !important;
+    margin-bottom: 0px !important;
+    color: red !important;
+    padding-top: 5px !important;
+}
+
+.error-msg,
+.success-msg {
+    margin-top: 25px;
+}
+
+.error-msg p,
+.success-msg p {
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+.error-msg p {
+    color: #ff0000;
+}
+
+.success-msg p {
+    color: #15c54b;
+}
+
+.sec-mar {
+    margin: 80px 0;
+}
+
+.sec-pad {
+    padding: 50px 0;
+}
+
+@media only screen and (max-width: 992px) {
+    .sec-mar {
+        margin: 50px 0;
+    }
+}
+.play-butn {
+    border-radius: 10px;
+    margin-top: 20px;
+    background: rgba(17, 17, 17, 0.5);
+    padding: 8px;
+    overflow: hidden;
+    position: relative;
+    font-size: 40px;
+    line-height: 48px;
+    text-align: center;
+    padding: 8px 100px;
+    text-transform: uppercase;
+    transition: 300ms ease;
+    border: 2px solid $primary;
+    color: $white;
+}
+
+.play-butn::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    top: 100%;
+    left: 0;
+    transition: 500ms ease;
+    background: $primary;
+}
+
+.play-butn:hover {
+    background: transparent;
+    color: $white;
+}
+
+.play-butn:hover::before {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+//LOGIN
+.login {
+    background: url(../assets/login-bg.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 913px;
+}
+
+.login.signup {
+    background: url(../assets/login-bg.png);
+}
+
+.login-block {
+    background: rgba(0, 0, 0, 0.8);
+    width: 450px;
+    margin: 0 auto;
+    padding: 50px 50px;
+    height: 913px;
+}
+
+.login-content {
+    width: 350px;
+    height: 700px;
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+}
+
+.login-content .user-icon {
+    margin-bottom: 15px;
+    font-size: 80px;
+}
+
+.login-content h3 {
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 48px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    color: $white;
+}
+
+.login-content label {
+    display: inline;
+    color: var(--ligh-grey);
+    padding-left: 10px;
+    margin-bottom: 24px;
+}
+
+.login-content .policy {
+    color: $color-grey-light;
+    margin: 24px 0;
+}
+
+.login-content p a {
+    border: none;
+    width: auto;
+    color: $primary;
+    margin: 0;
+    font-size: 22px;
+    display: inline-block;
+}
+
+.login-content button {
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.login-content p a:hover {
+    -webkit-transition: $transition;
+    transition: $transition;
+    color: $purple;
+}
+
+.login-content .form-group input::placeholder {
+    color: $color-medium-grey;
+}
+
+.login-content .form-group input:focus,
+.login-content .form-group input:hover {
+    border: 1px solid $color-medium-grey;
+}
+
+.login-content button {
+    width: 100%;
+    min-height: 50px;
+    background: transparent;
+}
+
+.login-content button.hide-link {
+    width: 100%;
+    margin: 0 auto;
+    padding: 9px;
+    margin-bottom: 20px;
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid $color-grey-light;
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 15px;
+    color: $white;
+}
+
+.login-content button.hide-link img {
+    padding-right: 20px;
+}
+
+.login-content .guide {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: $white;
+}
+
+.login-content .guide a {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-decoration: underline;
+    color: $primary;
+}
+
+.login
+.form-control {
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    color: var(--color-text-dark);
+    padding: 28px 16px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    width: 100%;
+    color: $color-grey-light;
+    border: 1px solid $color-grey-light;
+}
+
+.login .password-type-field {
+    position: relative;
+}
+
+.login .password-type-field span i {
+    color: $color-grey-light;
+    cursor: pointer;
+}
+
+.login .password-type-field .field-icon {
+    position: absolute;
+    cursor: pointer;
+    top: 22px;
+    right: 16px;
+    z-index: 2;
+}
+
+input:focus,
+.form-control:focus {
+    outline: none;
+    background-color: transparent;
+    color: $white;
+    border: 1px solid $color-grey-light;
+    box-shadow: none;
+}
+
+@media only screen and (max-width: 990px) {
+
+    .login-content::before {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .login-content::after {
+        display: none;
+    }
+
+    .login-block {
+        margin: 0 auto;
+    }
+
+    .login-content {
+        height: 600px;
+    }
+}
+
+@media only screen and (max-width: 492px) {
+    .login-block {
+        width: 320px;
+        padding: 10px;
+    }
+
+    .login-content a {
+        width: 210px;
+        font-size: 12px;
+    }
+
+    .login-content label {
+        padding-bottom: 0;
+    }
+
+    .login-content p {
+        padding-top: 20px;
+        font-size: 12px;
+    }
 }
