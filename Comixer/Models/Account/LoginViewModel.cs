@@ -5,15 +5,14 @@ namespace Comixer.Models.Account
     public class LoginViewModel
     {
         [Required]
-        [EmailAddress]
-        public string Email { get; set; } = null!;  
+        [Display(Name = "Username or Email")]
+        public string LoginCredential { get; set; } = null!;  
 
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; } = null!;
-
-        [Display(Name = "Remember me?")]
         public string? ReturnUrl { get; set; }
+        [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
 }

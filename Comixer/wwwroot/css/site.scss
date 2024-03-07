@@ -1,5 +1,7 @@
-﻿@import "theme.scss";
-@import "fonts.scss";
+﻿@import "fonts.scss";
+@import "../lib/bootstrap/dist/scss/_functions.scss";
+@import "../lib/bootstrap/dist/scss/_variables.scss";
+@import "custom-variables.scss";
 
 html {
     font-size: 0.9rem;
@@ -17,11 +19,29 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
     font-family: "Noir Pro";
-    background-color: #242424;  
+    background-color: #242424;
 }
-
+a {
+    text-decoration: none;
+}
+.nav-logo {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    user-select: none;
+    width: auto;
+    max-height: 50px;
+}
+.logo-text {
+    font-family: Warden;
+    font-size: 1.8em;
+    color: $white;
+    align-self: center;
+    user-select: none;
+}
 .anime-btn {
     border-radius: 10px;
     font-weight: 500;
@@ -33,30 +53,38 @@ body {
     z-index: 1;
     border-right: none;
     background: $color-black-light;
-}
 
-.anime-btn.btn-dark.border-change {
-    border: 2px solid $primary;
-}
+    &.btn-dark {
+        padding: 5px 10px;
+        border-radius: 3px;
+        border: 2px solid $purple;
+        border-radius: 8px;
+        color: $white;
 
-.anime-btn.btn-dark {
-    padding: 5px 10px;
-    border-radius: 3px;
-    border: 2px solid $purple;
-    border-radius: 8px;
-    color: $white;
-}
+        &.border-change {
+            border: 2px solid $primary;
 
-.anime-btn.btn-dark:hover {
-    background: $purple;
-    color: $white;
-}
+            &:hover {
+                background: $primary;
+                color: $white;
+            }
+        }
 
-.anime-btn.btn-dark.border-change:hover {
-    background: $primary;
-    color: $white;
-}
+        &:hover {
+            background: $purple;
+            color: $white;
+        }
+    }
 
+    &.light {
+        border: 2px solid $primary;
+        color: $white;
+
+        &:hover {
+            background: $primary;
+        }
+    }
+}
 
 @media only screen and (max-width: 991px) {
     .anime-btn.btn-large {
@@ -66,7 +94,6 @@ body {
 
 .anime-btn2 {
     border-radius: 10px;
-    background-color: transparent;
     padding: 8px;
     overflow: hidden;
     position: relative;
@@ -75,123 +102,113 @@ body {
     font-weight: 400;
     text-transform: uppercase;
     transition: 300ms ease;
+    z-index: 0;
+
+    &::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        top: 100%;
+        left: 0;
+        transition: 500ms ease;
+    }
+
+    &:hover::before {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &.light {
+        border: 2px solid $primary;
+        color: $white;
+
+        &:hover {
+            color: $black;
+        }
+
+        &::before {
+            background: $primary;
+        }
+    }
+
+    &.dark {
+        border: 2px solid $purple;
+        color: $white;
+
+        &::before {
+            background: $purple;
+        }
+    }
 }
-
-.anime-btn2::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    top: 100%;
-    left: 0;
-    transition: 500ms ease;
-}
-
-.anime-btn2:hover::before {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.anime-btn2.light {
-    border: 2px solid $primary;
-    color: $white;
-}
-
-.anime-btn2.light:hover {
-    color: $color-black-light;
-}
-
-.anime-btn2.light::before {
-    background: $primary;
-}
-
-.anime-btn2.dark {
-    border: 2px solid $purple;
-    color: $white;
-}
-
-.anime-btn2.dark::before {
-    background: $purple;
-}
-
-
-
-
-.anime-btn.light {
-    border: 2px solid $primary;
-    color: $white;
-}
-
-.anime-btn.light:hover {
-    background: $primary;
-}
-
 
 /* -----------------------
   Heading Styles 
 --------------------------*/
-.heading.style-1 {
-    margin-bottom: 40px;
-}
+.heading {
+    &.style-1 {
+        margin-bottom: 40px;
 
-.heading.style-1 h2 {
-    width: 100%;
-    font-family: $font-Noir-Pro-Bold;
-    font-weight: 700;
-    font-size: 40px;
-    color: $white;
-    text-transform: uppercase;
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0;
-}
+        h2 {
+            width: 100%;
+            font-family: $font-Noir-Pro-Bold;
+            font-weight: 700;
+            font-size: 40px;
+            color: $white;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0;
 
-.heading.style-1 h2 span {
-    color: $color-grey-light;
-    font-weight: 400;
-    font-size: 20px;
-    text-transform: uppercase;
-}
+            span {
+                color: $color-grey-light;
+                font-weight: 400;
+                font-size: 20px;
+                text-transform: uppercase;
 
-.heading.style-1 span {
-    font-weight: 400;
-    font-size: 20px;
-    color: $color-grey-light;
-}
+                .active i {
+                    color: $primary;
+                }
+            }
+        }
 
-.heading.style-1 h2 span .active i {
-    color: $primary;
-}
+        span {
+            font-weight: 400;
+            font-size: 20px;
+            color: $color-grey-light;
+        }
 
-.heading.style-1 p {
-    font-size: 16px;
-    color: $color-grey-normal;
-}
+        p {
+            font-size: 16px;
+            color: $color-grey-normal;
+        }
+    }
 
-.heading.style-2 {
-    margin-bottom: 50px;
-}
+    &.style-2 {
+        margin-bottom: 50px;
 
-.heading.style-2 h2 {
-    font-weight: 600;
-    font-size: 30px;
-    color: var(--color-dark);
-    margin-bottom: 10px;
-}
+        h2 {
+            font-weight: 600;
+            font-size: 30px;
+            color: $dark;
+            margin-bottom: 10px;
+        }
 
-.heading.style-2 p {
-    font-size: 16px;
-    text-align: right;
-    color: $color-grey-normal;
-}
+        p {
+            font-size: 16px;
+            text-align: right;
+            color: $color-grey-normal;
 
-.heading.style-2 p i {
-    color: var(--color-dark);
-    font-size: 20px;
+            i {
+                color: $dark;
+                font-size: 20px;
+            }
+        }
+    }
 }
 
 @media only screen and (max-width: 1199px) {
@@ -218,35 +235,43 @@ body {
     .heading.style-1 {
         margin-bottom: 20px;
         text-align: center;
-    }
 
-    .heading.style-1 span {
-        font-size: 12px;
-    }
+        span {
+            font-size: 12px;
+        }
 
-    .heading.style-1 h2 {
-        font-size: 30px;
-    }
+        h2 {
+            font-size: 30px;
 
-    .heading.style-1 h2 span {
-        padding-top: 5px;
-        font-size: 16px;
-        text-align: center;
+            span {
+                padding-top: 5px;
+                font-size: 16px;
+                text-align: center;
+            }
+        }
     }
 }
 
 @media only screen and (max-width: 991px) {
-    .heading.style-1 p {
-        font-size: 14px;
-        text-align: center;
+    .heading.style-1 {
+
+        p {
+            font-size: 14px;
+            text-align: center;
+        }
     }
 
-    .heading.style-2 h2 {
-        text-align: center;
-    }
+    .heading.style-2 {
 
-    .heading.style-2 p a {
-        display: none;
+        h2 {
+            text-align: center;
+        }
+
+        p {
+            a {
+                display: none;
+            }
+        }
     }
 }
 
@@ -271,7 +296,7 @@ input,
     border: none;
     border-radius: 0px;
     background-color: $color-black-light;
-    color: var(--color-text-dark);
+    color: $dark;
     padding: 5px 20px;
     font-weight: 400;
     width: 100%;
@@ -293,7 +318,7 @@ input:focus,
 
 input::-webkit-input-placeholder,
 .form-control::-webkit-input-placeholder {
-    color: var(--color-gray-2);
+    color: $color-grey;
     /* Firefox */
     opacity: 1;
 }
@@ -308,28 +333,28 @@ input::-webkit-input-placeholder,
 
 input::-moz-placeholder,
 .form-control::-moz-placeholder {
-    color: var(--color-gray-2);
+    color: $color-grey;
     /* Firefox */
     opacity: 1;
 }
 
 input:-ms-input-placeholder,
 .form-control:-ms-input-placeholder {
-    color: var(--color-gray-2);
+    color: $color-grey;
     /* Firefox */
     opacity: 1;
 }
 
 input::-ms-input-placeholder,
 .form-control::-ms-input-placeholder {
-    color: var(--color-gray-2);
+    color: $color-grey;
     /* Firefox */
     opacity: 1;
 }
 
 input::placeholder,
 .form-control::placeholder {
-    color: var(--color-gray-2);
+    color: $color-grey;
     /* Firefox */
     opacity: 1;
 }
@@ -337,13 +362,13 @@ input::placeholder,
 input:-ms-input-placeholder,
 .form-control:-ms-input-placeholder {
     /* Internet Explorer 10-11 */
-    color: var(--color-gray-2);
+    color: $color-grey;
 }
 
 input::-ms-input-placeholder,
 .form-control::-ms-input-placeholder {
     /* Microsoft Edge */
-    color: var(--color-gray-2);
+    color: $color-grey;
 }
 
 .input-group .anime-btn {
@@ -388,7 +413,7 @@ input[type='radio']:checked {
 .form-group label {
     font-size: 14px;
     font-weight: 500;
-    color: var(--color-dark);
+    color: $dark;
     margin-bottom: 10px;
 }
 
@@ -431,7 +456,8 @@ label.error {
         margin: 50px 0;
     }
 }
-.play-butn {
+
+.play-btn {
     border-radius: 10px;
     margin-top: 20px;
     background: rgba(17, 17, 17, 0.5);
@@ -446,30 +472,30 @@ label.error {
     transition: 300ms ease;
     border: 2px solid $primary;
     color: $white;
-}
 
-.play-butn::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    width: 450px;
-    height: 450px;
-    border-radius: 50%;
-    top: 100%;
-    left: 0;
-    transition: 500ms ease;
-    background: $primary;
-}
+    &::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        width: 450px;
+        height: 450px;
+        border-radius: 50%;
+        top: 100%;
+        left: 0;
+        transition: 500ms ease;
+        background: $primary;
+    }
 
-.play-butn:hover {
-    background: transparent;
-    color: $white;
-}
+    &:hover {
+        background: transparent;
+        color: $dark;
 
-.play-butn:hover::before {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+        &::before {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
 }
 //LOGIN
 .login {
@@ -481,7 +507,11 @@ label.error {
 }
 
 .login.signup {
-    background: url(../assets/login-bg.png);
+    background: url(../assets/sign-up.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 913px;
 }
 
 .login-block {
@@ -495,7 +525,7 @@ label.error {
 .login-content {
     width: 350px;
     height: 700px;
-    display: table-cell;
+    display: inline;
     vertical-align: middle;
     position: relative;
 }
@@ -599,7 +629,7 @@ label.error {
     border: none;
     border-radius: 10px;
     background-color: transparent;
-    color: var(--color-text-dark);
+    color: $dark;
     padding: 28px 16px;
     font-weight: 400;
     font-size: 15px;
@@ -652,7 +682,7 @@ input:focus,
     }
 
     .login-content {
-        height: 600px;
+        height: 90%;
     }
 }
 
@@ -674,5 +704,380 @@ input:focus,
     .login-content p {
         padding-top: 20px;
         font-size: 12px;
+    }
+}
+.header.style-1 {
+    background: $black;
+}
+
+.header.style-1 nav {
+    z-index: 999;
+}
+
+.header.style-2 .container {
+    position: relative;
+}
+
+.header.style-2 nav {
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 999;
+}
+
+.header .navbar-toggler {
+    float: right;
+    border: none;
+    margin-left: 25px;
+    i {
+        font-size: 2em;
+    }
+}
+
+.header .navbar-toggler {
+    color: $white;
+}
+
+.header .navbar-toggler:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+.header nav .navbar-brand {
+    padding: 0;
+    width: 200px;
+}
+
+.header nav i {
+    color: $color-grey-light;
+    font-size: 17px;
+}
+
+
+.mainmenu > li {
+    margin: 0 10px;
+}
+
+.mainmenu > li > a {
+    color: $color-grey-light;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    height: 30px;
+    display: block;
+    position: relative;
+    -webkit-transition: $transition;
+    transition: $transition;
+}
+
+.header.style-2 .mainmenu > li > a {
+    color: $white;
+}
+
+.header .mainmenu > li > a:hover {
+    color: $purple;
+}
+
+.header .mainmenu > li > a.active {
+    color: $primary;
+}
+
+.mainmenu > li > a.active::before {
+    width: 100%;
+    opacity: 1;
+}
+
+.mainmenu > .menu-item-has-children {
+    position: relative;
+}
+
+.mainmenu > .menu-item-has-children > a {
+    position: relative;
+}
+
+.header.style-1 .header-search-box {
+    width: 400px;
+    margin: 0 15px;
+}
+
+.header.style-2 form {
+    width: 40%;
+    margin-left: 30px;
+}
+
+.header.style-2 .header-search-box {
+    width: 100%;
+}
+
+.header.style-3 .side-navbar .navbar-collapse .navbar-nav li .anime-btn {
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    height: auto;
+    text-align: center;
+    -webkit-transition: $transition;
+    transition: $transition;
+    position: relative;
+    z-index: 1;
+    background: $color-black-light;
+    letter-spacing: 1px;
+}
+
+.header.style-3 .side-navbar .navbar-collapse .navbar-nav li .anime-btn:hover {
+    color: $white;
+    background: $purple;
+}
+
+.header.style-3 .side-navbar .navbar-collapse .navbar-nav li .anime-btn.anime-btn.border-change:hover {
+    color: $white;
+    background: $primary;
+}
+
+.header.style-3 .side-navbar {
+    height: 799px;
+}
+
+.header .dropdown-menu.show {
+    width: 430px;
+}
+
+.header .dropdown-menu.show li {
+    width: 46%;
+    display: inline-block;
+}
+
+.header .dropdown-menu.show a {
+    font-weight: 600;
+    font-size: 16px;
+    padding: 10px;
+    color: $color-grey-light;
+    text-transform: capitalize;
+}
+
+.header .dropdown-menu.show a.active {
+    color: $primary;
+}
+
+.header .dropdown-menu.show a:hover {
+    transition: $transition;
+    color: $purple;
+}
+
+@media only screen and (min-width: 992px) {
+    header.style-3.header-frame {
+        width: 18%;
+    }
+
+    .header.style-3 {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .header.style-3 .side-navbar {
+        padding: 50px 10px;
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+        box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.25);
+        max-width: 10%;
+    }
+
+    .header.style-3 .side-navbar img {
+        height: 30px;
+        object-fit: contain;
+        margin-bottom: 20px;
+    }
+
+    .header.style-3 .side-navbar .navbar-collapse {
+        flex-direction: column;
+    }
+
+    .header.style-3 .side-navbar .navbar-collapse .navbar-nav {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .header.style-3 .side-navbar .navbar-collapse .navbar-nav li {
+        margin-bottom: 20px;
+    }
+}
+
+.header.style-3 .side-navbar .navbar-collapse .navbar-nav li .dropdown-menu.show li {
+    margin: 0;
+}
+
+@media only screen and (max-width: 1399px) {
+    .header.style-1 .header-search-box {
+        width: 250px;
+    }
+
+    .header.style-2 form {
+        width: 34%;
+    }
+
+    .header.style-3 {
+        max-width: 200px;
+    }
+
+    .header.style-3 .side-navbar {
+        height: 720px;
+    }
+}
+
+@media only screen and (992px <= width <= 1199px) {
+
+    .header.style-1 .header-search-box {
+        width: 150px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .header.style-1 {
+        height: 80px;
+    }
+
+    .header.style-1 .header-search-box {
+        width: 350px;
+        margin: 10px 0 0 0;
+    }
+
+    .header.style-1 .navbar-collapse {
+        background: rgba(17, 17, 17, 0.9);
+        padding: 20px;
+        border-radius: 0 0 15px 15px;
+        margin-top: 15px;
+    }
+
+    .header.style-2 .navbar-collapse {
+        background: rgba(17, 17, 17, 0.9);
+        padding: 20px;
+        border-radius: 0 0 15px 15px;
+        margin-top: 15px;
+    }
+
+    .header.style-2 form {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .header.style-2 .header-search-box {
+        padding: 0 10px;
+    }
+
+    .header.style-2 .anime-btn.btn-dark {
+        font-size: 24px;
+    }
+
+    .header.style-2 .navbar-collapse i {
+        font-size: 18px;
+    }
+
+    .header.style-3 .side-navbar .navbar-collapse .right-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header.style-3 .side-navbar {
+        height: auto;
+    }
+
+    .header.style-3 .navbar-collapse .navbar-nav li .anime-btn {
+        width: 130px;
+    }
+
+    .header.style-3 .navbar-collapse {
+        padding-top: 30px;
+    }
+
+    .header.style-3 .navbar-collapse form {
+        width: 400px;
+    }
+
+    .header.style-3 {
+        max-width: 100%;
+        padding: 20px 30px;
+        background-color: #111111;
+    }
+
+    .mainmenu > li > a {
+        font-size: 28px;
+    }
+
+    .header input {
+        height: 50px;
+    }
+
+    .mainmenu > li {
+        margin: 10px 10px;
+    }
+
+    .header nav .right-nav {
+        margin: 10px;
+    }
+}
+
+@media only screen and (max-width: 492px) {
+    .header.style-1 .header-search-box {
+        width: 100%;
+        margin: 10px 0 24px 5px;
+    }
+
+    .header .dropdown-menu.show {
+        width: 100%;
+        padding: 10px 5px;
+    }
+
+    .header .dropdown-menu.show a {
+        font-size: 13px;
+        padding: 5px;
+    }
+
+    .header input {
+        height: 40px;
+    }
+
+    .mainmenu > li {
+        margin: 5px 5px;
+    }
+
+    .mainmenu > li > a {
+        font-size: 18px;
+    }
+
+    .header.style-3 .side-navbar .navbar-collapse form {
+        width: 100%;
+    }
+
+    .header.style-2 .navbar-collapse {
+        background: rgba(17, 17, 17, 0.9);
+        padding: 10px;
+        border-radius: 0 0 15px 15px;
+        margin-top: 10px;
+    }
+
+    .header.style-2 .header-search-box {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .header.style-2 .anime-btn.btn-dark {
+        font-size: 16px;
+    }
+
+    .header.style-2 .navbar-collapse i {
+        font-size: 14px;
+    }
+
+    .header input,
+    .form-control {
+        padding: 5px;
+    }
+
+    .header nav .right-nav {
+        margin: 5px 5px;
     }
 }

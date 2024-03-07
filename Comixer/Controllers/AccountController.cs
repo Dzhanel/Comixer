@@ -69,7 +69,8 @@ namespace Comixer.Controllers
             {
                 return View(viewModel);
             }
-            var user = await userManager.FindByEmailAsync(viewModel.Email);
+            var user = await userManager.FindByEmailAsync(viewModel.LoginCredential) 
+                ?? await userManager.FindByNameAsync(viewModel.LoginCredential);
             if (user != null)
             {
                 var result = await signInManager.PasswordSignInAsync(user, viewModel.Password, viewModel.RememberMe, false);

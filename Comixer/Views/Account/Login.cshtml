@@ -14,24 +14,23 @@
                     <div>
                         <form asp-action="login" method="post" class="form-validator">
                             <div class="form-group">
-                                <input class="form-control" type="email" asp-for="Email" required placeholder="username or email address">
-                                <span asp-validation-for="Email" class="text-danger"></span>
+                                <input class="form-control" type="text" asp-for="LoginCredential" placeholder="username or email address">
+                                <span asp-validation-for="LoginCredential" class="text-danger"></span>
                             </div>
                             <div class="form-group password-type-field">
-                                <input asp-for="Password" class="form-control" type="password" id="password-field" required placeholder="enter password">
+                                <input asp-for="Password" class="form-control" type="password" id="password-field" placeholder="enter password">
                                 <span asp-validation-for="Password" class="text-danger"></span>
                                 <span class="text-end toggle-password" toggle="#password-field"> <i class="bi bi-eye toggle-password"></i></span>
                             </div>
-                            <button type="submit" class="anime-btn border-change play-butn">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <button type="submit" class="anime-btn border-change play-btn">
                                 Log In
                             </button>
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         </form>
                         <p><a href="reset-password.html">Forget Password</a></p>
                     </div>
-                    <p class="policy">By continuing, you agree to ANIMELOOP Terms of Use and Privacy Policy.</p>
-                    <p class="guide">Create an account? <a asp-action="Register" asp-route-returnUrl="@Model.ReturnUrl">Sign Up</a></p>
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <p class="policy">By continuing, you agree to <span class="text-uppercase">comixer</span> Terms of Use and Privacy Policy.</p>
+                    <p class="guide">Create an account? <a asp-action="Register" asp-route-returnUrl="@Model.ReturnUrl">Register</a></p>
 
                 </div>
             </div>

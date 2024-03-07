@@ -105,10 +105,12 @@
     <Content Remove="C:\Users\dzhan\.nuget\packages\bootstrap.sass\5.3.2\contentFiles\any\any\wwwroot\scss\_variables-dark.scss" />
     <Content Remove="C:\Users\dzhan\.nuget\packages\bootstrap.sass\5.3.2\contentFiles\any\any\wwwroot\scss\_variables.scss" />
     <Content Remove="compilerconfig.json" />
+    <Content Remove="wwwroot\css\custom-variables.scss" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="wwwroot\css\custom-variables.scss" />
   </ItemGroup>
 
   <ItemGroup>
