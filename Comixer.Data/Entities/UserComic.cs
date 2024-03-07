@@ -1,7 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Comixer.Data.Configurations;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Comixer.Data.Entities
 {
+    [EntityTypeConfiguration(typeof(UserComicConfiguration))]
     public class UserComic
     {
         public bool IsAuthor { get; set; }

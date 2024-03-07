@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Comixer.Data.Configurations;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Comixer.Data.Entities
 {
+    [EntityTypeConfiguration(typeof(ChapterConfiguration))]
     public class Chapter
     {
         [Key]

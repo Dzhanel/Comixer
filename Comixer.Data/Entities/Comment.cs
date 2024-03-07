@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Comixer.Data.Configurations;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Comixer.Data.Entities
 {
+    [EntityTypeConfiguration(typeof(CommentConfiguration))]
     public class Comment
     {
         [Key]
@@ -13,7 +16,7 @@ namespace Comixer.Data.Entities
         public string Content { get; set; } = null!;
         [AllowNull]
         [ForeignKey(nameof(ParrentComment))]
-        public Guid ParrentCommentID { get; set; }
+        public Guid? ParrentCommentID { get; set; }
         [AllowNull]
         public Comment ParrentComment { get; set; }
         

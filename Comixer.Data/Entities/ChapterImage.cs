@@ -1,8 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Comixer.Data.Configurations;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Comixer.Data.Entities
 {
+    [EntityTypeConfiguration(typeof(ChapterImageConfiguration))]
     public class ChapterImage
     {
         [Key]
