@@ -1,8 +1,8 @@
-﻿using Comixer.Data.Entities;
+﻿using Comixer.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Comixer.Data.Configurations
+namespace Comixer.Infrastructure.Data.Configurations
 {
     public class CommentConfiguration : IEntityTypeConfiguration<Comment>
     {

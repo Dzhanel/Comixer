@@ -129,7 +129,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Comixer.Core\Comixer.Core.csproj" />
-    <ProjectReference Include="..\Comixer.Data\Comixer.Data.csproj" />
+    <ProjectReference Include="..\Comixer.Data\Comixer.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

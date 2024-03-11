@@ -1,9 +1,9 @@
-﻿using Comixer.Data.Configurations;
+﻿using Comixer.Infrastructure.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Comixer.Data.Entities
+namespace Comixer.Infrastructure.Data.Entities
 {
     [EntityTypeConfiguration(typeof(ChapterImageConfiguration))]
     public class ChapterImage

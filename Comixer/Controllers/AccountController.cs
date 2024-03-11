@@ -1,4 +1,4 @@
-﻿using Comixer.Data.Entities;
+﻿using Comixer.Infrastructure.Data.Entities;
 using Comixer.Models.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

@@ -1,8 +1,8 @@
-﻿using Comixer.Data.Configurations;
+﻿using Comixer.Infrastructure.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace Comixer.Data.Entities
+namespace Comixer.Infrastructure.Data.Entities
 {
     [EntityTypeConfiguration(typeof(GenreConfiguration))]
     public class Genre

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Comixer.Data.Configurations
+namespace Comixer.Infrastructure.Data.Configurations
 {
     public class RoleConfiguration : IEntityTypeConfiguration<IdentityRole<Guid>>
     {

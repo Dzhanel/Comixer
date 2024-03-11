@@ -1,8 +1,8 @@
-using Comixer.Data;
-using Comixer.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Comixer.Infrastructure;
+using Comixer.Infrastructure.Data.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
