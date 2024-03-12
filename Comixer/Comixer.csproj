@@ -114,8 +114,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="AutoMapper.Collection" Version="10.0.0" />
     <PackageReference Remove="BuildWebCompiler2022" Version="1.14.10" />
-    <PackageReference Include="BuildWebCompiler2022" Version="1.14.10" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.26" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.26" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.26" />
@@ -130,6 +131,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Comixer.Core\Comixer.Core.csproj" />
     <ProjectReference Include="..\Comixer.Data\Comixer.Infrastructure.csproj" />
+    <ProjectReference Include="..\Comixer.Infrastructure\Comixer.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

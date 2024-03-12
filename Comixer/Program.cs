@@ -17,11 +17,14 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => {
 })
     .AddRoles<IdentityRole<Guid>>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
     {
         options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
     });
+
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 

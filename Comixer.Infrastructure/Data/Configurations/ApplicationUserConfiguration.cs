@@ -24,6 +24,7 @@ namespace Comixer.Infrastructure.Data.Configurations
                 NormalizedUserName = "ADMIN",
                 Email = "admin@comixer.com",
                 NormalizedEmail = "ADMIN@COMIXER.COM",
+                SecurityStamp = Guid.NewGuid().ToString(),
             };
             //TODO: This is development purpose only admin password, re-implement if goes to deployment
             admin.PasswordHash = hasher.HashPassword(admin, "Admin123#");
@@ -36,6 +37,7 @@ namespace Comixer.Infrastructure.Data.Configurations
                 NormalizedUserName = "AUTHOR_1",
                 Email = "author@comixer.com",
                 NormalizedEmail = "AUTHOR@COMIXER.COM",
+                SecurityStamp = Guid.NewGuid().ToString(),
             };
             //TODO: This is development purpose only admin password, re-implement if goes to deployment
             author.PasswordHash = hasher.HashPassword(author, "Author123#");

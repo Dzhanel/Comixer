@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Comixer.Data.Migrations
+namespace Comixer.Infrastructure.Data.Migrations
 {
     public partial class InitilizeDatabase : Migration
     {

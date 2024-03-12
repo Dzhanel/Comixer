@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Comixer.Data.Migrations
+namespace Comixer.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace Comixer.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Comixer.Data.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.ApplicationUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -92,14 +92,15 @@ namespace Comixer.Data.Migrations
                         {
                             Id = new Guid("c6c34844-3e79-4c96-bd46-6aeb571a2d2f"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "16d0ca65-3d33-4597-87b6-56aca62add94",
+                            ConcurrencyStamp = "cde88047-76a9-47fa-9103-7a040065f2d5",
                             Email = "admin@comixer.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@COMIXER.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ4Eq3pJwGiZtWUDexbyG8p2ijynXa8NIzwH+Prlo7/SGYho477uPwqlN3SfULX3BA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEMSjxsEwydIfQAtoVvvHIx6NJhER0Vyn6jWvc0tf5/iA36EdtJbW1T6a+MgkI6a8Q==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "dcb7d0ba-a746-4f8a-9d01-dc85ef5b8daf",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         },
@@ -107,20 +108,21 @@ namespace Comixer.Data.Migrations
                         {
                             Id = new Guid("7386f2b2-a981-4944-ba58-12c6d42a595d"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "073c2f9d-3db3-43c6-a87f-7a910f60150c",
+                            ConcurrencyStamp = "e6a1e5b7-1b79-41f6-adbd-37c2cd302310",
                             Email = "author@comixer.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "AUTHOR@COMIXER.COM",
                             NormalizedUserName = "AUTHOR_1",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHg6a4IZ8xdQDhdm2+iv3jAHzE6MPqZAaEpQCFr2fl2dvabriRcqh5X0f8wCzHzaBA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENERW1+Wfrqtq+GUdiCM+g2prNSYSZ8rCrXrt13NPoIGX9iamXvO8uaf0O1/03seQA==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "20bd38c3-550d-43f3-9856-40d7d40c3a23",
                             TwoFactorEnabled = false,
                             UserName = "Author 1"
                         });
                 });
 
-            modelBuilder.Entity("Comixer.Data.Entities.Chapter", b =>
+            modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.Chapter", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -175,7 +177,7 @@ namespace Comixer.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Comixer.Data.Entities.ChapterImage", b =>
+            modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.ChapterImage", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -228,7 +230,7 @@ namespace Comixer.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Comixer.Data.Entities.Comic", b =>
+            modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.Comic", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -259,7 +261,7 @@ namespace Comixer.Data.Migrations
                         {
                             Id = new Guid("15ca4f3c-4bb6-47b0-9d5f-e902c0627c91"),
                             Description = "Comic 1 Description",
-                            ReleaseDate = new DateTime(2024, 3, 12, 0, 55, 8, 620, DateTimeKind.Local).AddTicks(954),
+                            ReleaseDate = new DateTime(2024, 3, 12, 10, 15, 29, 335, DateTimeKind.Local).AddTicks(5390),
                             Status = 1,
                             Title = "Comic 1"
                         },
@@ -267,7 +269,7 @@ namespace Comixer.Data.Migrations
                         {
                             Id = new Guid("58b58581-82c8-4bbc-bcf3-49914b71bd00"),
                             Description = "Comic 2 Description",
-                            ReleaseDate = new DateTime(2024, 3, 12, 0, 55, 8, 620, DateTimeKind.Local).AddTicks(999),
+                            ReleaseDate = new DateTime(2024, 3, 12, 10, 15, 29, 335, DateTimeKind.Local).AddTicks(5452),
                             Status = 2,
                             Title = "Comic 2"
                         },
@@ -275,13 +277,13 @@ namespace Comixer.Data.Migrations
                         {
                             Id = new Guid("cc41b9ea-0767-4a45-a7b4-37cb07bec4d3"),
                             Description = "Comic 3 Description",
-                            ReleaseDate = new DateTime(2024, 3, 12, 0, 55, 8, 620, DateTimeKind.Local).AddTicks(1004),
+                            ReleaseDate = new DateTime(2024, 3, 12, 10, 15, 29, 335, DateTimeKind.Local).AddTicks(5497),
                             Status = 3,
                             Title = "Comic 3"
                         });
                 });
 
-            modelBuilder.Entity("Comixer.Data.Entities.ComicGenre", b =>
+            modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.ComicGenre", b =>
                 {
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
@@ -328,7 +330,7 @@ namespace Comixer.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Comixer.Data.Entities.Comment", b =>
+            modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.Comment", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -375,7 +377,7 @@ namespace Comixer.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Comixer.Data.Entities.Genre", b =>
+            modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.Genre", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -465,7 +467,7 @@ namespace Comixer.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Comixer.Data.Entities.UserComic", b =>
+            modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.UserComic", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -526,14 +528,14 @@ namespace Comixer.Data.Migrations
                         new
                         {
                             Id = new Guid("528726ea-e421-4a80-b303-f035355599de"),
-                            ConcurrencyStamp = "e3ba3c90-ed45-418d-b0ff-4fd0e7acd741",
+                            ConcurrencyStamp = "d89d85a6-dca6-421c-8e96-2673dc85176a",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = new Guid("5dd65fa9-eb2c-4372-8084-8c501347e74f"),
-                            ConcurrencyStamp = "75719ea3-3200-4f10-9b67-d26eaabfdf7f",
+                            ConcurrencyStamp = "871d23d4-e406-43ed-a2d5-f54998228f7e",
                             Name = "Author",
                             NormalizedName = "AUTHOR"
                         });
@@ -653,9 +655,9 @@ namespace Comixer.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Comixer.Data.Entities.Chapter", b =>
+            modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.Chapter", b =>
                 {
-                    b.HasOne("Comixer.Data.Entities.Comic", "Comic")
+                    b.HasOne("Comixer.Infrastructure.Data.Entities.Comic", "Comic")
                         .WithMany("Chapters")
                         .HasForeignKey("ComicId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -664,9 +666,9 @@ namespace Comixer.Data.Migrations
                     b.Navigation("Comic");
                 });
 
-            modelBuilder.Entity("Comixer.Data.Entities.ChapterImage", b =>
+            modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.ChapterImage", b =>
                 {
-                    b.HasOne("Comixer.Data.Entities.Chapter", "Chapter")
+                    b.HasOne("Comixer.Infrastructure.Data.Entities.Chapter", "Chapter")
                         .WithMany()
                         .HasForeignKey("ChapterId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -675,15 +677,15 @@ namespace Comixer.Data.Migrations
                     b.Navigation("Chapter");
                 });
 
-            modelBuilder.Entity("Comixer.Data.Entities.ComicGenre", b =>
+            modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.ComicGenre", b =>
                 {
-                    b.HasOne("Comixer.Data.Entities.Comic", "Comic")
+                    b.HasOne("Comixer.Infrastructure.Data.Entities.Comic", "Comic")
                         .WithMany("ComicGenres")
                         .HasForeignKey("ComicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Comixer.Data.Entities.Genre", "Genre")
+                    b.HasOne("Comixer.Infrastructure.Data.Entities.Genre", "Genre")
                         .WithMany("ComicsGenres")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -694,20 +696,20 @@ namespace Comixer.Data.Migrations
                     b.Navigation("Genre");
                 });
 
-            modelBuilder.Entity("Comixer.Data.Entities.Comment", b =>
+            modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.Comment", b =>
                 {
-                    b.HasOne("Comixer.Data.Entities.Chapter", "Chapter")
+                    b.HasOne("Comixer.Infrastructure.Data.Entities.Chapter", "Chapter")
                         .WithMany()
                         .HasForeignKey("ChapterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Comixer.Data.Entities.Comment", "ParrentComment")
+                    b.HasOne("Comixer.Infrastructure.Data.Entities.Comment", "ParrentComment")
                         .WithMany()
                         .HasForeignKey("ParrentCommentID")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Comixer.Data.Entities.ApplicationUser", "User")
+                    b.HasOne("Comixer.Infrastructure.Data.Entities.ApplicationUser", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -720,15 +722,15 @@ namespace Comixer.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Comixer.Data.Entities.UserComic", b =>
+            modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.UserComic", b =>
                 {
-                    b.HasOne("Comixer.Data.Entities.Comic", "Comic")
+                    b.HasOne("Comixer.Infrastructure.Data.Entities.Comic", "Comic")
                         .WithMany("UsersComics")
                         .HasForeignKey("ComicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Comixer.Data.Entities.ApplicationUser", "User")
+                    b.HasOne("Comixer.Infrastructure.Data.Entities.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -750,7 +752,7 @@ namespace Comixer.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
-                    b.HasOne("Comixer.Data.Entities.ApplicationUser", null)
+                    b.HasOne("Comixer.Infrastructure.Data.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -759,7 +761,7 @@ namespace Comixer.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.HasOne("Comixer.Data.Entities.ApplicationUser", null)
+                    b.HasOne("Comixer.Infrastructure.Data.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -774,7 +776,7 @@ namespace Comixer.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Comixer.Data.Entities.ApplicationUser", null)
+                    b.HasOne("Comixer.Infrastructure.Data.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -783,19 +785,19 @@ namespace Comixer.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.HasOne("Comixer.Data.Entities.ApplicationUser", null)
+                    b.HasOne("Comixer.Infrastructure.Data.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Comixer.Data.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.ApplicationUser", b =>
                 {
                     b.Navigation("Comments");
                 });
 
-            modelBuilder.Entity("Comixer.Data.Entities.Comic", b =>
+            modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.Comic", b =>
                 {
                     b.Navigation("Chapters");
 
@@ -804,7 +806,7 @@ namespace Comixer.Data.Migrations
                     b.Navigation("UsersComics");
                 });
 
-            modelBuilder.Entity("Comixer.Data.Entities.Genre", b =>
+            modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.Genre", b =>
                 {
                     b.Navigation("ComicsGenres");
                 });

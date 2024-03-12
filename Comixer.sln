@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comixer", "Comixer\Comixer.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comixer.Core", "Comixer.Core\Comixer.Core.csproj", "{67C8BFAF-6379-4599-A70C-05AAE5BD2663}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comixer.Infrastructure", "Comixer.Data\Comixer.Infrastructure.csproj", "{F08B82B9-51CD-4937-9B7B-D2F04DB49907}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comixer.Infrastructure", "Comixer.Infrastructure\Comixer.Infrastructure.csproj", "{F08B82B9-51CD-4937-9B7B-D2F04DB49907}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comixer.Common", "Comixer.Common\Comixer.Common.csproj", "{C7D13AE1-EFCB-444B-BE18-7E6CE473196F}"
 EndProject
