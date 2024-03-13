@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Comixer.Infrastructure;
 using Comixer.Infrastructure.Data.Entities;
+using Comixer.Core.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -17,12 +18,13 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => {
 })
     .AddRoles<IdentityRole<Guid>>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
-
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
     {
         options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
     });
+
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Api:CloudinarySettings"));
 
 builder.Services.AddApplicationServices();
 

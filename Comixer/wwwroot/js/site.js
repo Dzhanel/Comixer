@@ -74,9 +74,15 @@
             }
         },
         passwordHide: function () {
-            $(".toggle-password").click(function () {
-                $(this).toggleClass("fa-eye fa-eye-slash");
+            $(".toggle-password").on('click',function () {
+                var $toggleButton = $(this);
+                var $toggleIcon = $toggleButton.find('.toggle-password-i');
+                var $inputField = $($toggleButton.attr("toggle"));
+
+                $toggleIcon.toggleClass("d-none");
+
                 var input = $($(this).attr("toggle"));
+                console.log(input);
                 if (input.attr("type") == "password") {
                     input.attr("type", "text");
                 } else {
