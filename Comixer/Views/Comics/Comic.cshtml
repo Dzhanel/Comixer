@@ -75,29 +75,5 @@
             </div>
         </div>
     </section>
-    <section class="relese">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-9 col-md-12 col-sm-12">
-                    <h3 class="small-title">Releases</h3>
-
-                    @foreach (var chapter in Model.Chapters)
-                    {
-                        <h5>@chapter.Title <span>@chapter.ReleaseDate</span></h5>
-                        <hr>
-                        for (int i = 0; i < 5; i++)
-                        {
-                            <h5>@chapter.Title <span>@chapter.ReleaseDate</span></h5>
-                            <hr>
-                        }
-                    }
-                    <div class="text-center">
-                        <a href="#" class="relese-btn">Show More</a>
-                    </div>
-                    <hr>
-                </div>
-
-            </div>
-        </div>
-    </section>
+    <partial name="_ComicChaptersPartial.cshtml" model="@Model.Chapters">
 </div>

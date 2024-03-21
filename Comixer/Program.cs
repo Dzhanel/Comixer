@@ -7,6 +7,7 @@ using Comixer.Core.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
+//Database
 var connectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));

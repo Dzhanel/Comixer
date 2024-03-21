@@ -1,23 +1,14 @@
 ﻿<!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
-<head >
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Comixer</title>
-    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/template.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Comixer.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" asp-append-version="true" />
-</head>
+    <partial name="_HeadTagParial.cshtml"/>
 <body>
-    <partial name="_NavbarPartial"></partial>
+    <partial name="_NavbarPartial"/>
     <div>
         <main role="main">
             @RenderBody()
         </main>
     </div>
-    <partial name="_Scripts.cshtml"></partial>
+    <partial name="_Scripts.cshtml"/>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

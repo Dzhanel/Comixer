@@ -1,8 +1,6 @@
 ﻿using Comixer.Core.Models.Chapter;
 using Comixer.Core.Models.Genre;
-using Comixer.Infrastructure.Data.Entities;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Comixer.Core.Models.Comic
 {
