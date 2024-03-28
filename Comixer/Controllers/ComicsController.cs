@@ -12,16 +12,15 @@ namespace Comixer.Controllers
             comicService = _comicService;
             this.imageService = imageService;
         }
-        [HttpGet]
         public async Task<IActionResult> Comic(Guid Id)
         {
             try
             {
                 return View(await comicService.GetComicById(Id));
             }
-            catch
+            catch(Exception ex)
             {
-                return NotFound("Not found");
+                return NotFound(ex.Message);
             }
         }
     }

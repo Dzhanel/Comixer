@@ -1,14 +1,18 @@
 ﻿<!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
-    <partial name="_HeadTagParial.cshtml"/>
+<head>
+    <partial name="_HeadTagPartial" />
+    @await RenderSectionAsync("HeadScripts", required: false)
+</head>
+
 <body>
-    <partial name="_NavbarPartial"/>
+    <partial name="_NavbarPartial" />
     <div>
         <main role="main">
             @RenderBody()
         </main>
     </div>
-    <partial name="_Scripts.cshtml"/>
+    <partial name="_Scripts.cshtml" />
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

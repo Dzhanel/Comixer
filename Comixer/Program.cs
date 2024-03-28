@@ -51,9 +51,18 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapControllerRoute(name: "Comics",
+                 pattern: "Comics/{id?}",
+                 defaults: new { controller = "Comics", action = "Comic" });
+
+app.MapControllerRoute(name: "Chapter",
+                 pattern: "Chapter/{id?}",
+                 defaults: new { controller = "Chapter", action = "Chapter" });
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.MapRazorPages();
 
 app.Run();

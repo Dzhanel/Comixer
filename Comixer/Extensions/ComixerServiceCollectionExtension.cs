@@ -6,7 +6,7 @@ using Comixer.Infrastructure.Common;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class ComixerCollectionExtension
+    public static class ComixerServiceCollectionExtension
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
@@ -14,6 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IImageService, ImageService>();
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IComicService, ComicsService>();
+            services.AddScoped<IChapterService, ChapterService>();
 
             return services;
         }

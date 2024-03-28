@@ -13,10 +13,10 @@ namespace Comixer.Core.Models.Comic
         public DateTime ReleaseDate { get; set; }
         public int Status { get; set; }
         public string? CoverImageUrl { get; set; }
-        public ComicAuthorModel Author { get; set; } = null!;
-        public ComicArtistModel Artist { get; set; } = null!;
-        public int AverageRating { get; set; }
+        public ComicAuthorModel? Author { get; set; }
+        public ComicArtistModel? Artist { get; set; }
+        public double AverageRating { get; set; }
         public ICollection<GenreModel> Genres { get; set; } = new HashSet<GenreModel>();
-        public ICollection<ComicChaptersViewModel> Chapters { get; set; } = new HashSet<ComicChaptersViewModel>();
+        public ICollection<ComicChaptersModel> Chapters { get; set; } = new HashSet<ComicChaptersModel>();
     }
 }

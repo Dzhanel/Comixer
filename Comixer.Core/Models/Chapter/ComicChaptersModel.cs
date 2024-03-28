@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Comixer.Core.Models.Chapter
 {
-    public class ComicChaptersViewModel
+    public class ComicChaptersModel
     {
         public Guid Id { get; set; }
         public string? Title { get; set; }

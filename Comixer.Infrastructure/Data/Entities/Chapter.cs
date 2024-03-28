@@ -22,5 +22,6 @@ namespace Comixer.Infrastructure.Data.Entities
         [ForeignKey(nameof(Comic))]
         public Guid ComicId { get; set; }
         public Comic Comic { get; set; } = null!;
+        public IEnumerable<ChapterImage> ChapterImages { get; set; } = new HashSet<ChapterImage>();
     }
 }

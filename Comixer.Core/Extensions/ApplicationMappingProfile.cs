@@ -12,15 +12,16 @@ namespace Comixer.Core.Extensions
     {
         public ApplicationMappingProfile() 
         {
-            ComicMaps();
-        }
-
-        private void ComicMaps()
-        {
             CreateMap<Genre, GenreModel>();
+            
             CreateMap<ApplicationUser, ComicAuthorModel>();
             CreateMap<ApplicationUser, ComicArtistModel>();
-            CreateMap<Chapter, ComicChaptersViewModel>();
+            
+            CreateMap<Chapter, ChapterDropDownModel>();
+            CreateMap<Chapter, ComicChaptersModel>();
+            CreateMap<ChapterImage, ChapterImageModel>();
+            CreateMap<Chapter, ChapterModel>()
+                .ForMember(dest => dest.ComicName, opt => opt.MapFrom(x => x.Comic.Title));
 
             CreateMap<Comic, ComicDetailsModel>()
                 .ForMember(dest => dest.Genres,
@@ -35,13 +36,10 @@ namespace Comixer.Core.Extensions
                                                 .Where(uc => uc.IsArtist)
                                                 .FirstOrDefault()!.User))
                 .ForMember(dest => dest.AverageRating,
-                           opt => opt.MapFrom(src => src.Chapters
+                           opt => opt.MapFrom(src => src.Chapters.Count == 0 ? 0 : src.Chapters
                                                 .Average(x => x.Rating)))
                 .ForMember(dest => dest.ReleaseDate,
-                            opt => opt.MapFrom(src => src.Chapters.Min(x => x.ReleaseDate)));
-                            
-
-
+                           opt => opt.MapFrom(src => src.Chapters.Count == 0 ? DateTime.UtcNow : src.Chapters.Min(x => x.ReleaseDate)));
         }
     }
 }

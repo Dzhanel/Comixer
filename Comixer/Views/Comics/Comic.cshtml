@@ -56,8 +56,8 @@
                             <hr class="my-5">
                             <div class="trailer-content mt-5">
                                 <h3>Comic Details</h3>
-                                <p><span>Author:</span> <b>@Model.Author.UserName</b></p>
-                                <p><span>Artist:</span> <b>@Model.Artist.UserName</b></p>
+                                <p><span>Author:</span> <b>@Model.Author?.UserName</b></p>
+                                <p><span>Artist:</span> <b>@Model.Artist?.UserName</b></p>
                                 <p><span>Date of release:</span> @Model.ReleaseDate //Jan 15, 2023</p>
                                 <p><span>Status:</span> <b>Completed</b></p>
                                 <p>

@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\turnjs4\dist\book\**" />
+    <Content Remove="wwwroot\lib\turnjs4\dist\book\**" />
+    <EmbeddedResource Remove="wwwroot\lib\turnjs4\dist\book\**" />
+    <None Remove="wwwroot\lib\turnjs4\dist\book\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="C:\Users\dzhan\.nuget\packages\bootstrap.sass\5.3.2\contentFiles\any\any\wwwroot\scss\bootstrap-grid.scss" />
     <Content Remove="C:\Users\dzhan\.nuget\packages\bootstrap.sass\5.3.2\contentFiles\any\any\wwwroot\scss\bootstrap-reboot.scss" />
     <Content Remove="C:\Users\dzhan\.nuget\packages\bootstrap.sass\5.3.2\contentFiles\any\any\wwwroot\scss\bootstrap-utilities.scss" />
@@ -132,6 +139,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Comixer.Core\Comixer.Core.csproj" />
     <ProjectReference Include="..\Comixer.Infrastructure\Comixer.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Read\" />
+    <Folder Include="wwwroot\lib\turnjs4\dist\css\" />
   </ItemGroup>
 
 </Project>
