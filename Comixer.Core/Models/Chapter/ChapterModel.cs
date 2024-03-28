@@ -4,6 +4,7 @@
     {
         public Guid Id { get; set; }
         public string ComicName { get; set; } = null!;
+        public Guid ComicId { get; set; }
         public string Title { get; set; } = null!;
         public ChapterModel? NextChapter { get; set; }
         public ChapterModel? PreviousChapter { get; set; }

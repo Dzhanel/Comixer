@@ -8,14 +8,14 @@ namespace Comixer.Controllers
     {
         private readonly IChapterService chapterService;
 
-        public ChapterController(IChapterService chapterService)
+        public ChapterController(IChapterService _chapterService)
         {
-            this.chapterService = chapterService;
+            this.chapterService = _chapterService;
         }
 
         public async Task<IActionResult> Chapter(Guid id)
         {
-            ViewBag.PreviosFiveChapters = (await chapterService.GetPreviousFiveChapters(id));
+            ViewBag.PreviousFiveChapters = (await chapterService.GetPreviousFiveChapters(id));
             var model = await chapterService.GetChapterContentAsync(id);
             return View(model);
         }

@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Read\**" />
     <Compile Remove="wwwroot\lib\turnjs4\dist\book\**" />
+    <Content Remove="Views\Read\**" />
     <Content Remove="wwwroot\lib\turnjs4\dist\book\**" />
+    <EmbeddedResource Remove="Views\Read\**" />
     <EmbeddedResource Remove="wwwroot\lib\turnjs4\dist\book\**" />
+    <None Remove="Views\Read\**" />
     <None Remove="wwwroot\lib\turnjs4\dist\book\**" />
   </ItemGroup>
 
@@ -142,7 +146,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Read\" />
     <Folder Include="wwwroot\lib\turnjs4\dist\css\" />
   </ItemGroup>
 
