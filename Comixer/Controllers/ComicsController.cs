@@ -9,7 +9,7 @@ namespace Comixer.Controllers
         private readonly IImageService imageService;
         public ComicsController(IComicService _comicService, IImageService imageService)
         {
-            comicService = _comicService;
+            this.comicService = _comicService;
             this.imageService = imageService;
         }
         public async Task<IActionResult> Comic(Guid Id)
@@ -23,6 +23,15 @@ namespace Comixer.Controllers
                 return NotFound(ex.Message);
             }
         }
-    }
+        //[HttpGet]
+        //public async Task<IActionResult> Publish()
+        //{
 
+        //}
+        //[HttpPost]
+        //public async Task<IActionResult> Publish()
+        //{
+
+        //}
+    }
 }
