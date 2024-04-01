@@ -23,11 +23,11 @@ namespace Comixer.Controllers
                 return NotFound(ex.Message);
             }
         }
-        //[HttpGet]
-        //public async Task<IActionResult> Publish()
-        //{
-
-        //}
+        [HttpGet]
+        public async Task<IActionResult> Publish()
+        {
+            return View();
+        }
         //[HttpPost]
         //public async Task<IActionResult> Publish()
         //{

@@ -4891,14 +4891,16 @@ ul.pagination {
     .profile .img-box a {
         position: absolute;
         top: 50%;
-        left: 7%;
+        left: 50%;
+        width: 100%;
+        transform: translate(-50%, -50%);
         color: var(--color-medium-grey);
         font-weight: 500;
         font-size: 20px;
     }
 
         .profile .img-box a:hover {
-            color: var(--color-purple);
+            color: var(--color-primary);
         }
 
 .profile .form-group label {
@@ -4907,13 +4909,14 @@ ul.pagination {
     color: var(--color-grey-light);
 }
 
-.profile .form-group input {
+.profile .form-group input, .profile .form-group textarea {
     border: 1px solid var(--color-semi-grey);
     border-radius: 10px;
     padding: 20px 10px;
     font-weight: 400;
     font-size: 15px;
     color: var(--color-dark-grey);
+    margin-bottom: 15px;
 }
 
 .profile .anime-btn.btn-dark {

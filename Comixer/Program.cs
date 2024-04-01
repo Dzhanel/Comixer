@@ -51,6 +51,10 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapControllerRoute(name: "PublishComic", // New unique name
+                        pattern: "Comics/Publish",
+                        defaults: new { controller = "Comics", action = "Publish" });
+
 app.MapControllerRoute(name: "Comics",
                  pattern: "Comics/{id?}",
                  defaults: new { controller = "Comics", action = "Comic" });
@@ -58,6 +62,7 @@ app.MapControllerRoute(name: "Comics",
 app.MapControllerRoute(name: "Chapter",
                  pattern: "Chapter/{id?}",
                  defaults: new { controller = "Chapter", action = "Chapter" });
+
 
 app.MapControllerRoute(
     name: "default",
