@@ -33,6 +33,6 @@ yepnope({
 	test: Modernizr.csstransforms,
 	yep: ['../lib/turnjs4/dist/js/turn.js'],
 	nope: ['../lib/turnjs4/dist/js/turn.html4.min.js'],
-	//both: ['css/basic.css'],
+	both: ['../lib/turnjs4/dist/css/basic.css'],
 	complete: loadApp
 });

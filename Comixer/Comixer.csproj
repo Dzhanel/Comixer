@@ -145,8 +145,4 @@
     <ProjectReference Include="..\Comixer.Infrastructure\Comixer.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\lib\turnjs4\dist\css\" />
-  </ItemGroup>
-
 </Project>

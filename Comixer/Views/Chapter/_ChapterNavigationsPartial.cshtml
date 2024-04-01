@@ -1,0 +1,29 @@
+﻿@model ChapterModel
+<div class="left position-relative">
+    <a href="#" class="anime-btn btn-dark border-change dropdown-toggle" id="country"
+       data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+            PREVIOUS CHAPTERS
+        <span><i class="fa fa-chevron-down"></i></span>
+    </a>
+    @if (ViewBag.PreviousFiveChapters is not null)
+    {
+        <ul class="dropdown-menu" aria-labelledby="country">
+            @foreach (var chapter in ViewBag.PreviousFiveChapters)
+            {
+                <li><a asp-action="Chapter" asp-controller="Chapter" asp-route-id="@chapter.Id">@chapter.Title</a></li>
+            }
+        </ul>
+    }
+</div>
+<div>
+</div>
+<div class="right">
+    @if (Model.PreviousChapter is not null)
+    {
+        <a asp-controller="Chapter" asp-action="Chapter" asp-route-id="@Model.PreviousChapter.Id" class="anime-btn btn-dark">PREVIOUS @Model.PreviousChapter.ComicName</a>
+    }
+    @if (Model.NextChapter is not null)
+    {
+        <a asp-controller="Chapter" asp-action="Chapter" asp-route-id="@Model.NextChapter.Id" class="anime-btn btn-dark border-change ms-1">NEXT @Model.NextChapter.ComicName</a>
+    }
+</div>
