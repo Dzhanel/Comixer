@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Comixer.Infrastructure;
 using Comixer.Infrastructure.Data.Entities;
 using Comixer.Core.Helpers;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Localization;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -13,7 +15,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => {
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+{
     options.SignIn.RequireConfirmedAccount = builder.Configuration.GetValue<bool>("Identity:RequireConfirmedAccount");
     options.User.RequireUniqueEmail = builder.Configuration.GetValue<bool>("Identity:RequireUniqueEmail");
 })
@@ -24,7 +27,6 @@ builder.Services.AddControllersWithViews()
     {
         options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
     });
-
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Api:CloudinarySettings"));
 
 builder.Services.AddApplicationServices();
@@ -51,7 +53,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(name: "PublishComic", // New unique name
+app.MapControllerRoute(name: "PublishComic",
                         pattern: "Comics/Publish",
                         defaults: new { controller = "Comics", action = "Publish" });
 

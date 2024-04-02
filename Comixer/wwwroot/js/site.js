@@ -4,6 +4,8 @@
 // Write your JavaScript code.
 (function (window, document, $, undefined) {
     "use strict";
+
+
     var animeInit = {
         i: function (e) {
             animeInit.s();
@@ -198,4 +200,16 @@
         }
     };
     animeInit.i();
+    // initialize plugin with defaults
+
+    // with plugin options
+    $("#input-id").fileinput(
+        {
+            'showUpload': false, 'previewFileType': 'any',
+            maxTotalFileCount: 50, 
+            maxFileCount: 50,
+            overwriteInitial: false,
+            dropZoneTitle: "Comic Cover Image"
+        });
+
 })(window, document, jQuery);

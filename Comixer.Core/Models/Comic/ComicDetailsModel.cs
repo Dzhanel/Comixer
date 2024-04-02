@@ -10,6 +10,7 @@ namespace Comixer.Core.Models.Comic
         public Guid Id { get; set; }
         public string Title { get; set; } = null!;
         public string Description { get; set; } = null!;
+        [DisplayFormat(DataFormatString = "{0:MMM, dd yyyy}")]
         public DateTime ReleaseDate { get; set; }
         public int Status { get; set; }
         public string? CoverImageUrl { get; set; }

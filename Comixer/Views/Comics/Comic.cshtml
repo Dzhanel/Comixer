@@ -1,4 +1,5 @@
-﻿@model ComicDetailsModel;
+﻿@using System.Globalization
+@model ComicDetailsModel;
 
 @{
     ViewData["Title"] = Model.Title;
@@ -19,7 +20,7 @@
                         <div class="col-lg-6 col-md-5 col-12 align-middle">
                             <div class="trailer-content align-middle">
                                 <h2>@Model.Title</h2>
-                                <p class="light-text">Chapter @Model.Chapters.Count()</p>
+                                <p class="light-text">Chapters: @Model.Chapters.Count()</p>
                                 <div class="dropdown">
                                     <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
                                         <svg width="32" height="22" viewBox="0 0 32 22" fill="none"
@@ -38,7 +39,7 @@
                                     </button>
                                     <ul class="dropdown-menu bg-color-black pt-3 pb-3 ps-3 pe-3">
                                         <li>
-                                            <a href="#" class="none"><i class="fa fa-check"></i> Watch Later </a>
+                                            <a href="#" class="none"><i class="bi bi-check"></i> Watch Later </a>
                                         </li>
                                         <li>
                                             <a href="#"><i class="fas fa-plus"></i> Add to Playlist </a>
@@ -48,9 +49,16 @@
                                 <h3>Plot Summary</h3>
                                 <p>@Model.Description</p>
                                 <div class="d-flex pt-4">
-                                    <a href="manga-content.html"
-                                       class="anime-btn btn-dark border-change me-3">READ FIRST</a>
-                                    <a href="manga-content.html" class="anime-btn btn-dark">READ LAST</a>
+                                    @if(@Model.Chapters.Count() >= 1)
+                                    {
+                                        <a asp-action="Chapter" asp-controller="Chapter"
+                                            asp-route-id="@Model.Chapters.First().Id"
+                                           class="anime-btn btn-dark border-change me-3">READ FIRST</a>
+                                    }
+                                    @if(@Model.Chapters.Count() > 1)
+                                    {
+                                        <a href="manga-content.html" class="anime-btn btn-dark">READ LAST</a>
+                                    }
                                 </div>
                             </div>
                             <hr class="my-5">
@@ -58,7 +66,7 @@
                                 <h3>Comic Details</h3>
                                 <p><span>Author:</span> <b>@Model.Author?.UserName</b></p>
                                 <p><span>Artist:</span> <b>@Model.Artist?.UserName</b></p>
-                                <p><span>Date of release:</span> @Model.ReleaseDate //Jan 15, 2023</p>
+                                <p><span>Date of release:</span> @Model.ReleaseDate.ToString("MMM, dd yyyy", CultureInfo.InvariantCulture)</p>
                                 <p><span>Status:</span> <b>Completed</b></p>
                                 <p>
                                     <span>Genres: </span>
