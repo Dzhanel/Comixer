@@ -250,7 +250,9 @@ input,
         /* Firefox */
         opacity: 1;
     }
-
+.file-caption .input-group {
+    align-items: stretch;
+}
 .input-group-text {
     border-color: var(--color-grey-light);
 }

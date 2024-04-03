@@ -205,11 +205,14 @@
     // with plugin options
     $("#input-id").fileinput(
         {
-            'showUpload': false, 'previewFileType': 'any',
-            maxTotalFileCount: 50, 
-            maxFileCount: 50,
+            showUpload: false,
+            previewFileType: 'any',
             overwriteInitial: false,
-            dropZoneTitle: "Comic Cover Image"
-        });
+            dropZoneTitle: "Comic Cover Image",
+            showRemove: false,
+            browseIcon: "<i class=\"bi-file-image\"></i>",
+            browseLabel: "Pick Image",
+            captionClass: "rounded-start"
 
+        });
 })(window, document, jQuery);

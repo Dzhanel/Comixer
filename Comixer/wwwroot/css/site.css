@@ -100,3 +100,7 @@ input::-ms-clear {
   margin-top: 50px;
   padding-bottom: 50px;
 }
+
+.file-caption .input-group {
+  align-items: stretch !important;
+}
