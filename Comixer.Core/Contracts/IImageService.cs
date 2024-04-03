@@ -9,8 +9,8 @@ namespace Comixer.Core.Contracts
 {
     public interface IImageService
     {
-        Task<List<string>> Upload(ICollection<IFormFile> file);
-        Task<string> Upload();
+        Task<List<string>> Upload(ICollection<IFormFile> files);
+        Task<string> Upload(IFormFile file);
         Task<string> GetImageUrl(string publicId);
     }
 }

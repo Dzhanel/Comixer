@@ -26,7 +26,7 @@ namespace Comixer.Core.Service
             throw new NotImplementedException();
         }
 
-        public async Task<string> Upload()
+        public async Task<string> Upload(IFormFile image)
         {
             return (await cloudinary.UploadAsync(new ImageUploadParams()
             {

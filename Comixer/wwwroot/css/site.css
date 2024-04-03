@@ -18,6 +18,18 @@
   font-family: "Warden";
   src: url("../fonts/Warden-Regular.otf") format("opentype");
 }
+.noir-semi-bold {
+  font-family: "Noir Pro SemiBold";
+}
+
+.noir-bold {
+  font-family: "Noir Pro Bold";
+}
+
+.noir-light {
+  font-family: "Noir Pro Light";
+}
+
 html {
   font-size: 0.9rem;
 }
@@ -103,4 +115,14 @@ input::-ms-clear {
 
 .file-caption .input-group {
   align-items: stretch !important;
+}
+
+.textarea_danger {
+  border: 2px solid red !important;
+}
+
+.textarea:focus {
+  box-shadow: none;
+  outline: none;
+  border: 2px solid blue;
 }

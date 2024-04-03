@@ -285,6 +285,7 @@ input::-ms-input-placeholder,
 input::placeholder,
 .form-control::placeholder {
     color: var(--color-gray-2);
+    color: var(--color-medium-grey);
     /* Firefox */
     opacity: 1;
 }
@@ -317,11 +318,15 @@ input {
         height: auto;
         width: auto;
         background-color: var(--color-grey);
+        cursor: pointer;
     }
 
         input[type='checkbox']:checked {
             accent-color: var(--color-primary);
         }
+            input[type='checkbox']:checked + .check-highlight {
+                color: var(--color-primary);
+            }
 
     input[type='range']::-webkit-slider-thumb {
         background: var(--color-primary);
@@ -4927,17 +4932,20 @@ ul.pagination {
     padding: 20px 10px;
     font-weight: 400;
     font-size: 15px;
-    color: var(--color-dark-grey);
+    color: var(--color-grey-light);
     margin-bottom: 15px;
+    font-family: var(--font-primary);
 }
-
+.profile .form-group input::placeholder,
+.profile .form-group textarea::after::placeholder {
+    color: var(--color-dark-grey);
+}
 .profile .anime-btn.btn-dark {
     width: 250px;
     padding: 5px 10px;
     font-weight: 400;
     font-size: 15px;
     color: var(--color-white);
-    margin: 30px auto 0;
     display: block;
     letter-spacing: 1px;
 }

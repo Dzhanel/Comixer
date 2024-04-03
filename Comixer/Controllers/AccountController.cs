@@ -28,6 +28,10 @@ namespace Comixer.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel viewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
             var newUser = new ApplicationUser()
             {
                 Id = Guid.NewGuid(),

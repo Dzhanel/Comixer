@@ -17,7 +17,7 @@ namespace Comixer.Core.Models.Comic
         public ComicAuthorModel? Author { get; set; }
         public ComicArtistModel? Artist { get; set; }
         public double AverageRating { get; set; }
-        public ICollection<GenreModel> Genres { get; set; } = new HashSet<GenreModel>();
-        public ICollection<ComicChaptersModel> Chapters { get; set; } = new HashSet<ComicChaptersModel>();
+        public IEnumerable<GenreModel> Genres { get; set; } = new HashSet<GenreModel>();
+        public IEnumerable<ComicChaptersModel> Chapters { get; set; } = new HashSet<ComicChaptersModel>();
     }
 }

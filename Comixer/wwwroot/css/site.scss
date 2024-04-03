@@ -89,3 +89,13 @@ input::-ms-clear {
 .file-caption .input-group {
     align-items: stretch !important;
 }
+
+.textarea_danger{
+    border:2px solid red !important;
+}
+
+.textarea:focus{
+    box-shadow:none;
+    outline:none;
+    border:2px solid blue;
+}

@@ -6,6 +6,7 @@ using Comixer.Infrastructure.Data.Entities;
 using Comixer.Core.Helpers;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Localization;
+using Microsoft.AspNetCore.Http.Features;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -27,11 +28,18 @@ builder.Services.AddControllersWithViews()
     {
         options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
     });
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = new PathString("/Account/Login");
+});
+
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Api:CloudinarySettings"));
 
 builder.Services.AddApplicationServices();
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -69,6 +77,7 @@ app.MapControllerRoute(name: "Chapter",
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.MapRazorPages();
 

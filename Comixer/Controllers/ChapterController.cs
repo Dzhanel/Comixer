@@ -19,5 +19,7 @@ namespace Comixer.Controllers
             var model = await chapterService.GetChapterContentAsync(id);
             return View(model);
         }
+
+
     }
 }
