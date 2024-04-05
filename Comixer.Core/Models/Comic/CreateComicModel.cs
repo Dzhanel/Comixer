@@ -12,6 +12,7 @@ namespace Comixer.Core.Models.Comic
         [AllowNull]
         public string? Description { get; set; }
         [Required]
+        [Display(Name = "Cover Image")]
         public IFormFile CoverImage { get; set; } = null!;
         public IEnumerable<GenreModel> Genres { get; set; } = new HashSet<GenreModel>();
     }

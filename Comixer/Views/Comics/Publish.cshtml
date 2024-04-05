@@ -7,55 +7,38 @@
         <div class="row">
             <div class="col-lg-9 col-sm-12 col-12">
                 <form method="POST" asp-action="Publish" enctype="multipart/form-data">
-                <div class="row pb-5">
-                        <div class="col-lg-4 col-sm-12 col-12">
+                    <div class="row pb-5">
+                        <div class="col-lg-4 col-sm-12 col-12 text-center">
                             <div class="img-box">
-                                <div class="file-loading">
+                                <div class="file-loading h-100">
                                     @* krajee docs for the drag & drop file input*@
-                                    <input asp-for="CoverImage" class="file" id="cover-image" type="file" accept="image/*"
-                                           data-msg-placeholder="Image select" />
+                                    <input asp-for="CoverImage" class="file" id="cover-image" type="file"
+                                           data-msg-placeholder="Image select"/>
                                 </div>
+                                <span class="text-secondary mt-2">Cover height should be 1920px and width 1080px (1920x1080). Allowed image types - .jpg, .jpeg, .png, .webp. </span>
                             </div>
+                            <span asp-validation-for="CoverImage" class="error mt-2 text-danger"></span>
                         </div>
                         <div class="col-lg-8 col-sm-12 col-12">
                             <div class="form-group">
                                 <label class="noir-semi-bold" asp-for="Title">Title</label>
-                                <input asp-for="Title" class="form-control mb-2" type="text" name="Title" maxlength="80" placeholder="Name of your comic" required>
-                                <span asp-validation-for="Title" class="error"></span>
+                                <input asp-for="Title" class="form-control mb-2" type="text" name="Title" maxlength="80" placeholder="Name of your comic">
                             </div>
                             <div class="form-group">
                                 <label class="noir-semi-bold" asp-for="Description">Description</label>
                                 <textarea asp-for="Description" class="form-control rounded-2 mb-2" id="exampleFormControlTextarea1" maxlength="300" rows="3" placeholder="Write a short description of your comic"></textarea>
-                                <span asp-validation-for="Description" class="error"></span>
                             </div>
-                            <ul class="filter-block style-2">
-                                <li class="w-100 mt-0">
-                                    <a href="#" class="anime-btn btn-dark dropdown-toggle" id="genre" data-bs-toggle="dropdown"
-                                       data-bs-auto-close="outside" aria-expanded="false">
-                                        Choose Genres <span><i class="bi bi-chevron-down"></i></span>
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="genre">
-                                        @if (ViewBag.Genres is not null)
-                                        {
-                                            @foreach (var genre in ViewBag.Genres)
-                                            {
-                                                <li>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input asp-for="SelectedGenres" type="checkbox" class="custom-control-input" id="@genre.Name" value="@genre.Name">
-                                                        <label class="custom-control-label check-highlight" for="@genre.Name">@genre.Name</label>
-                                                    </div>
-                                                </li>
-                                            }
-                                        }
-                                    </ul>
-                                </li>
-                            </ul>
+                            <partial name="_SelectGenre" model="Model.Genres">
                             <button type="submit" class="anime-btn btn-dark border-change float-end">
                                 Create Comic
                             </button>
+                            <div class="float-start d-inline-block align-items-center">
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
                         </div>
-                </div>
-                    </form>
+                    </div>
+                </form>
             </div>
             <div class="col-lg-3 offset-lg-0 col-sm-8 offset-sm-2 col-12">
                 <div class="profile-link bg-color-black">
@@ -87,8 +70,12 @@
                 showRemove: false,
                 browseIcon: "<i class=\"bi-file-image\"></i>",
                 browseLabel: "Pick Image",
-                captionClass: "rounded-start"
-
+                captionClass: "rounded-start",
+                allowedFileExtensions: ['jpg', 'jpeg', 'png', 'webp'],
+                maxImageWidth: 1080,
+                minImageWidth: 1080,
+                maxImageHeight: 1920,
+                minImageHeight: 1920,
             });
     </script>
 }

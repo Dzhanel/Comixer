@@ -1,6 +1,5 @@
 ﻿@using System.Globalization
 @model ComicDetailsModel;
-
 @{
     ViewData["Title"] = Model.Title;
 }
@@ -54,7 +53,7 @@
                                     }
                                     @if(@Model.Chapters.Count() > 1)
                                     {
-                                        <a href="manga-content.html" class="anime-btn btn-dark">READ LAST</a>
+                                        <a asp-action="Chapter" asp-controller="Chapter" asp-route-id="@Model.Chapters.Last().Id" class="anime-btn btn-dark">READ LAST</a>
                                     }
                                 </div>
                             </div>

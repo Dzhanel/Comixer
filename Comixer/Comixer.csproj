@@ -145,4 +145,8 @@
     <ProjectReference Include="..\Comixer.Infrastructure\Comixer.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Genre\" />
+  </ItemGroup>
+
 </Project>

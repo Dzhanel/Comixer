@@ -45,7 +45,8 @@ namespace Comixer.Controllers
             {
                 return View(viewModel);
             }
-            await imageService.Upload(viewModel.CoverImage);
+
+
             return View(viewModel);
         }
     }

@@ -1,4 +1,9 @@
-﻿<header class="header style-1">
+﻿@{
+    string action = ViewContext.RouteData.Values["Action"]!.ToString()!;
+    bool isAuthenticated = User.Identity is not null && User.Identity.IsAuthenticated;
+}
+
+<header class="header style-1">
     <!-- Start Mainmenu Nav -->
     <nav class="navbar navbar-expand-lg p-auto">
         <div class="container">
@@ -14,23 +19,23 @@
             <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
                 <ul class="navbar-nav mainmenu">
                     <li class="menu-item-has-children">
-                        <a asp-controller="Comics" asp-action="Publish">Publish</a>
+                        <a asp-controller="Comics" asp-action="Publish" class="@(action == "Publish" ? "active" : "")">Publish</a>
                     </li>
-@*                  <li class="menu-item-has-children">
-                        <a href="home-2.html class="active">Movie</a>
-                    </li>
+                    @if (isAuthenticated && User.IsInRole("Author"))
+                    {
+                        <li class="menu-item-has-children">
+                            <a asp-controller="Comics" asp-action="Publish" class="@(action == "MyComics" ? "active" : "")">My Comics</a>
+                        </li>
+                    }
                     <li class="menu-item-has-children">
-                        <a href="home-3.html">Manga</a>
+                        <a asp-controller="Comics" asp-action="Publish" class="@(action == "Browse" ? "active" : "")">Browse</a>
                     </li>
-                    <li class="menu-item-has-children">
-                        <a href="#Pages" class="dropdown-toggle" id="pages" data-bs-toggle="dropdown"
-                           data-bs-auto-close="outside" aria-expanded="false">Dropdown</a>
-                        <ul class="dropdown-menu" aria-labelledby="pages">
-                            <li>
-                                <a href="home.html" class="active">Anime</a>
-                            </li>
-                        </ul>
-                    </li>*@
+                    @if (isAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li class="menu-item-has-children">
+                            <a asp-controller="Comics" asp-action="Publish" class="@(action == "Admin" ? "active" : "")">Admin</a>
+                        </li>
+                    }
                 </ul>
                 <ul class="navbar-nav mainmenu">
                     <li>
