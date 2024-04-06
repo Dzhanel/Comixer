@@ -2,6 +2,7 @@
 using Comixer.Core.Models.Comic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.IO.Compression;
 
 namespace Comixer.Controllers
 {
@@ -33,21 +34,37 @@ namespace Comixer.Controllers
         [HttpGet]
         public async Task<IActionResult> Publish()
         {
-            ViewBag.Genres = await genreService.AllGenresAsync();
-            return View(new CreateComicModel());
+            var genres = await genreService.AllGenresAsync();
+            return View(new CreateComicModel()
+            {
+                Genres = genres
+            });
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Publish(CreateComicModel viewModel)
         {
-            ViewBag.Genres = await genreService.AllGenresAsync();
             if (!ModelState.IsValid)
             {
                 return View(viewModel);
             }
+            //Check if any genre is selected
+            //Filter selected genres only
+            //pass that to the model
+            try
+            {
+                await comicService.CreateComic(viewModel);
+                return View(viewModel);
+            }
+            catch
+            {
+                viewModel.Genres = await genreService.AllGenresAsync();
+                return View(viewModel);
+                throw;
+            }
 
-
-            return View(viewModel);
         }
+
+
     }
 }

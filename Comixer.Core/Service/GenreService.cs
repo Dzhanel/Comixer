@@ -18,10 +18,10 @@ namespace Comixer.Core.Service
             this.repo = _repo;
         }
 
-        public async Task<IEnumerable<GenreModel>> AllGenresAsync()
+        public async Task<List<GenreModel>> AllGenresAsync()
         {
             var genres = await repo.AllReadonly<Genre>().ToListAsync();
-            return mapper.Map<IEnumerable<Genre>, IEnumerable<GenreModel>>(genres);
+            return mapper.Map<List<Genre>, List<GenreModel>>(genres);
         }
     }
 }

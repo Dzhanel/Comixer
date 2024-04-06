@@ -1,5 +1,5 @@
 ﻿@using Comixer.Core.Models.Genre;
-@model IEnumerable<GenreModel>
+@model CreateComicModel
 <ul class="filter-block style-2">
     <li class="w-100 mt-0">
         <a href="#" class="anime-btn btn-dark dropdown-toggle" id="genre" data-bs-toggle="dropdown"
@@ -7,17 +7,23 @@
             Choose Genres <span><i class="bi bi-chevron-down"></i></span>
         </a>
         <ul class="dropdown-menu" aria-labelledby="genre">
-            @if (ViewBag.Genres is not null)
+            @if (Model.Genres.Count > 0 && Model.Genres is not null)
             {
-                @foreach (var genre in ViewBag.Genres)
+                @for(var i = 0; i < Model.Genres.Count; i++)
                 {
                     <li>
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="@genre.Name" value="@genre.Name">
-                            <label class="custom-control-label check-highlight" for="@genre.Name">@genre.Name</label>
+                            <input type="hidden" asp-for="@Model.Genres[i].Id" value="@Model.Genres[i].Id">
+                            <input type="hidden" asp-for="@Model.Genres[i].Name" value="@Model.Genres[i].Name">
+                            <input asp-for="@Model.Genres[i].IsChecked" type="checkbox" id="@Model.Genres[i].Name" class="custom-control-input">
+                            <label class="custom-control-label check-highlight" for="@Model.Genres[i].Name">@Model.Genres[i].Name</label>
                         </div>
                     </li>
                 }
+            }
+            else
+            {
+                @:Something went wrong. Cannot display genres.
             }
         </ul>
     </li>

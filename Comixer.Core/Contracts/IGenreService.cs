@@ -4,6 +4,6 @@ namespace Comixer.Core.Contracts
 {
     public interface IGenreService
     {
-        Task<IEnumerable<GenreModel>> AllGenresAsync();
+        Task<List<GenreModel>> AllGenresAsync();
     }
 }

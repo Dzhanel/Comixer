@@ -1,4 +1,4 @@
-﻿    using Comixer.Infrastructure.Data.Configurations;
+﻿using Comixer.Infrastructure.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;

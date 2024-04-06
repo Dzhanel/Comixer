@@ -21,6 +21,13 @@ namespace Comixer.Core.Service
             this.imageService = imageService;
         }
 
+        public async Task<Guid> CreateComic(CreateComicModel viewModel)
+        {
+            var entity = mapper.Map<CreateComicModel, Comic>(viewModel);
+            entity.Id = Guid.NewGuid();
+            throw new NotImplementedException();
+        }
+
         public async Task<ComicDetailsModel> GetComicById(Guid comicId)
         {
             var entity = await repo.AllReadonly<Comic>(x => x.Id == comicId)
@@ -29,7 +36,7 @@ namespace Comixer.Core.Service
                 .Include(c => c.UsersComics)
                 .ThenInclude(uc => uc.User)
                 .Include(c => c.Chapters)
-                .FirstOrDefaultAsync() ?? throw new NullReferenceException("Invalid Id");
+                .FirstOrDefaultAsync() ?? throw new KeyNotFoundException("Invalid Id");
             
             return mapper
                 .Map<ComicDetailsModel>(source: entity);
@@ -39,7 +46,7 @@ namespace Comixer.Core.Service
             var genres = await repo
                 .All<ComicGenre>(x => x.ComicId == comicId)
                 .Select(x => x.Genre)
-                .ToListAsync();
+                .ToListAsync() ?? throw new KeyNotFoundException("Invalid Id");
             
             return genres
                 .Select(g => mapper.Map(g, new GenreModel()))
