@@ -18,7 +18,6 @@ namespace Comixer.Infrastructure.Data.Configurations
                 {
                     Id = Guid.Parse("e5a73c63-1bef-425b-aaf7-425d55d21767"),
                     Title = "Comic 1 Chapter 1",
-                    Description = "Title Description",
                     ReleaseDate = DateTime.Now,
                     Rating = 4,
                     ComicId = Guid.Parse("15ca4f3c-4bb6-47b0-9d5f-e902c0627c91")
@@ -27,7 +26,6 @@ namespace Comixer.Infrastructure.Data.Configurations
                 {
                     Id = Guid.Parse("ed32b753-7a35-4512-99c0-e2216185686e"),
                     Title = "Comic 1 Chapter 2",
-                    Description = "Title Description",
                     ReleaseDate = DateTime.Now,
                     Rating = 7,
                     ComicId = Guid.Parse("15ca4f3c-4bb6-47b0-9d5f-e902c0627c91")
@@ -36,7 +34,6 @@ namespace Comixer.Infrastructure.Data.Configurations
                 {
                     Id = Guid.Parse("e4dca4c6-f29f-459c-a6ce-85fcdb01b5c2"),
                     Title = "Comic 2 Chapter 1",
-                    Description = "Title Description",
                     ReleaseDate = DateTime.Now,
                     Rating = 7,
                     ComicId = Guid.Parse("58b58581-82c8-4bbc-bcf3-49914b71bd00")

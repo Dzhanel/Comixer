@@ -12,7 +12,7 @@ namespace Comixer.Infrastructure.Data.Configurations
             builder.HasData(SeedUsers());
         }
 
-        private static ICollection<ApplicationUser> SeedUsers()
+        private static ICollection<ApplicationUser> SeedUsers() 
         {
             var users = new HashSet<ApplicationUser>();
             var hasher = new PasswordHasher<ApplicationUser>();

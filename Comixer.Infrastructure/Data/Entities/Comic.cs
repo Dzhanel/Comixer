@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using static Comixer.Common.Constants.Comic;
 
 namespace Comixer.Infrastructure.Data.Entities
 {
@@ -11,13 +12,13 @@ namespace Comixer.Infrastructure.Data.Entities
         [Key]
         public Guid Id { get; set; }
         [Required]
-        [MaxLength(80)]
+        [MaxLength(TitleMaxLength)]
         public string Title { get; set; } = null!;
         [AllowNull]
-        [MaxLength(300)]
+        [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
         public int Status { get; set; }
-        public string? CoverImageUrl { get; set; }
+        public string CoverImageUrl { get; set; } = null!;
         public ICollection<Chapter> Chapters { get; set; } = new HashSet<Chapter>();
         public ICollection<UserComic> UsersComics { get; set; } = new HashSet<UserComic>();
         public ICollection<ComicGenre> ComicGenres { get; set; } = new HashSet<ComicGenre>();

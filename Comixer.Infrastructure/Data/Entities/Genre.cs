@@ -1,6 +1,7 @@
 ﻿using Comixer.Infrastructure.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using static Comixer.Common.Constants.Genre;
 
 namespace Comixer.Infrastructure.Data.Entities
 {
@@ -10,7 +11,7 @@ namespace Comixer.Infrastructure.Data.Entities
         [Key]
         public int Id { get; set; }
         [Required]
-        [StringLength(50)]
+        [StringLength(GenreMaxNameLength)]
         public string Name { get; set; } = null!;
         public ICollection<ComicGenre> ComicsGenres { get; set; } = new HashSet<ComicGenre>();
     }

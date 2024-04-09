@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
+using static Comixer.Common.Constants.FileExtensions;
 
 namespace Comixer.Core.Extensions.Attributes
 {
@@ -31,7 +32,7 @@ namespace Comixer.Core.Extensions.Attributes
 
         public string GetErrorMessage()
         {
-            return $"Allowed file extensions are '.jpg', '.jpeg', '.png', '.webp'";
+            return $"Allowed file extensions are '{jpg}', '{jpeg}', '{png}', '{webp}'";
         }
         //only works with jpg, jpeg, png and webp for now
         private static bool IsFileValid(IFormFile file)
@@ -45,10 +46,13 @@ namespace Comixer.Core.Extensions.Attributes
             }
 
         }
+        /// <summary>
+        /// File signature dictionary to validate image file formats, as checking only extension name is vulnerable
+        /// </summary>
         private static readonly Dictionary<string, List<byte[]>> fileSignatures = new()
         {
-            { ".png", new List<byte[]> { new byte[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A } } },
-            { ".jpeg", new List<byte[]>
+            { png, new List<byte[]> { new byte[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A } } },
+            { jpeg, new List<byte[]>
                 {
                     new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 },
                     new byte[] { 0xFF, 0xD8, 0xFF, 0xE2 },
@@ -57,7 +61,7 @@ namespace Comixer.Core.Extensions.Attributes
                     new byte[] { 0xFF, 0xD8, 0xFF, 0xDB },
                 }
             },
-            { ".jpg", new List<byte[]>
+            { jpg, new List<byte[]>
                 {
                     new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 },
                     new byte[] { 0xFF, 0xD8, 0xFF, 0xE1 },
@@ -66,7 +70,7 @@ namespace Comixer.Core.Extensions.Attributes
                     new byte[] { 0xFF, 0xD8, 0xFF, 0xDB },
                 }
             },
-            { ".webp", new List<byte[]>
+            { webp, new List<byte[]>
             {
                  new byte[] { 0x52, 0x49, 0x46, 0x46 },
                  new byte[] { 0x57, 0x45, 0x42, 0x50 },

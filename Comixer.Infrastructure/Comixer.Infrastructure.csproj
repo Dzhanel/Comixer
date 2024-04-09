@@ -18,4 +18,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Comixer.Common\Comixer.Common.csproj" />
+  </ItemGroup>
+
 </Project>

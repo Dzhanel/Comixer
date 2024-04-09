@@ -48,12 +48,9 @@ namespace Comixer.Controllers
             {
                 return View(viewModel);
             }
-            //Check if any genre is selected
-            //Filter selected genres only
-            //pass that to the model
             try
             {
-                await comicService.CreateComic(viewModel);
+                await comicService.CreateComic(viewModel.Genres.Where());
                 return View(viewModel);
             }
             catch

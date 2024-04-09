@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
+using static Comixer.Common.Constants.Chapter;
 
 namespace Comixer.Infrastructure.Data.Entities
 {
@@ -12,11 +13,9 @@ namespace Comixer.Infrastructure.Data.Entities
         [Key]
         public Guid Id { get; set; }
         [Required]
-        [MaxLength(80)]
+        [MaxLength(TitleMaxLngth)]
         public string Title { get; set; } = null!;
         [AllowNull]
-        [MaxLength(300)]
-        public string Description { get; set; }
         public DateTime ReleaseDate { get; set; }
         public double Rating { get; set; }
         [ForeignKey(nameof(Comic))]

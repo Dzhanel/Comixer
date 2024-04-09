@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Comixer.Common\Comixer.Common.csproj" />
     <ProjectReference Include="..\Comixer.Infrastructure\Comixer.Infrastructure.csproj" />
   </ItemGroup>
 

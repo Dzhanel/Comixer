@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
+using static Comixer.Common.Constants.Comments;
 
 namespace Comixer.Infrastructure.Data.Entities
 {
@@ -12,7 +13,7 @@ namespace Comixer.Infrastructure.Data.Entities
         [Key]
         public Guid Id { get; set; }
         [Required]
-        [MaxLength(300)]
+        [MaxLength(CommentContentMaxLength)]
         public string Content { get; set; } = null!;
         [AllowNull]
         [ForeignKey(nameof(ParrentComment))]

@@ -28,11 +28,18 @@ namespace Comixer.Core.Service
 
         public async Task<string> Upload(IFormFile image)
         {
+            using (var stream = image.OpenReadStream())
+            {
+                var uploadParams = new ImageUploadParams
+                {
+
+                };
+            }
             return (await cloudinary.UploadAsync(new ImageUploadParams()
             {
                 File = new FileDescription(@"https://picsum.photos/1080/1920"),
                 PublicId = Guid.NewGuid().ToString(),
-            })).Url.ToString();
+            })).SecureUrl.ToString();
         }
 
         public async Task<string> GetImageUrl(string publicId)

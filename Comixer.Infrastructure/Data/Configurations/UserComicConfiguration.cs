@@ -1,4 +1,4 @@
-﻿using Comixer.Infrastructure.Data.Entities;
+﻿    using Comixer.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

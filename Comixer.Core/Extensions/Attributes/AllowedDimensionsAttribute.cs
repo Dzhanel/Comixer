@@ -1,18 +1,16 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System.ComponentModel.DataAnnotations;
 using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats;
-using SixLabors.ImageSharp.Processing;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace Comixer.Core.Extensions.Attributes
 {
     public class AllowedDimensionsAttribute : ValidationAttribute
     {
-        private int minWidth;
-        private int maxWidth;
-        private int minHeight;
-        private int maxHeight;
+        private readonly int minWidth;
+        private readonly int maxWidth;
+        private readonly int minHeight;
+        private readonly int maxHeight;
         public AllowedDimensionsAttribute(int minWidth, int maxWidth, int minHeight, int maxHeight)
         {
             this.minWidth = minWidth;

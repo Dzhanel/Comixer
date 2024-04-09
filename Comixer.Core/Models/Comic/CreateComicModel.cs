@@ -3,6 +3,7 @@ using Comixer.Core.Models.Genre;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using static Comixer.Common.Constants.Image;
 
 namespace Comixer.Core.Models.Comic
 {
@@ -14,9 +15,13 @@ namespace Comixer.Core.Models.Comic
         public string? Description { get; set; }
         [Required]
         [Display(Name = "Cover Image")]
-        [FormFileMaxSize(maxFileSize: 1920 * 1080 * 3)]
+        [FormFileMaxSize(maxFileSize: MaxImageFileSize)]
         [AllowedExtensions(".jpg", ".jpeg", ".png", ".webp")]
-        [AllowedDimensions(minHeight: 1920, maxHeight: 1920, maxWidth:1080, minWidth:1080)]
+        [AllowedDimensions(
+            minHeight: MinComicCoverHeight, 
+            maxHeight: MaxComicCoverHeight, 
+            maxWidth: MaxComicCoverWidth, 
+            minWidth:MinComicCoverWidth)]
         [DataType(DataType.Upload)]
         public IFormFile CoverImage { get; set; } = null!;
         public List<GenreModel> Genres { get; set; } = new List<GenreModel>();
