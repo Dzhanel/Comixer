@@ -5,7 +5,8 @@ using static Comixer.Common.Constants.FileExtensions;
 namespace Comixer.Core.Extensions.Attributes
 {
     /// <summary>
-    ///  Custom attribute that validates IFormFile allowed extensions
+    /// Custom attribute that validates <see cref="IFormFile"></see> allowed extensions.<br/>
+    /// Supports: .jpg, .jpeg, .png, .webp
     /// </summary>
     /// <param name="extensions"></param>
     public class AllowedExtensionsAttribute : ValidationAttribute
@@ -29,11 +30,15 @@ namespace Comixer.Core.Extensions.Attributes
             }
             return ValidationResult.Success;
         }
-
         public string GetErrorMessage()
         {
             return $"Allowed file extensions are '{jpg}', '{jpeg}', '{png}', '{webp}'";
         }
+        /// <summary>
+        /// Valdiates if file contains signature from <see cref="fileSignatures"></see> dictionary.
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
         //only works with jpg, jpeg, png and webp for now
         private static bool IsFileValid(IFormFile file)
         {
@@ -47,7 +52,7 @@ namespace Comixer.Core.Extensions.Attributes
 
         }
         /// <summary>
-        /// File signature dictionary to validate image file formats, as checking only extension name is vulnerable
+        /// File signature dictionary to validate image file formats, as checking only extension name is vulnerable.
         /// </summary>
         private static readonly Dictionary<string, List<byte[]>> fileSignatures = new()
         {

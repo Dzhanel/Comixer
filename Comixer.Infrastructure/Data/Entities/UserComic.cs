@@ -7,6 +7,7 @@ namespace Comixer.Infrastructure.Data.Entities
     [EntityTypeConfiguration(typeof(UserComicConfiguration))]
     public class UserComic
     {
+        public bool IsReadLater { get; set; }
         public bool IsAuthor { get; set; }
         public bool IsArtist { get; set; }
         [ForeignKey(nameof(User))]

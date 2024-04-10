@@ -1,4 +1,5 @@
 ﻿using Comixer.Infrastructure.Data.Configurations;
+using Comixer.Infrastructure.Enums;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
@@ -17,7 +18,7 @@ namespace Comixer.Infrastructure.Data.Entities
         [AllowNull]
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
-        public int Status { get; set; }
+        public Status Status { get; set; }
         public string CoverImageUrl { get; set; } = null!;
         public ICollection<Chapter> Chapters { get; set; } = new HashSet<Chapter>();
         public ICollection<UserComic> UsersComics { get; set; } = new HashSet<UserComic>();

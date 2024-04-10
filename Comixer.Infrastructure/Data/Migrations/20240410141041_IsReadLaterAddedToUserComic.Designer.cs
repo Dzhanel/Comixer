@@ -4,6 +4,7 @@ using Comixer.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Comixer.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240410141041_IsReadLaterAddedToUserComic")]
+    partial class IsReadLaterAddedToUserComic
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,15 +94,15 @@ namespace Comixer.Infrastructure.Data.Migrations
                         {
                             Id = new Guid("c6c34844-3e79-4c96-bd46-6aeb571a2d2f"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "169b56ec-0317-4dfd-839c-851f02e85bd7",
+                            ConcurrencyStamp = "a15e3888-b3a1-4b9a-a8ad-dbecbb4c3a4f",
                             Email = "admin@comixer.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@COMIXER.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAELTrlhA9l448s5bxHe3t27LmJaYYWBjZkzZS/dC/RE0z9HP2iXSG0O35GwcZoQGQXQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMZLPYJNFjKuLh6FDrL2Gw+wr/neqD+0YpLU1GKaN5hF8oNxmMmOhx+ZMO1RGQ2UEA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f0056851-c7f6-4110-9f3c-4fc96c9ee762",
+                            SecurityStamp = "1f7b95f0-457e-4ebb-924c-53559832dc8f",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         },
@@ -108,15 +110,15 @@ namespace Comixer.Infrastructure.Data.Migrations
                         {
                             Id = new Guid("7386f2b2-a981-4944-ba58-12c6d42a595d"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6738b013-93f3-4475-916d-ac89a37e0b04",
+                            ConcurrencyStamp = "cd1d7dbe-1858-4057-a240-1f16d9e3a107",
                             Email = "author@comixer.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "AUTHOR@COMIXER.COM",
                             NormalizedUserName = "AUTHOR_1",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJRHCLOE0LtaechUYuNMcZ7s7r54N8sPS9vRfPuLF3fuyT4+OIhne9fDAQ0/KZ9GNA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIs2jF8AoBm4EHuCv645LEm/40tdZNmMpiiCYESVoSPFUjjxq8C+PcgklckYKlt21A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3fc0af6e-2d79-49f1-80c7-ecca5eb4d37a",
+                            SecurityStamp = "47badf63-c3c2-41f4-9161-d74d28b45335",
                             TwoFactorEnabled = false,
                             UserName = "Author 1"
                         });
@@ -154,7 +156,7 @@ namespace Comixer.Infrastructure.Data.Migrations
                             Id = new Guid("e5a73c63-1bef-425b-aaf7-425d55d21767"),
                             ComicId = new Guid("15ca4f3c-4bb6-47b0-9d5f-e902c0627c91"),
                             Rating = 4.0,
-                            ReleaseDate = new DateTime(2024, 4, 10, 17, 44, 5, 332, DateTimeKind.Local).AddTicks(5330),
+                            ReleaseDate = new DateTime(2024, 4, 10, 17, 10, 40, 862, DateTimeKind.Local).AddTicks(2820),
                             Title = "Comic 1 Chapter 1"
                         },
                         new
@@ -162,7 +164,7 @@ namespace Comixer.Infrastructure.Data.Migrations
                             Id = new Guid("ed32b753-7a35-4512-99c0-e2216185686e"),
                             ComicId = new Guid("15ca4f3c-4bb6-47b0-9d5f-e902c0627c91"),
                             Rating = 7.0,
-                            ReleaseDate = new DateTime(2024, 4, 10, 17, 44, 5, 332, DateTimeKind.Local).AddTicks(5411),
+                            ReleaseDate = new DateTime(2024, 4, 10, 17, 10, 40, 862, DateTimeKind.Local).AddTicks(2890),
                             Title = "Comic 1 Chapter 2"
                         },
                         new
@@ -170,7 +172,7 @@ namespace Comixer.Infrastructure.Data.Migrations
                             Id = new Guid("e4dca4c6-f29f-459c-a6ce-85fcdb01b5c2"),
                             ComicId = new Guid("58b58581-82c8-4bbc-bcf3-49914b71bd00"),
                             Rating = 7.0,
-                            ReleaseDate = new DateTime(2024, 4, 10, 17, 44, 5, 332, DateTimeKind.Local).AddTicks(5420),
+                            ReleaseDate = new DateTime(2024, 4, 10, 17, 10, 40, 862, DateTimeKind.Local).AddTicks(2895),
                             Title = "Comic 2 Chapter 1"
                         });
                 });
@@ -259,7 +261,7 @@ namespace Comixer.Infrastructure.Data.Migrations
                         new
                         {
                             Id = new Guid("15ca4f3c-4bb6-47b0-9d5f-e902c0627c91"),
-                            CoverImageUrl = "https://res.cloudinary.com/dwyg7tvwc/image/upload/comic-15ca4f3c-4bb6-47b0-9d5f-e902c0627c91/cover.jpg",
+                            CoverImageUrl = "https://res.cloudinary.com/dwyg7tvwc/image/upload/v1710970352/imeajdrdddoknxv69tml.jpg",
                             Description = "Comic 1 Description",
                             Status = 2,
                             Title = "Comic 1"
@@ -267,7 +269,7 @@ namespace Comixer.Infrastructure.Data.Migrations
                         new
                         {
                             Id = new Guid("58b58581-82c8-4bbc-bcf3-49914b71bd00"),
-                            CoverImageUrl = "https://res.cloudinary.com/dwyg7tvwc/image/upload/comic-58b58581-82c8-4bbc-bcf3-49914b71bd00/cover.jpg",
+                            CoverImageUrl = "https://res.cloudinary.com/dwyg7tvwc/image/upload/v1710970351/pmyfcdg55kslvyt0vlca.webp",
                             Description = "Comic 2 Description",
                             Status = 1,
                             Title = "Comic 2"
@@ -275,7 +277,7 @@ namespace Comixer.Infrastructure.Data.Migrations
                         new
                         {
                             Id = new Guid("cc41b9ea-0767-4a45-a7b4-37cb07bec4d3"),
-                            CoverImageUrl = "https://res.cloudinary.com/dwyg7tvwc/image/upload/comic-cc41b9ea-0767-4a45-a7b4-37cb07bec4d3/cover.webp",
+                            CoverImageUrl = "https://res.cloudinary.com/dwyg7tvwc/image/upload/v1710970352/imeajdrdddoknxv69tml.jpg",
                             Description = "Comic 3 Description",
                             Status = 0,
                             Title = "Comic 3"
@@ -531,14 +533,14 @@ namespace Comixer.Infrastructure.Data.Migrations
                         new
                         {
                             Id = new Guid("528726ea-e421-4a80-b303-f035355599de"),
-                            ConcurrencyStamp = "178184ca-56a1-4ea5-900e-d6a7fb0ec0a3",
+                            ConcurrencyStamp = "cdfc619d-d19b-4600-a757-91caf9c84779",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = new Guid("5dd65fa9-eb2c-4372-8084-8c501347e74f"),
-                            ConcurrencyStamp = "da315901-4dc1-4982-bf4b-8a33d1ea1049",
+                            ConcurrencyStamp = "ece8ee49-ed95-4ecf-8c05-747c2a8fc760",
                             Name = "Author",
                             NormalizedName = "AUTHOR"
                         });

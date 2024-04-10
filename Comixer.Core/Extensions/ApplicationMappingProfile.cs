@@ -21,6 +21,7 @@ namespace Comixer.Core.Extensions
         }
         private void ComicMaps()
         {
+            CreateMap<CreateComicModel, Comic>();
             CreateMap<Comic, ComicDetailsModel>()
                .ForMember(dest => dest.Genres,
                           opt => opt.MapFrom(src => src.ComicGenres

@@ -63,7 +63,7 @@
                                 <p><span>Author:</span> <b>@Model.Author?.UserName</b></p>
                                 <p><span>Artist:</span> <b>@Model.Artist?.UserName</b></p>
                                 <p><span>Date of release:</span> @Model.ReleaseDate.ToString("MMM, dd yyyy", CultureInfo.InvariantCulture)</p>
-                                <p><span>Status:</span> <b>Completed</b></p>
+                                <p><span>Status:</span> <b>@Html.DisplayFor(model => model.Status)</b></p>
                                 <p>
                                     <span>Genres: </span>
                                     @foreach (var genre in Model.Genres)
@@ -71,7 +71,7 @@
                                         <a class="text-box genre-btn mb-1 m-0">@genre.Name</a>
                                     }
                                 <p><span>Scores:</span> @Model.AverageRating TODO: by 4,405 reviews</p>
-                                <p><span>Views:</span> 18,284</p>
+                                @* <p><span>Views:</span> 18,284</p> *@
                             </div>
                         </div>
                     </div>

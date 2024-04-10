@@ -4,7 +4,6 @@ using Comixer.Core.Models.Comic;
 using Comixer.Core.Models.Genre;
 using Comixer.Infrastructure.Common;
 using Comixer.Infrastructure.Data.Entities;
-using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Comixer.Core.Service
@@ -21,11 +20,22 @@ namespace Comixer.Core.Service
             this.imageService = imageService;
         }
 
-        public async Task<Guid> CreateComic(CreateComicModel viewModel)
+        public async Task<Guid> CreateComic(CreateComicModel viewModel, Guid authorId)
         {
             var entity = mapper.Map<CreateComicModel, Comic>(viewModel);
-            entity.Id = Guid.NewGuid();
-            throw new NotImplementedException();
+            Guid comicId = Guid.NewGuid();
+            entity.Id = comicId;
+            await repo.AddAsync(entity);
+
+            if (viewModel.Genres.Any())
+            {
+                var genreIds = viewModel.Genres.Select(x => x.Id).ToArray();
+                await this.AddGenresToComicAsync(genreIds, entity.Id);
+            }
+            await AddUserComicRelation(comicId, authorId, isAuthor: true, isArtist: true);
+            entity.CoverImageUrl = await imageService.UploadComicCoverImage(viewModel.CoverImage, entity.Id);
+            var result = await repo.SaveChangesAsync();
+            return comicId;
         }
 
         public async Task<ComicDetailsModel> GetComicById(Guid comicId)
@@ -51,6 +61,32 @@ namespace Comixer.Core.Service
             return genres
                 .Select(g => mapper.Map(g, new GenreModel()))
                 .ToList();
+        }
+        private async Task AddGenresToComicAsync(int[] genreIds, Guid comicId)
+        {
+            int length = genreIds.Length;
+            if(length > 0)
+            {
+                ComicGenre[] comicGenres = new ComicGenre[length];
+                for (var i = 0; i < length; i++)
+                {
+                    comicGenres[i] = new ComicGenre { ComicId = comicId, GenreId = genreIds[i] };
+                }
+                await repo.AddRangeAsync(comicGenres);
+            }
+        }
+        private async Task AddUserComicRelation(Guid comicId, Guid userId, bool isAuthor, bool isArtist = false, bool readLater = false)
+        {
+            
+            await repo.AddAsync(
+                new UserComic()
+                {
+                    ComicId = comicId,
+                    UserId = userId,
+                    IsAuthor = isAuthor,
+                    IsArtist = isArtist,
+                    IsReadLater = readLater
+                });
         }
 
     }

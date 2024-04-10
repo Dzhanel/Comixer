@@ -1,5 +1,6 @@
 ﻿using Comixer.Core.Contracts;
 using Comixer.Core.Models.Comic;
+using Comixer.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.IO.Compression;
@@ -50,8 +51,13 @@ namespace Comixer.Controllers
             }
             try
             {
-                await comicService.CreateComic(viewModel.Genres.Where());
-                return View(viewModel);
+                viewModel.Genres = viewModel
+                    .Genres
+                    .Where(x => x.IsChecked)
+                    .ToList();
+
+                var newComicid = await comicService.CreateComic(viewModel, User.Id());
+                return RedirectToAction(nameof(Comic), new {id=newComicid});
             }
             catch
             {

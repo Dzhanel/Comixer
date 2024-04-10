@@ -3,8 +3,6 @@ using Comixer.Core.Contracts;
 using Comixer.Core.Models.Chapter;
 using Comixer.Infrastructure.Common;
 using Comixer.Infrastructure.Data.Entities;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 
 namespace Comixer.Core.Service

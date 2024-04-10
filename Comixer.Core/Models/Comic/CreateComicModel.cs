@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using static Comixer.Common.Constants.Image;
+using static Comixer.Common.Constants.FileExtensions;
 
 namespace Comixer.Core.Models.Comic
 {
@@ -16,7 +17,7 @@ namespace Comixer.Core.Models.Comic
         [Required]
         [Display(Name = "Cover Image")]
         [FormFileMaxSize(maxFileSize: MaxImageFileSize)]
-        [AllowedExtensions(".jpg", ".jpeg", ".png", ".webp")]
+        [AllowedExtensions(jpg, jpeg, png, webp)]
         [AllowedDimensions(
             minHeight: MinComicCoverHeight, 
             maxHeight: MaxComicCoverHeight, 

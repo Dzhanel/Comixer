@@ -9,7 +9,7 @@ namespace Comixer.Core.Contracts
         /// </summary>
         /// <param name="viewModel"></param>
         /// <returns><see cref="Guid"/></returns>
-        Task<Guid> CreateComic(CreateComicModel viewModel);
+        Task<Guid> CreateComic(CreateComicModel viewModel, Guid authorId);
         /// <summary>
         /// Gets comic by GUID.
         /// </summary>

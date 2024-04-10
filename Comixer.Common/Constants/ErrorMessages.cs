@@ -1,6 +1,7 @@
 ﻿namespace Comixer.Common.Constants
 {
-    public class ErrorMessages
+    public static class ErrorMessages
     {
+
     }
 }

@@ -12,5 +12,6 @@ namespace Comixer.Core.Contracts
         Task<List<string>> Upload(ICollection<IFormFile> files);
         Task<string> Upload(IFormFile file);
         Task<string> GetImageUrl(string publicId);
+        Task<string> UploadComicCoverImage(IFormFile file, Guid comicUrl);
     }
 }

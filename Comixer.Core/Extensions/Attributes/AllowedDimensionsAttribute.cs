@@ -5,6 +5,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Comixer.Core.Extensions.Attributes
 {
+    /// <summary>
+    /// Validates <see cref="IFormFile"></see> width and height in px.
+    /// </summary>
     public class AllowedDimensionsAttribute : ValidationAttribute
     {
         private readonly int minWidth;
