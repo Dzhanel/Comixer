@@ -15,6 +15,7 @@ namespace Comixer.Infrastructure.Data.Entities
         [Required]
         [MaxLength(CommentContentMaxLength)]
         public string Content { get; set; } = null!;
+        public DateTime PostDate { get ; set; }
         [AllowNull]
         [ForeignKey(nameof(ParrentComment))]
         public Guid? ParrentCommentID { get; set; }
@@ -26,5 +27,6 @@ namespace Comixer.Infrastructure.Data.Entities
         public Chapter Chapter { get; set; } = null!;
         public ApplicationUser User { get; set; } = null!;
         public Guid UserId { get; set; }
+        public int Likes { get; set; }
     }
 }

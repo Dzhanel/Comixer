@@ -23,5 +23,9 @@ namespace Comixer.Infrastructure.Data.Entities
         public ICollection<Chapter> Chapters { get; set; } = new HashSet<Chapter>();
         public ICollection<UserComic> UsersComics { get; set; } = new HashSet<UserComic>();
         public ICollection<ComicGenre> ComicGenres { get; set; } = new HashSet<ComicGenre>();
+        public override string ToString()
+        {
+            return Title;
+        }
     }
 }

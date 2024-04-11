@@ -1,16 +1,16 @@
-﻿@model List<ChapterImageModel>
+﻿@model ChapterModel
 
 <div id="canvas" class="d-none d-lg-block">
     <div class="flipbook-viewport">
-        <div class="container">
+        <div class="container g-0">
             <div id="flipbook" class="flipbook">
-                <div class="hard" style="background-image:url(https://picsum.photos/1080/1920?random=0);background-size: cover;">
+                <div class="hard" style="background-image:url(https://picsum.photos/1080/1920?random=0);background-size:  100% 100%;">
                 </div>
                 @for (int i = 0; i < 10; i++)
                 {
-                    <div style="background-image:url(https://picsum.photos/1080/1920?random={@i});background-size: cover;"></div>
+                    <div style="background-image:url(https://picsum.photos/1080/1920?random={@i});background-size: 100% 100%;"></div>
                 }
-                <div class="hard" style="background-image:url(https://picsum.photos/1080/1920?random=11); background-size: cover;"></div>
+                <div class="hard" style="background-image:url(https://picsum.photos/1080/1920?random=11); background-size: 100% 100%;"></div>
             </div>
         </div>
     </div>
@@ -21,5 +21,8 @@
     {
         <img src="https://picsum.photos/1080/1920?random={@i}" />
     }
+    <div class="d-flex justify-content-between mb-4 mt-5">
+        <partial name="_ChapterNavigationsPartial" model="Model">
+    </div>
 </div>
 

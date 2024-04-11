@@ -3,6 +3,7 @@ using Comixer.Core.Contracts;
 using Comixer.Core.Models.Chapter;
 using Comixer.Infrastructure.Common;
 using Comixer.Infrastructure.Data.Entities;
+using Humanizer;
 using Microsoft.EntityFrameworkCore;
 
 namespace Comixer.Core.Service
@@ -22,11 +23,12 @@ namespace Comixer.Core.Service
             var entity = await repo
                 .AllReadonly<Chapter>()
                 .Include(x => x.Comic)
+                .Include(x => x.Comments)
+                .ThenInclude(x => x.User)
                 .Where(x => x.Id == chapterId)
                 .FirstOrDefaultAsync();
             
             var model = mapper.Map<ChapterModel>(entity);
-
             model.PreviousChapter = await GetPreviousChapterAsync(chapterId);
             model.NextChapter = await GetNextChapterAsync(chapterId);
                 

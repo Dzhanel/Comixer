@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Comixer.Core.Models.Chapter;
 using Comixer.Core.Models.Comic;
+using Comixer.Core.Models.Comment;
 using Comixer.Core.Models.Genre;
 using Comixer.Infrastructure.Data.Entities;
+using Humanizer;
 using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.IdentityModel.Tokens;
 
@@ -16,6 +18,7 @@ namespace Comixer.Core.Extensions
             GenreMaps();
             UserMaps();
             ChapterImageMaps();
+            CommentMaps();
             ChapterMaps();
             ComicMaps();
         }
@@ -60,6 +63,11 @@ namespace Comixer.Core.Extensions
             CreateMap<Chapter, ComicChaptersModel>();
             CreateMap<Chapter, ChapterModel>()
                .ForMember(dest => dest.ComicName, opt => opt.MapFrom(x => x.Comic.Title));
+        }
+        private void CommentMaps()
+        {
+            CreateMap<Comment, CommentModel>()
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(x => x.User.UserName));
         }
     }
 }

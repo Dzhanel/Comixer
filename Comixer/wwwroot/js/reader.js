@@ -1,15 +1,18 @@
 ﻿function loadApp() {
 
 	// Create the flipbook
+	
+	let flipbookWidth = $('.container').width();
+	console.log(flipbookWidth)
 
 	$('.flipbook').turn({
 		// Width
 
-		width: 922,
+		width: flipbookWidth,
 
 		// Height
 
-		height: 600,
+		height: flipbookWidth*0.67,
 
 		// Elevation
 

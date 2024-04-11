@@ -17,8 +17,22 @@
             <partial name="_ChapterNavigationsPartial" model="Model">
         </div>
         <div class="pt-4">
-            <partial name="_ReaderPartial" model="Model.ChapterImages">
+            <partial name="_ReaderPartial" model="Model">
         </div>
+        <hr class="mt-5 w-75 m-auto"/>
+        @if (!Model.ProhibitComments)
+        {
+            <div>
+                <partial name="_ChapterCommentsPartial" model="Model.Comments">
+            </div>
+        }
+        else
+        {
+            <div class="mt-5 alert alert-primary" role="alert">
+                Comment are turned off for this chapter
+            </div>
+
+        }
     </div>
 </section>
 

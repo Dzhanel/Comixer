@@ -1,12 +1,10 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+using Comixer.Core.Helpers;
 using Comixer.Infrastructure;
 using Comixer.Infrastructure.Data.Entities;
-using Comixer.Core.Helpers;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.Localization;
-using Microsoft.AspNetCore.Http.Features;
+using DotNetEd.CoreAdmin;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -33,8 +31,11 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LoginPath = new PathString("/Account/Login");
 });
 
+builder.Services.AddCoreAdmin("Administrator");
+builder
+    .Services
+    .AddCoreAdmin(new CoreAdminOptions() { IgnoreEntityTypes = new List<Type>() { typeof(ComicGenre) } });
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Api:CloudinarySettings"));
-
 builder.Services.AddApplicationServices();
 
 var app = builder.Build();
@@ -51,6 +52,7 @@ else
     app.UseHsts();
 }
 
+app.UseCoreAdminCustomTitle("Comixer");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -70,6 +72,7 @@ app.MapControllerRoute(name: "Comics",
 app.MapControllerRoute(name: "Chapter",
                  pattern: "Chapter/{id?}",
                  defaults: new { controller = "Chapter", action = "Chapter" });
+app.UseCoreAdminCustomUrl("/ComixerAdmin");
 
 
 app.MapControllerRoute(

@@ -9,5 +9,18 @@ namespace Comixer.Core.Contracts
         /// </summary>
         /// <returns></returns>
         Task<List<GenreModel>> AllGenresAsync();
+        /// <summary>
+        /// Gets comic genres
+        /// </summary>
+        /// <param name="comicId"></param>
+        /// <returns></returns>
+        Task<ICollection<GenreModel>> GetGenresByComicId(Guid comicId);
+        /// <summary>
+        /// Adds comic genres
+        /// </summary>
+        /// <param name="genreIds"></param>
+        /// <param name="comicId"></param>
+        /// <returns></returns>
+        Task AddGenresToComicAsync(int[] genreIds, Guid comicId);
     }
 }

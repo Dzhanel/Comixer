@@ -13,11 +13,13 @@ namespace Comixer.Core.Service
         private readonly IRepository repo;
         private readonly IMapper mapper;
         private readonly IImageService imageService;
-        public ComicsService(IRepository _repo, IMapper _mapper, IImageService imageService)
+        private readonly IGenreService genreService;
+        public ComicsService(IRepository _repo, IMapper _mapper, IImageService _imageService, IGenreService _genreService)
         {
             this.repo = _repo;
             this.mapper = _mapper;
-            this.imageService = imageService;
+            this.imageService = _imageService;
+            this.genreService = _genreService;
         }
 
         public async Task<Guid> CreateComic(CreateComicModel viewModel, Guid authorId)
@@ -30,7 +32,7 @@ namespace Comixer.Core.Service
             if (viewModel.Genres.Any())
             {
                 var genreIds = viewModel.Genres.Select(x => x.Id).ToArray();
-                await this.AddGenresToComicAsync(genreIds, entity.Id);
+                await this.genreService.AddGenresToComicAsync(genreIds, entity.Id);
             }
             await AddUserComicRelation(comicId, authorId, isAuthor: true, isArtist: true);
             entity.CoverImageUrl = await imageService.UploadComicCoverImage(viewModel.CoverImage, entity.Id);
@@ -51,30 +53,7 @@ namespace Comixer.Core.Service
             return mapper
                 .Map<ComicDetailsModel>(source: entity);
         }
-        public async Task<ICollection<GenreModel>> GetGenresByComicId(Guid comicId)
-        {
-            var genres = await repo
-                .All<ComicGenre>(x => x.ComicId == comicId)
-                .Select(x => x.Genre)
-                .ToListAsync() ?? throw new KeyNotFoundException("Invalid Id");
-            
-            return genres
-                .Select(g => mapper.Map(g, new GenreModel()))
-                .ToList();
-        }
-        private async Task AddGenresToComicAsync(int[] genreIds, Guid comicId)
-        {
-            int length = genreIds.Length;
-            if(length > 0)
-            {
-                ComicGenre[] comicGenres = new ComicGenre[length];
-                for (var i = 0; i < length; i++)
-                {
-                    comicGenres[i] = new ComicGenre { ComicId = comicId, GenreId = genreIds[i] };
-                }
-                await repo.AddRangeAsync(comicGenres);
-            }
-        }
+
         private async Task AddUserComicRelation(Guid comicId, Guid userId, bool isAuthor, bool isArtist = false, bool readLater = false)
         {
             

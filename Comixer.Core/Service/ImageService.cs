@@ -20,15 +20,6 @@ namespace Comixer.Core.Service
             this.cloudinary = new Cloudinary(account);
             this.cloudinary.Api.Secure = true;
         }
-        public async Task<string> Upload(IFormFile image)
-        {
-            throw new NotImplementedException();
-            //return (await cloudinary.UploadAsync(new ImageUploadParams()
-            //{
-            //    File = new FileDescription(@"https://picsum.photos/1080/1920"),
-            //    PublicId = Guid.NewGuid().ToString(),
-            //})).SecureUrl.ToString();
-        }
 
         public async Task<string> UploadComicCoverImage(IFormFile image, Guid comicId)
         {

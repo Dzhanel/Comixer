@@ -22,5 +22,7 @@ namespace Comixer.Infrastructure.Data.Entities
         public Guid ComicId { get; set; }
         public Comic Comic { get; set; } = null!;
         public IEnumerable<ChapterImage> ChapterImages { get; set; } = new HashSet<ChapterImage>();
+        public IEnumerable<Comment> Comments { get; set; } = new HashSet<Comment>();
+        public bool ProhibitComments { get; set; }
     }
 }

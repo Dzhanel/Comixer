@@ -4,8 +4,11 @@
 // Write your JavaScript code.
 (function (window, document, $, undefined) {
     "use strict";
-
-
+    $(".heart").on('click', function () {
+        $(this).toggleClass('is_animating');
+    }); $(".heart").on('animationend', function () {
+        $(this).toggleClass('is_animating');
+    });
     var animeInit = {
         i: function (e) {
             animeInit.s();
