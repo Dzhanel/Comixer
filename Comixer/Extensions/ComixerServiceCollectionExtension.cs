@@ -16,6 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IComicService, ComicsService>();
             services.AddScoped<IChapterService, ChapterService>();
             services.AddScoped<IGenreService, GenreService>();
+            services.AddScoped<ICommentService, CommentService>();
             return services;
         }
 

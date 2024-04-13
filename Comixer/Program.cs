@@ -69,6 +69,9 @@ app.MapControllerRoute(name: "Comics",
                  pattern: "Comics/{id?}",
                  defaults: new { controller = "Comics", action = "Comic" });
 
+app.MapControllerRoute(name: "PostComment", 
+    pattern: "Chapter/PostComment",
+    defaults: new { controller = "Chapter", action = "PostComment"});
 app.MapControllerRoute(name: "Chapter",
                  pattern: "Chapter/{id?}",
                  defaults: new { controller = "Chapter", action = "Chapter" });

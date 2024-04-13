@@ -1,9 +1,10 @@
 ﻿using Comixer.Core.Contracts;
 using Comixer.Core.Models.Comic;
 using Comixer.Extensions;
+using Comixer.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.IO.Compression;
 
 namespace Comixer.Controllers
 {
@@ -13,11 +14,13 @@ namespace Comixer.Controllers
         private readonly IComicService comicService;
         private readonly IImageService imageService;
         private readonly IGenreService genreService;
-        public ComicsController(IComicService _comicService, IImageService _imageService, IGenreService _genreService)
+        private readonly UserManager<ApplicationUser> userManager;
+        public ComicsController(IComicService _comicService, IImageService _imageService, IGenreService _genreService, UserManager<ApplicationUser> userManager)
         {
             this.comicService = _comicService;
             this.imageService = _imageService;
             this.genreService = _genreService;
+            this.userManager = userManager;
         }
         [AllowAnonymous]
         public async Task<IActionResult> Comic(Guid Id)
@@ -26,7 +29,7 @@ namespace Comixer.Controllers
             {
                 return View(await comicService.GetComicById(Id));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return NotFound(ex.Message);
             }
@@ -57,7 +60,12 @@ namespace Comixer.Controllers
                     .ToList();
 
                 var newComicid = await comicService.CreateComic(viewModel, User.Id());
-                return RedirectToAction(nameof(Comic), new {id=newComicid});
+                var currentUser = await userManager.GetUserAsync(User);
+                if (!await userManager.IsInRoleAsync(currentUser, "Author"))
+                {
+                    await userManager.AddToRoleAsync(currentUser, "Author");
+                }
+                return RedirectToAction(nameof(Comic), new { id = newComicid });
             }
             catch
             {

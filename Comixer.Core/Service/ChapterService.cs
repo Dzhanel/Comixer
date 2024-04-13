@@ -66,7 +66,7 @@ namespace Comixer.Core.Service
         }
         public async Task<IEnumerable<ChapterDropDownModel>> GetPreviousFiveChapters(Guid chapterId)
         {
-            var comicId = (await repo.GetByIdAsync<Chapter>(chapterId)).ComicId;
+            var comicId = ((await repo.GetByIdAsync<Chapter>(chapterId))?.ComicId) ?? throw new ArgumentException("Invalid id");
             var entites = await repo.All<Chapter>()
                 .Where(x => x.ComicId == comicId)
                 .OrderByDescending(x => x.ReleaseDate)

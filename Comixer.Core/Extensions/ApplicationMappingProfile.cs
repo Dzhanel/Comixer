@@ -43,7 +43,6 @@ namespace Comixer.Core.Extensions
                .ForMember(dest => dest.ReleaseDate,
                           opt => opt.MapFrom(src => src.Chapters.Count == 0 ? DateTime.UtcNow : src.Chapters.Min(x => x.ReleaseDate)));
         }
-
         private void GenreMaps()
         {
             CreateMap<Genre, GenreModel>();
@@ -68,6 +67,7 @@ namespace Comixer.Core.Extensions
         {
             CreateMap<Comment, CommentModel>()
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(x => x.User.UserName));
+            CreateMap<AddCommentModel, Comment>();
         }
     }
 }

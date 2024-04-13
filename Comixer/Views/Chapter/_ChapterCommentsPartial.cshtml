@@ -1,54 +1,14 @@
 ﻿@using Comixer.Core.Models.Comment;
-@using static Comixer.Common.Constants.Comments;
+@using System.Globalization
 @model List<CommentModel>
-<section class="comment sec-mar">
-    <div class="container">
-        <div class="row">
-            <div class="">
-                <div class="comment-block">
-                    <div class="heading style-1 m-0">
-                        <h2>COMMENTS</h2>
-                    </div>
-                    <p>
-                        We hope you have a good time browsing the comment section! <br>
-                        Please read our <a href="comments.html">Comment Policy</a> before commenting.
-                    </p>
-                </div>
-                <div class="row">
-                    <div class="col-lg-11 col-10">
-                        <form action="https://uiparadox.co.uk/public/templates/animeloop/demo/manga-detail.html">
-                            <div class="input-group form-group footer-email-box">
-                                <input class="form-control" type="text" name="post" maxlength="@CommentContentMaxLength"
-                                       placeholder="Join the discussion">
-                                <button class="input-group-text post-btn" type="submit">Post</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="site-comment">
-                    @foreach (var comment in Model)
-                    {
-                        <div class="row">
-                            <div class="col-lg-11 col-10">
-                                <h5><a href="profile.html">@comment.Username</a><b>5 minutes ago</b></h5>
-                                <p class="ms-2 h4">@comment.Content</p>
-                                
-                                <a href="#" class="comment-btn"><i class="bi bi-heart"> 12</i></a>
-                            </div>
-                        </div>
-                    }
-                    <hr />
-                    <div class="text-center">
-                        <a href="#" class="comment-btn">Load More Comment</a>
-                    </div>
-                </div>
-            </div>
+
+@foreach (var comment in Model)
+{
+    <div class="row">
+        <div class="col-lg-11 col-10">
+            <h5><a href="profile.html">@comment.Username</a><b>@comment.PostDate.Humanize(false, culture: CultureInfo.InvariantCulture)</b></h5>
+            <p class="ms-2 h4">@comment.Content</p>
+            @* <a href="#" class="comment-btn"><i class="bi bi-heart"> 12</i></a> //TODO: AddComments *@
         </div>
     </div>
-</section>
-<style>
-</style>
-<script>
-
-
-</script>
+}

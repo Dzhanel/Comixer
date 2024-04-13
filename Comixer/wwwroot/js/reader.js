@@ -1,5 +1,6 @@
 ﻿function loadApp() {
 
+
 	// Create the flipbook
 	
 	let flipbookWidth = $('.container').width();

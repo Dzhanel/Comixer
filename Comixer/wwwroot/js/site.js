@@ -4,11 +4,10 @@
 // Write your JavaScript code.
 (function (window, document, $, undefined) {
     "use strict";
-    $(".heart").on('click', function () {
-        $(this).toggleClass('is_animating');
-    }); $(".heart").on('animationend', function () {
-        $(this).toggleClass('is_animating');
+    $(() => {
+        $('[maxlength]').maxlength();
     });
+
     var animeInit = {
         i: function (e) {
             animeInit.s();
@@ -79,7 +78,7 @@
             }
         },
         passwordHide: function () {
-            $(".toggle-password").on('click',function () {
+            $(".toggle-password").on('click', function () {
                 var $toggleButton = $(this);
                 var $toggleIcon = $toggleButton.find('.toggle-password-i');
                 var $inputField = $($toggleButton.attr("toggle"));
@@ -203,8 +202,47 @@
         }
     };
     animeInit.i();
-    // initialize plugin with defaults
 
-    // with plugin options
+    //Add comment
+    $("#postCommentForm").on("submit", function (event) {
+        event.preventDefault();
+        var commentInput = $("#commentInput").val();
+        var chapterId = $("#commentChapterId").val();
+        $.post({
+            url: '/Chapter/PostComment',
+            data: {
+                Content: commentInput,
+                ChapterId: chapterId,
+                __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+            },
+            success: function (response) {
+                console.log(response);
+                $("#commentInput").val("");
+                $("#commentSection").html(response);
+            },
+            error: function (xhr, status, error) {
+                $("#errorAlert").html(`<div class="mt-3 alert alert-danger alert-dismissible fade show" role="alert">
+                        Something went wrong!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`);
+            }
+        });
+    })
+    //Refresh comment section
+    $(document).on("click", "#refreshCommentsBtn", function () {
+        var chapterId = $("#chapterId").val();
+
+        $.ajax({
+            url: "/Comment/GetComments",
+            type: "GET",
+            data: { chapterId: chapterId },
+            success: function (data) {
+                // Refresh the comments section
+                $("#commentSection").html(data);
+            },
+            error: function (xhr, status, error) {
+                console.error("Error refreshing comments:", error);
+            }
+        });
+    });
 
 })(window, document, jQuery);

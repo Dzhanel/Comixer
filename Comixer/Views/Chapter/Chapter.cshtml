@@ -19,22 +19,55 @@
         <div class="pt-4">
             <partial name="_ReaderPartial" model="Model">
         </div>
-        <hr class="mt-5 w-75 m-auto"/>
-        @if (!Model.ProhibitComments)
-        {
-            <div>
-                <partial name="_ChapterCommentsPartial" model="Model.Comments">
-            </div>
-        }
-        else
-        {
-            <div class="mt-5 alert alert-primary" role="alert">
-                Comment are turned off for this chapter
-            </div>
-
-        }
+        <hr class="mt-5 w-75 m-auto" />
     </div>
 </section>
+@if (!Model.ProhibitComments)
+{
+    <section class="comment sec-mar">
+        <div class="container">
+            <div class="row">
+                <div class="">
+                    <div class="comment-block">
+                        <div class="heading style-1 m-0">
+                            <h2>COMMENTS</h2>
+                        </div>
+                        <p>
+                            We hope you have a good time browsing the comment section! <br>
+                            Please read our <a href="comments.html">Comment Policy</a> before commenting.
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-11 col-10">
+                            <form id="postCommentForm" method="post">
+                                <div class="input-group form-group footer-email-box">
+                                    <input class="form-control" id="commentInput" type="text" name="post" placeholder="Join the discussion" required>
+                                    <input type="hidden" id="commentChapterId" value="@ViewBag.ChaterId">
+                                    <button class="input-group-text post-btn" type="submit">Post</button>
+                                </div>
+                                <div id="errorAlert"></div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="site-comment" id="commentSection">
+                        <partial name="_ChapterCommentsPartial" model="Model.Comments">
+                    </div>
+                    <hr />
+                    <div class="text-center">
+                        <a href="#" class="comment-btn">Load More Comment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <div class="mt-5 alert alert-primary" role="alert">
+        Comment are turned off for this chapter
+    </div>
+
+}
 
 @section Scripts {
     <script src="~/js/reader.js"></script>
