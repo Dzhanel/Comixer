@@ -2,6 +2,7 @@
 {
     public static class Chapter
     {
-        public const int TitleMaxLngth = 80;
+        public const int TitleMaxLength = 80;
+        public const int TitleMinLength = 1;
     }
 }

@@ -19,15 +19,28 @@ namespace Comixer.Core.Extensions.Attributes
 
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            var file = value as IFormFile;
-            if (file != null)
+            var extension = string.Empty;
+            if (value is IFormFile file && file != null)
             {
-                var extension = Path.GetExtension(file.FileName);
+                extension = Path.GetExtension(file.FileName);
                 if (!extensions.Contains(extension.ToLower()) && !IsFileValid(file))
                 {
                     return new ValidationResult(GetErrorMessage());
                 }
             }
+            else if (value is IFormFileCollection files)
+            {
+                foreach (var formFile in files)
+                {
+                    extension = Path.GetExtension(formFile.FileName);
+                    if (!extensions.Contains(extension.ToLower()) && !IsFileValid(formFile))
+                    {
+                        return new ValidationResult(GetErrorMessage());
+                    }
+                }
+            }
+
+
             return ValidationResult.Success;
         }
         public string GetErrorMessage()

@@ -5,7 +5,7 @@
             let clone = $(this).clone().attr('data-role', 'maxlength');
             let maxlength = $(this).attr('maxlength');
             let length = $(this).val().length;
-            let replacement = $('<div></div>').append(clone).append($('<div class="pb-2"></div>').addClass('d-flex justify-content-end small').append($('<span></span>').addClass('length').html(length)).append('/').append(maxlength));
+            let replacement = $('<div></div>').append(clone).append($('<div class="pb-0"></div>').addClass('d-flex justify-content-end small').append($('<span></span>').addClass('length').html(length)).append('/').append(maxlength));
             $(this).replaceWith(replacement);
         });
     };

@@ -23,11 +23,18 @@ namespace Comixer.Core.Extensions.Attributes
         }
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            if (value is IFormFile file && file is not null)
+            if (value is IFormFile file && file is not null && !IsInDimensions(file))
             {
-                if (!IsInDimensions(file))
+                return new ValidationResult(GetErrorMessage());
+            }
+            else if (value is IFormFileCollection files)
+            {
+                foreach (var formFile in files)
                 {
-                    return new ValidationResult(GetErrorMessage());
+                    if (formFile is not null && !IsInDimensions(formFile))
+                    {
+                        return new ValidationResult(GetErrorMessage());
+                    }
                 }
             }
             return ValidationResult.Success;

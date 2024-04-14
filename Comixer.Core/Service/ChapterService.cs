@@ -74,5 +74,9 @@ namespace Comixer.Core.Service
 
             return entites.Take(5).Select(x => mapper.Map<ChapterDropDownModel>(x));
         }
+        public async Task<Guid> CreateChapter(CreateChapterModel model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

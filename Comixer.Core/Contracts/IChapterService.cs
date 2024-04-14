@@ -5,6 +5,13 @@ namespace Comixer.Core.Contracts
     public interface IChapterService
     {
         /// <summary>
+        /// Creates chapter and returns the newly generated value.
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
+        Task<Guid> CreateChapter(CreateChapterModel viewModel);
+
+        /// <summary>
         /// Gets chapter content by given chapter id
         /// </summary>
         /// <param name="chapterId"></param>

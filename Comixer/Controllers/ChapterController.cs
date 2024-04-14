@@ -1,10 +1,9 @@
 ﻿using Comixer.Core.Contracts;
+using Comixer.Core.Models.Chapter;
 using Comixer.Core.Models.Comment;
 using Comixer.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using NuGet.Protocol;
 
 namespace Comixer.Controllers
 {
@@ -38,7 +37,27 @@ namespace Comixer.Controllers
             ViewBag.ChaterId = model.Id;
             return View(model);
         }
-        
+
+        [Authorize(Roles = "Author")]
+        [HttpGet]
+        public IActionResult PostChapter(Guid id)
+        {
+            CreateChapterModel viewModel = new CreateChapterModel() 
+            {
+                AuthorId = User.Id(),
+                ChapterId = id
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public async IActionResult PostChapter(CreateChapterModel viewModel)
+        {
+            Guid chapterGuid = (await chapterService.CreateChapter(viewModel));
+            return RedirectToAction("Chapter", new {id = viewModel.ChapterId});
+        }
+
 
     }
 } 

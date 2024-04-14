@@ -15,7 +15,6 @@ namespace Comixer.Controllers
             _logger = logger;
             imageService = _imageService;
         }
-
         public async Task<IActionResult> Index()
         {
             return View();

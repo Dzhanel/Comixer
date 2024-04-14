@@ -32,9 +32,6 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 builder.Services.AddCoreAdmin("Administrator");
-builder
-    .Services
-    .AddCoreAdmin(new CoreAdminOptions() { IgnoreEntityTypes = new List<Type>() { typeof(ComicGenre) } });
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Api:CloudinarySettings"));
 builder.Services.AddApplicationServices();
 
@@ -72,6 +69,11 @@ app.MapControllerRoute(name: "Comics",
 app.MapControllerRoute(name: "PostComment", 
     pattern: "Chapter/PostComment",
     defaults: new { controller = "Chapter", action = "PostComment"});
+
+app.MapControllerRoute(name: "PostChapter",
+    pattern: "Chapter/PostChapter",
+    defaults: new { controller = "Chapter", action = "PostChapter" });
+
 app.MapControllerRoute(name: "Chapter",
                  pattern: "Chapter/{id?}",
                  defaults: new { controller = "Chapter", action = "Chapter" });

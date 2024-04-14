@@ -13,7 +13,7 @@ namespace Comixer.Infrastructure.Data.Entities
         [Key]
         public Guid Id { get; set; }
         [Required]
-        [MaxLength(TitleMaxLngth)]
+        [MaxLength(TitleMaxLength)]
         public string Title { get; set; } = null!;
         [AllowNull]
         public DateTime ReleaseDate { get; set; }

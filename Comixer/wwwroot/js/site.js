@@ -202,6 +202,7 @@
         }
     };
     animeInit.i();
+    //Add search
 
     //Add comment
     $("#postCommentForm").on("submit", function (event) {
@@ -216,7 +217,6 @@
                 __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
             },
             success: function (response) {
-                console.log(response);
                 $("#commentInput").val("");
                 $("#commentSection").html(response);
             },
@@ -244,5 +244,25 @@
             }
         });
     });
-
+    $(document).on("ready", function () {
+        $("#chapterImages").fileinput({
+            captionUpload: false,
+            browseIcon: "<i class=\"bi-file-image\"></i>",
+            browseLabel: "Pick Images",
+            //allowedFileExtensions: ['jpg', 'jpeg', 'png', 'webp'],
+            showUplaod: false
+            //uploadUrl: '/Chapter/PostChapter',
+            //overwriteInitial: false,
+            //uploadAsync: false,
+            //uploadExtraData: function () {
+            //    var data = {
+            //        title: $("#Title").val(),
+            //        __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val()
+            //    };
+            //    return data;
+            //}, ajaxSettings: {
+            //    contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+            //},
+        })
+    });
 })(window, document, jQuery);

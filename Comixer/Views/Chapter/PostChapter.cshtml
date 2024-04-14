@@ -1,0 +1,63 @@
+﻿@using static Comixer.Common.Constants.Chapter;
+@model CreateChapterModel
+@{
+    ViewData["Title"] = "Add Chapter";
+}
+<section class="profile sec-mar">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-sm-12 col-12">
+                <div class="row pb-5">
+                    <form asp-action="PostChapter" method="POST" enctype="multipart/form-data">
+                        @* krajee docs for the drag & drop file input*@
+                        <input type="hidden" asp-for="AuthorId" value="@Model.AuthorId" />
+                        <input type="hidden" asp-for="ChapterId" value="@Model.ChapterId" />
+                        <div class="form-group">
+                            <label class="noir-semi-bold" asp-for="Title">Title</label>
+                            <span asp-validation-for="Title" class="text-danger mt-0 mb-2"></span>
+                            <input asp-for="Title" class="form-control mb-0" id="Title" type="text" maxlength="@TitleMaxLength" placeholder="Chapter title">
+                        </div>
+                        <label class="noir-semi-bold" asp-for="ChapterImages">Chapter Images</label>
+                        <span asp-validation-for="ChapterImages" class="error mb-2 text-danger"></span>
+                        <div class="file-loading h-100">
+                            <input asp-for="ChapterImages" class="file" id="chapterImages" type="file"
+                            data-show-upload="false"  
+                            data-msg-placeholder="Image select"
+                            data-allowed-file-extensions='["jpeg", "jpg", "png", "webp"]'
+                            data-min-image-width="@MinChapterImageWidth"
+                            data-max-image-width="@MaxChapterImageWidth" 
+                            data-min-image-height="@MinChapterImageHeight" 
+                            data-max-image-height="@MaxChapterImageHeight" multiple />
+                        </div>
+                        <div class="d-flex justify-content-between ms-2">
+                            <span class="text-secondary mt-2 align-left">
+                                <i class="bi bi-info-circle"></i> @DimensionsDescription()<br>
+                                <i class="bi bi-info-circle"></i> @AllowedFileExtensions()
+                            </span>
+                            <div class="w-25"></div>
+                            <button id="addChapterBtn" type="submit" class="mt-3 anime-btn btn-dark border-change h-50 float-end">
+                                Add Chapter
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-3 offset-lg-0 col-sm-8 offset-sm-2 col-12">
+                <div class="profile-link bg-color-black">
+                    <h5>Important Links</h5>
+                    <a href="#" class="pb-3">How to upload?</a>
+                    <h5>Playlists</h5>
+                    <a href="playlist.html">Read Later</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/plugins/piexif.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/plugins/sortable.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/fileinput.min.js"></script>
+}
