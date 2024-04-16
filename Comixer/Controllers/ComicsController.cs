@@ -76,6 +76,12 @@ namespace Comixer.Controllers
 
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Search(string keyword)
+        {
+            var result = await comicService.Search(keyword);
+            return View();
+        }
 
     }
 }

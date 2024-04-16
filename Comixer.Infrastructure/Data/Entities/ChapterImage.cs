@@ -15,5 +15,10 @@ namespace Comixer.Infrastructure.Data.Entities
         [ForeignKey(nameof(Chapter))]
         public Guid ChapterId { get; set; }
         public Chapter Chapter { get; set; } = null!;
+
+        public override string ToString()
+        {
+            return $"{ImagePath}";
+        }
     }
 }

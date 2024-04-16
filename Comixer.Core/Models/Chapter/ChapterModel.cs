@@ -7,6 +7,7 @@ namespace Comixer.Core.Models.Chapter
     {
         public Guid Id { get; set; }
         public string ComicName { get; set; } = null!;
+        public string CoverImageUrl { get; set; } = null!;
         public Guid ComicId { get; set; }
         public string Title { get; set; } = null!;
         public ChapterModel? NextChapter { get; set; }

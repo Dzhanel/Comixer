@@ -23,6 +23,7 @@ body {
     background-color: #171717;
     margin-bottom: 0;
 }
+
 a {
     text-decoration: none;
 }
@@ -38,6 +39,7 @@ a {
     max-height: 50px;
     width: auto;
 }
+
 .logo-text {
     font-family: Warden;
     font-size: 1.8em;
@@ -77,6 +79,7 @@ input::-ms-clear {
     flex-direction: column;
     min-height: 100vh;
     display: flex;
+
     .video {
         padding-top: 80px;
     }
@@ -86,18 +89,19 @@ input::-ms-clear {
         padding-bottom: 50px;
     }
 }
+
 .file-caption .input-group {
     align-items: stretch !important;
 }
 
-.textarea_danger{
-    border:2px solid red !important;
+.textarea_danger {
+    border: 2px solid red !important;
 }
 
-.textarea:focus{
-    box-shadow:none;
-    outline:none;
-    border:2px solid blue;
+.textarea:focus {
+    box-shadow: none;
+    outline: none;
+    border: 2px solid blue;
 }
 
 .fav {
@@ -115,11 +119,12 @@ input::-ms-clear {
     cursor: pointer;
     height: 75px;
     width: 75px;
-    background-image: url('https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png'); 
+    background-image: url('https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png');
     background-position: left;
     background-repeat: no-repeat;
     background-size: 2900%;
 }
+
 @keyframes heart-burst {
     from {
         background-position: left;
@@ -129,9 +134,65 @@ input::-ms-clear {
         background-position: right;
     }
 }
+
 .heart {
     animation: heart-burst 1s infinity;
 }
+
 .is_animating {
     animation: heart-burst .8s steps(28) 1;
+}
+/* Style for the banner container */
+.banner {
+    position: relative;
+    color: $white;
+    text-align: center;
+    padding: 65px; /* Increase padding to make the banner larger */
+    overflow: hidden;
+}
+
+/* Blurred background image */
+.banner::before {
+    content: "";
+    background-image: url('/assets/home-page-banner.webp'); /* Replace 'background.jpg' with your blurred image */
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: blur(8px); /* Adjust the blur effect as needed */
+    z-index: -1;
+}
+
+/* Overlay to enhance text visibility */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0); /* Adjust the opacity as needed */
+}
+
+/* Style for the logo */
+.logo {
+    min-width: 20%; /* Increase logo size */
+    max-width: 20%;
+    vertical-align: middle;
+}
+
+/* Style for the text */
+.text {
+    font-family: 'Warden', sans-serif;
+    font-size: 100px; /* Increase font size */
+    display: block;
+    margin: 20px 0; /* Adjust the margin as needed */
+}
+
+@media (max-width: 576px) {
+    .text {
+        font-size: 50px; /* Decrease font size for smaller screens */
+    }
 }

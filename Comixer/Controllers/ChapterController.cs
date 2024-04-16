@@ -21,13 +21,22 @@ namespace Comixer.Controllers
             this.comicService = _comicService;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<PartialViewResult> PostComment(AddCommentModel viewModel)
         {
-            await commentService.AddComment(viewModel, User.Id());
-            var comments = await commentService.GetCommentsByChapterId(viewModel.ChapterId);
-            ViewBag.ChapterId = viewModel.ChapterId;
-            return PartialView("_ChapterCommentsPartial", comments);
+            if (ModelState.IsValid)
+            {
+                await commentService.AddComment(viewModel, User.Id());
+                ViewBag.ChapterId = viewModel.ChapterId;
+                var comments = await commentService.GetCommentsByChapterId(viewModel.ChapterId);
+                return PartialView("_ChapterCommentsPartial", comments);
+            }
+            else
+            {
+                var comments = await commentService.GetCommentsByChapterId(viewModel.ChapterId);
+                return PartialView("_ChapterCommentPartial", comments);
+            }
         }
         [AllowAnonymous]
         [HttpGet]
@@ -38,28 +47,29 @@ namespace Comixer.Controllers
             ViewBag.ChaterId = model.Id;
             return View(model);
         }
-
-        [Authorize(Roles = "Administrator")]
         [HttpGet]
-        public IActionResult PostChapter(Guid id)
+        public async Task<IActionResult> PostChapter(Guid id)
         {
-            if (id != Guid.Empty)
+            try
             {
-                //TODO Check if the comics is the current users comic
-                CreateChapterModel viewModel = new()
+                var comic = await comicService.GetComicById(id);
+                if (id != Guid.Empty && comic.Author != null && comic.Author.Id == User.Id())
                 {
-                    AuthorId = User.Id(),
-                    ComicId = id
-                };
+                    CreateChapterModel viewModel = new()
+                    {
+                        AuthorId = User.Id(),
+                        ComicId = id
+                    };
 
-                return View(viewModel);
+                    return View(viewModel);
+                }
             }
-            else
+            catch (Exception)
             {
-                return RedirectToAction("/Index/Home");
+                ModelState.AddModelError("", "Something went wrong");
             }
+            return RedirectToAction("/Index/Home");
         }
-
         [HttpPost]
         public async Task<IActionResult> PostChapter(CreateChapterModel viewModel)
         {
@@ -68,9 +78,8 @@ namespace Comixer.Controllers
             {
                 if (viewModel.AuthorId == User.Id() && comicAuthorId == User.Id())
                 {
-                    Guid chapterGuid = await chapterService.CreateChapter(viewModel);
-                    return RedirectToAction("Chapter", new { id = viewModel.ComicId });
-
+                    Guid chapterId = await chapterService.CreateChapter(viewModel);
+                    return RedirectToAction("Comic", "Comics", new { id = viewModel.ComicId });
                 }
             }
             return RedirectToAction("/Index/Home");

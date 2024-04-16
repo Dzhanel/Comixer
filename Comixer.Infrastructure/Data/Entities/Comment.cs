@@ -28,5 +28,10 @@ namespace Comixer.Infrastructure.Data.Entities
         public ApplicationUser User { get; set; } = null!;
         public Guid UserId { get; set; }
         public int Likes { get; set; }
+
+        public override string ToString()
+        {
+            return $"{User.UserName} - {Content} - {Id}";
+        }
     }
 }

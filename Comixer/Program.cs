@@ -78,7 +78,6 @@ app.MapControllerRoute(name: "Chapter",
                  pattern: "Chapter/{id?}",
                  defaults: new { controller = "Chapter", action = "Chapter" });
 
-app.UseCoreAdminCustomUrl("/ComixerAdmin");
 
 app.MapControllerRoute(
     name: "default",

@@ -4,11 +4,13 @@
     <div class="flipbook-viewport">
         <div class="container g-0">
             <div id="flipbook" class="flipbook">
-                @*<div class="hard" style="background-image:url(https://picsum.photos/1080/1920?random=11); background-size: 100% 100%;"></div>*@
+                <div class="hard" style="background-image:url(@Model.CoverImageUrl); background-size: 100% 100%;"></div>
                 @foreach (var image in Model.ChapterImages)
                 {
                     <div style="background-image:url(@image.ImagePath);background-size: 100% 100%;"></div>
                 }
+                <div class="hard" style="background-image:url(@Model.CoverImageUrl); background-size: 100% 100%;"></div>
+
             </div>
         </div>
     </div>

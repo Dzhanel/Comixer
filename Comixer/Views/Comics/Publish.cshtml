@@ -16,7 +16,7 @@
                                     <input asp-for="CoverImage" class="file" id="cover-image" type="file"
                                            data-msg-placeholder="Image select"/>
                                 </div>
-                                <span class="text-secondary mt-2">@DimensionsDescription(). @AllowedFileExtensions()</span>
+                                <span class="text-secondary mt-2">@DimensionsDescription() @AllowedFileExtensions()</span>
                             </div>
                             <span asp-validation-for="CoverImage" class="error mt-2 text-danger"></span>
                         </div>

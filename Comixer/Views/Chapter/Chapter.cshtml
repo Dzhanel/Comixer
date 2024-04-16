@@ -1,6 +1,7 @@
 ﻿@model ChapterModel
 @{
     ViewData["Title"] = Model.Title;
+    bool isAuthenticated = User.Identity is not null && User.Identity.IsAuthenticated;
 }
 @section HeadScripts {
     <script type="text/javascript" src="~/lib/turnjs4/dist/js/jquery.min.1.7.js"></script>
@@ -39,23 +40,30 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-11 col-10">
-                            <form id="postCommentForm" method="post">
-                                <div class="input-group form-group footer-email-box">
-                                    <input class="form-control" id="commentInput" type="text" name="post" placeholder="Join the discussion" required>
-                                    <input type="hidden" id="commentChapterId" value="@ViewBag.ChaterId">
-                                    <button class="input-group-text post-btn" type="submit">Post</button>
-                                </div>
-                                <div id="errorAlert"></div>
-                            </form>
+                            @if (isAuthenticated)
+                            {
+                                <form id="postCommentForm" method="post">
+                                    <div class="input-group form-group footer-email-box">
+                                        <input class="form-control" id="commentInput" type="text" name="post" placeholder="Join the discussion" required>
+                                        <input type="hidden" id="commentChapterId" value="@ViewBag.ChaterId">
+                                        <button class="input-group-text post-btn" type="submit">Post</button>
+                                    </div>
+                                    <div id="errorAlert"></div>
+                                </form>
+                            } 
+                            else
+                            {
+                                <div class="alert alert-danger">Please Login or Register in order to comment</div>
+                            }
                         </div>
                     </div>
                     <div class="site-comment" id="commentSection">
                         <partial name="_ChapterCommentsPartial" model="Model.Comments">
                     </div>
-                    <hr />
-                    <div class="text-center">
-                        <a href="#" class="comment-btn">Load More Comment</a>
-                    </div>
+                    @*                    <hr />
+                <div class="text-center">
+                <a href="#" class="comment-btn">Load More Comment</a>
+                </div>*@
                 </div>
             </div>
         </div>

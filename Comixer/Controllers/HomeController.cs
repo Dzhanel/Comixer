@@ -18,15 +18,12 @@ namespace Comixer.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            HomePageModel viewModel = new HomePageModel();
-            viewModel.Recent = await comicService.TakeRecentComic(); 
+            HomePageModel viewModel = new()
+            {
+                Recent = await comicService.TakeRecentComics()
+            };
             return View(viewModel);
         }
-
-        //public IActionResult Privacy()
-        //{
-        //    return View();
-        //}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

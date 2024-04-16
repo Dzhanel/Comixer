@@ -7,6 +7,6 @@
         public const string png = ".png";
         public const string webp = ".webp";
 
-        public static string AllowedFileExtensions() => $"Allowed file extensions - {jpg}, {jpeg}, {png}, {webp}";
+        public static string AllowedFileExtensions() => $"Allowed file extensions - {jpg}, {jpeg}, {png}, {webp}.";
     }
 }

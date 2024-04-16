@@ -24,5 +24,10 @@ namespace Comixer.Infrastructure.Data.Entities
         public IEnumerable<ChapterImage> ChapterImages { get; set; } = new HashSet<ChapterImage>();
         public IEnumerable<Comment> Comments { get; set; } = new HashSet<Comment>();
         public bool ProhibitComments { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Title} - {Id}";
+        }
     }
 }

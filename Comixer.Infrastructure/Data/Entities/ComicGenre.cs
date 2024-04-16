@@ -13,5 +13,10 @@ namespace Comixer.Infrastructure.Data.Entities
         [ForeignKey(nameof(Genre))]
         public int GenreId { get; set; }
         public Genre Genre { get; set; } = null!;
+
+        public override string ToString()
+        {
+            return $"{Comic.Title} - {Genre.Name}";
+        }
     }
 }

@@ -14,5 +14,9 @@ namespace Comixer.Infrastructure.Data.Entities
         [StringLength(GenreMaxNameLength)]
         public string Name { get; set; } = null!;
         public ICollection<ComicGenre> ComicsGenres { get; set; } = new HashSet<ComicGenre>();
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

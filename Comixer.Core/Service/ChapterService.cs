@@ -3,8 +3,7 @@ using Comixer.Core.Contracts;
 using Comixer.Core.Models.Chapter;
 using Comixer.Infrastructure.Common;
 using Comixer.Infrastructure.Data.Entities;
-using Humanizer;
-using Microsoft.AspNetCore.Http;
+using Comixer.Infrastructure.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace Comixer.Core.Service
@@ -55,7 +54,7 @@ namespace Comixer.Core.Service
         }
         private async Task<ChapterModel?> GetNextChapterAsync(Guid currentChapterId)
         {
-            Guid comicId = (await repo.GetByIdAsync<Chapter>(currentChapterId)).ComicId;
+            Guid? comicId = (await repo.GetByIdAsync<Chapter>(currentChapterId))?.ComicId;
             var allChapters = await repo
                .AllReadonly<Chapter>()
                .Where(x => x.ComicId == comicId)
@@ -70,7 +69,7 @@ namespace Comixer.Core.Service
         }
         public async Task<IEnumerable<ChapterDropDownModel>> GetPreviousFiveChapters(Guid chapterId)
         {
-            var comicId = ((await repo.GetByIdAsync<Chapter>(chapterId))?.ComicId) ?? throw new ArgumentException("Invalid id");
+            Guid? comicId = (await repo.GetByIdAsync<Chapter>(chapterId))?.ComicId;
             var entites = await repo.All<Chapter>()
                 .Where(x => x.ComicId == comicId)
                 .OrderByDescending(x => x.ReleaseDate)
@@ -82,6 +81,8 @@ namespace Comixer.Core.Service
         {
             var entity = mapper.Map<CreateChapterModel, Chapter>(model);
             entity.Id = Guid.NewGuid();
+            entity.Comic = await repo.GetByIdAsync<Comic>(entity.ComicId);
+            entity.Comic.Status = Status.Releasing;
             await repo.AddAsync(entity);
             await repo.SaveChangesAsync();
             try

@@ -1,6 +1,9 @@
 (function ($) {
 
     $.fn.maxlength = function () {
+        if ($(this).attr('id') === "password-field") {
+            return;
+        }
         this.each(function(){
             let clone = $(this).clone().attr('data-role', 'maxlength');
             let maxlength = $(this).attr('maxlength');

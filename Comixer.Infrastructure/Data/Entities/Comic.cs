@@ -25,7 +25,7 @@ namespace Comixer.Infrastructure.Data.Entities
         public ICollection<ComicGenre> ComicGenres { get; set; } = new HashSet<ComicGenre>();
         public override string ToString()
         {
-            return Title;
+            return $"{Title} - {Id}";
         }
     }
 }

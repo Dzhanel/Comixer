@@ -42,12 +42,12 @@ namespace Comixer.Core.Service
             var result = await repo.SaveChangesAsync();
             return comicId;
         }
-        public async Task<List<ComicThumbnailModel>> TakeRecentComic()
+        public async Task<List<ComicThumbnailModel>> TakeRecentComics()
         {
             return await repo.AllReadonly<Comic>()
                 .Include(x => x.ComicGenres)
                 .ThenInclude(x => x.Genre)
-                .OrderBy(x => x.Chapters.Max(x => x.ReleaseDate))
+                .OrderByDescending(x => x.Chapters.Max(x => x.ReleaseDate))
                 .Select(x => mapper.Map<ComicThumbnailModel>(x))
                 .Take(8)
                 .ToListAsync();
@@ -78,5 +78,19 @@ namespace Comixer.Core.Service
                 });
         }
 
+        public async Task<List<ComicThumbnailModel>> Search(string keyword)
+        {
+            var genres = (await genreService.AllGenresAsync()).Select(x => x.Name).ToList();
+
+            var result = await repo.All<Comic>()
+                .Where(x => x.Title!.Contains(keyword))
+                .Include(x => x.ComicGenres)
+                .ThenInclude(x => x.Genre)
+                .OrderBy(x => x.Chapters.Count)
+                .Select(x => mapper.Map<Comic, ComicThumbnailModel>(x))
+                .ToListAsync();
+
+            return result;
+        }
     }
 }

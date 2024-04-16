@@ -63,7 +63,8 @@ namespace Comixer.Core.Extensions
             CreateMap<Chapter, ChapterDropDownModel>();
             CreateMap<Chapter, ComicChaptersModel>();
             CreateMap<Chapter, ChapterModel>()
-               .ForMember(dest => dest.ComicName, opt => opt.MapFrom(x => x.Comic.Title));
+               .ForMember(dest => dest.ComicName, opt => opt.MapFrom(x => x.Comic.Title))
+               .ForMember(dest => dest.CoverImageUrl, opt => opt.MapFrom(x => x.Comic.CoverImageUrl));
             CreateMap<CreateChapterModel, Chapter>()
                .ForMember(dest => dest.ChapterImages, opt => opt.Ignore())
                .ForMember(dest => dest.ReleaseDate, opt => opt.MapFrom(x => DateTime.Now));
