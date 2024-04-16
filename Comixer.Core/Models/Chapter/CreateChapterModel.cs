@@ -11,7 +11,8 @@ namespace Comixer.Core.Models.Chapter
         [Required(ErrorMessage = "Please upload at least one file")]
         [Display(Name = "ChapterImages")]
         public FormFileCollection ChapterImages { get; set; } = null!;
-        public Guid ChapterId { get; set; }
+        public Guid ComicId { get; set; }
         public Guid AuthorId { get; set; }
+        public bool ProhibitComments { get; set; }
     }
 }

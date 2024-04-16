@@ -14,7 +14,6 @@ namespace Comixer.Core.Extensions
     {
         public ApplicationMappingProfile() 
         {
-
             GenreMaps();
             UserMaps();
             ChapterImageMaps();
@@ -25,6 +24,9 @@ namespace Comixer.Core.Extensions
         private void ComicMaps()
         {
             CreateMap<CreateComicModel, Comic>();
+            CreateMap<Comic, ComicThumbnailModel>()
+                .ForMember(dest => dest.Genres,
+                           opt => opt.MapFrom(src => src.ComicGenres.Select(cg => cg.Genre)));
             CreateMap<Comic, ComicDetailsModel>()
                .ForMember(dest => dest.Genres,
                           opt => opt.MapFrom(src => src.ComicGenres
@@ -38,8 +40,8 @@ namespace Comixer.Core.Extensions
                                                .Where(uc => uc.IsArtist)
                                                .FirstOrDefault()!.User))
                .ForMember(dest => dest.AverageRating,
-                          opt => opt.MapFrom(src => src.Chapters.Count == 0 ? 0 : src.Chapters
-                                               .Average(x => x.Rating)))
+                          opt => opt.MapFrom(src => src.Chapters.Count == 0 ? 0 : Math.Round(src.Chapters
+                                               .Average(x => x.Rating), 2)))
                .ForMember(dest => dest.ReleaseDate,
                           opt => opt.MapFrom(src => src.Chapters.Count == 0 ? DateTime.UtcNow : src.Chapters.Min(x => x.ReleaseDate)));
         }
@@ -62,6 +64,9 @@ namespace Comixer.Core.Extensions
             CreateMap<Chapter, ComicChaptersModel>();
             CreateMap<Chapter, ChapterModel>()
                .ForMember(dest => dest.ComicName, opt => opt.MapFrom(x => x.Comic.Title));
+            CreateMap<CreateChapterModel, Chapter>()
+               .ForMember(dest => dest.ChapterImages, opt => opt.Ignore())
+               .ForMember(dest => dest.ReleaseDate, opt => opt.MapFrom(x => DateTime.Now));
         }
         private void CommentMaps()
         {

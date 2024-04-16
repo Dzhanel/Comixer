@@ -4,6 +4,7 @@ using Comixer.Core.Models.Chapter;
 using Comixer.Infrastructure.Common;
 using Comixer.Infrastructure.Data.Entities;
 using Humanizer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace Comixer.Core.Service
@@ -12,10 +13,12 @@ namespace Comixer.Core.Service
     {
         private readonly IRepository repo;
         private readonly IMapper mapper;
-        public ChapterService(IRepository _repo, IMapper _mapper)
+        private readonly IImageService imageService;
+        public ChapterService(IRepository _repo, IMapper _mapper, IImageService _imageService)
         {
             this.repo = _repo;
-            mapper = _mapper;
+            this.mapper = _mapper;
+            this.imageService = _imageService;
         }
 
         public async Task<ChapterModel> GetChapterContentAsync(Guid chapterId)
@@ -25,14 +28,15 @@ namespace Comixer.Core.Service
                 .Include(x => x.Comic)
                 .Include(x => x.Comments)
                 .ThenInclude(x => x.User)
+                .Include(x => x.ChapterImages)
                 .Where(x => x.Id == chapterId)
                 .FirstOrDefaultAsync();
-            
+
             var model = mapper.Map<ChapterModel>(entity);
             model.PreviousChapter = await GetPreviousChapterAsync(chapterId);
             model.NextChapter = await GetNextChapterAsync(chapterId);
-                
-            return model; 
+
+            return model;
         }
         private async Task<ChapterModel?> GetPreviousChapterAsync(Guid currentChapterId)
         {
@@ -49,7 +53,7 @@ namespace Comixer.Core.Service
                                 mapper.Map<ChapterModel?>(allChapters[chapterIndex]) : null;
 
         }
-        private async Task<ChapterModel?> GetNextChapterAsync(Guid currentChapterId) 
+        private async Task<ChapterModel?> GetNextChapterAsync(Guid currentChapterId)
         {
             Guid comicId = (await repo.GetByIdAsync<Chapter>(currentChapterId)).ComicId;
             var allChapters = await repo
@@ -60,7 +64,7 @@ namespace Comixer.Core.Service
 
             int chapterIndex = allChapters.FindIndex(x => x.Id == currentChapterId) - 1;
 
-            return chapterIndex < allChapters.Count && chapterIndex >= 0 ? 
+            return chapterIndex < allChapters.Count && chapterIndex >= 0 ?
                 mapper.Map<ChapterModel>(allChapters[chapterIndex]) : null;
 
         }
@@ -76,7 +80,27 @@ namespace Comixer.Core.Service
         }
         public async Task<Guid> CreateChapter(CreateChapterModel model)
         {
-            throw new NotImplementedException();
+            var entity = mapper.Map<CreateChapterModel, Chapter>(model);
+            entity.Id = Guid.NewGuid();
+            await repo.AddAsync(entity);
+            await repo.SaveChangesAsync();
+            try
+            {
+                if (model.ChapterImages.Count > 0)
+                {
+                    await imageService.UploadChapterImages(model.ChapterImages, entity.Id, model.ComicId);
+                }
+                else
+                {
+                    throw new ArgumentException("Chapter should consist of at least 1 image");
+                }
+                await repo.SaveChangesAsync();
+                return entity.Id;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

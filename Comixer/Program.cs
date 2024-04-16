@@ -71,14 +71,14 @@ app.MapControllerRoute(name: "PostComment",
     defaults: new { controller = "Chapter", action = "PostComment"});
 
 app.MapControllerRoute(name: "PostChapter",
-    pattern: "Chapter/PostChapter",
+    pattern: "Chapter/PostChapter/{id?}",
     defaults: new { controller = "Chapter", action = "PostChapter" });
 
 app.MapControllerRoute(name: "Chapter",
                  pattern: "Chapter/{id?}",
                  defaults: new { controller = "Chapter", action = "Chapter" });
-app.UseCoreAdminCustomUrl("/ComixerAdmin");
 
+app.UseCoreAdminCustomUrl("/ComixerAdmin");
 
 app.MapControllerRoute(
     name: "default",

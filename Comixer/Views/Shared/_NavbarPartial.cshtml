@@ -1,5 +1,5 @@
 ﻿@{
-    string action = ViewContext.RouteData.Values["Action"]!.ToString()!;
+    string action = ViewContext.RouteData.Values["Action"]?.ToString()!;
     bool isAuthenticated = User.Identity is not null && User.Identity.IsAuthenticated;
 }
 
@@ -27,9 +27,9 @@
                             <a asp-controller="Comics" asp-action="Publish" class="@(action == "MyComics" ? "active" : "")">My Comics</a>
                         </li>
                     }
-                    <li class="menu-item-has-children">
+                  @*  <li class="menu-item-has-children">
                         <a asp-controller="Comics" asp-action="Publish" class="@(action == "Browse" ? "active" : "")">Browse</a>
-                    </li>
+                    </li>*@
                     @if (isAuthenticated && User.IsInRole("Admin"))
                     {
                         <li class="menu-item-has-children">

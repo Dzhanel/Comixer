@@ -12,14 +12,15 @@ namespace Comixer.Controllers
     {
         private readonly IChapterService chapterService;
         private readonly ICommentService commentService;
+        private readonly IComicService comicService;
 
-        public ChapterController(IChapterService _chapterService, ICommentService _commentService)
+        public ChapterController(IChapterService _chapterService, ICommentService _commentService, IComicService _comicService)
         {
             this.chapterService = _chapterService;
             this.commentService = _commentService;
+            this.comicService = _comicService;
         }
-        
-        [Authorize]
+
         [HttpPost]
         public async Task<PartialViewResult> PostComment(AddCommentModel viewModel)
         {
@@ -38,26 +39,41 @@ namespace Comixer.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Author")]
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public IActionResult PostChapter(Guid id)
         {
-            CreateChapterModel viewModel = new CreateChapterModel() 
+            if (id != Guid.Empty)
             {
-                AuthorId = User.Id(),
-                ChapterId = id
-            };
+                //TODO Check if the comics is the current users comic
+                CreateChapterModel viewModel = new()
+                {
+                    AuthorId = User.Id(),
+                    ComicId = id
+                };
 
-            return View(viewModel);
+                return View(viewModel);
+            }
+            else
+            {
+                return RedirectToAction("/Index/Home");
+            }
         }
 
         [HttpPost]
-        public async IActionResult PostChapter(CreateChapterModel viewModel)
+        public async Task<IActionResult> PostChapter(CreateChapterModel viewModel)
         {
-            Guid chapterGuid = (await chapterService.CreateChapter(viewModel));
-            return RedirectToAction("Chapter", new {id = viewModel.ChapterId});
+            Guid? comicAuthorId = (await comicService.GetComicById(viewModel.ComicId)).Author?.Id;
+            if (comicAuthorId is not null)
+            {
+                if (viewModel.AuthorId == User.Id() && comicAuthorId == User.Id())
+                {
+                    Guid chapterGuid = await chapterService.CreateChapter(viewModel);
+                    return RedirectToAction("Chapter", new { id = viewModel.ComicId });
+
+                }
+            }
+            return RedirectToAction("/Index/Home");
         }
-
-
     }
-} 
+}

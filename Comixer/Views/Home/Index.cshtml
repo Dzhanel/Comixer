@@ -1,8 +1,36 @@
-﻿@{
+﻿@using Comixer.Models.Home;
+@model HomePageModel
+@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <img src="@ViewBag.MyImage">
-    <img src="@ViewBag.UploadedImage">
-</div>
+<section class="recent sec-mar">
+    <div class="container">
+        <div class="heading style-1">
+            <h2>Recently Updated <span>@DateTime.Now.ToString("dddd dd MMM yyyy", CultureInfo.InvariantCulture)</span></h2>
+        </div>
+        <div class="row">
+            @foreach (var comic in Model.Recent)
+            {
+                <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+                    <div class="anime-blog">
+                        <div class="img-block">
+                            <img src="@comic.CoverImageUrl">
+                            <div class="action-overlay"><a asp-action="Comic" asp-controller="Comics" asp-route-id="@comic.Id"><i class="bi bi-book"></i> Read Now</a></div>
+                        </div>
+                        <div class="detail">
+                            <div class="tags">
+                                @foreach (var genre in comic.Genres)
+                                {
+                                    <a class="text-box mb-1">@genre.Name</a>
+                                    
+                                }
+                            </div>
+                            
+                        </div>
+                        <a asp-action="Comic" asp-controller="Comics" asp-route-id="@comic.Id"><p>@comic.Title</p></a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

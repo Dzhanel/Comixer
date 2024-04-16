@@ -14,7 +14,10 @@ namespace Comixer.Core.Service
         private readonly IMapper mapper;
         private readonly IImageService imageService;
         private readonly IGenreService genreService;
-        public ComicsService(IRepository _repo, IMapper _mapper, IImageService _imageService, IGenreService _genreService)
+        public ComicsService(IRepository _repo, 
+            IMapper _mapper, 
+            IImageService _imageService, 
+            IGenreService _genreService)
         {
             this.repo = _repo;
             this.mapper = _mapper;
@@ -39,7 +42,16 @@ namespace Comixer.Core.Service
             var result = await repo.SaveChangesAsync();
             return comicId;
         }
-
+        public async Task<List<ComicThumbnailModel>> TakeRecentComic()
+        {
+            return await repo.AllReadonly<Comic>()
+                .Include(x => x.ComicGenres)
+                .ThenInclude(x => x.Genre)
+                .OrderBy(x => x.Chapters.Max(x => x.ReleaseDate))
+                .Select(x => mapper.Map<ComicThumbnailModel>(x))
+                .Take(8)
+                .ToListAsync();
+        }
         public async Task<ComicDetailsModel> GetComicById(Guid comicId)
         {
             var entity = await repo.AllReadonly<Comic>(x => x.Id == comicId)
@@ -47,16 +59,14 @@ namespace Comixer.Core.Service
                 .ThenInclude(cg => cg.Genre)
                 .Include(c => c.UsersComics)
                 .ThenInclude(uc => uc.User)
-                .Include(c => c.Chapters)
+                .Include(c => c.Chapters.OrderByDescending(x => x.ReleaseDate))
                 .FirstOrDefaultAsync() ?? throw new KeyNotFoundException("Invalid Id");
             
             return mapper
                 .Map<ComicDetailsModel>(source: entity);
         }
-
         private async Task AddUserComicRelation(Guid comicId, Guid userId, bool isAuthor, bool isArtist = false, bool readLater = false)
         {
-            
             await repo.AddAsync(
                 new UserComic()
                 {

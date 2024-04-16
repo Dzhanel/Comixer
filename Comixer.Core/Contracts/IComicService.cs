@@ -17,5 +17,7 @@ namespace Comixer.Core.Contracts
         /// <param name="comicId"></param>
         /// <returns></returns>
         Task<ComicDetailsModel> GetComicById(Guid comicId);
+
+        Task<List<ComicThumbnailModel>> TakeRecentComic();
     }
 }
