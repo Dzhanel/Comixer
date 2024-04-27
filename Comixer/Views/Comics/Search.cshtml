@@ -1,1 +1,154 @@
-﻿@model List<ComicThumbnailModel>
+﻿@using Comixer.Models.Comics;
+@using System.Globalization;
+@model ComicsBrowseModel
+@{
+    ViewData["Title"] = "Browse";
+}
+<section class="filter sec-mar">
+    <div class="container">
+        <div class="heading style-1">
+            <h2>
+                Advanced Search
+                @*                <span>
+                Showing 1 – 09 of 5000
+                Comics
+                </span>*@
+            </h2>
+        </div>
+        <form method="GET" asp-controller="Comics" asp-action="Search">
+            <div class="input-group form-group header-search-box wbg-opacity-75 mb-2">
+                <button class="input-group-text anime-btn2 " type="submit">
+                    <i class="bi bi-search"></i>
+                </button>
+                <input class="form-control" value="@TempData["SearchTerm"]" name="Search" type="text" placeholder="Search">
+            </div>
+            <ul class="filter-block style-2 mt-2">
+                <li>
+                    <a href="#" class="anime-btn btn-dark dropdown-toggle" id="genre" data-bs-toggle="dropdown"
+                       data-bs-auto-close="outside" aria-expanded="false">
+                        Genre <span><i class="bi bi-chevron-down"></i></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="genre">
+                        @if (ViewBag.Genres.Count > 0 && ViewBag.Genres is not null)
+                        {
+                            @foreach (var genre in ViewBag.Genres)
+                            {
+                                <li>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" id="@genre.Name" name="Genres" class="custom-control-input" value="@genre.Name" @(Model.Genres.Contains(genre.Name) ? "checked" : "") />
+                                        <label class="custom-control-label check-highlight" for="@genre.Name">@genre.Name</label>
+                                    </div>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            @:Something went wrong. Cannot display genres.
+                        }
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="anime-btn btn-dark dropdown-toggle" id="status" data-bs-toggle="dropdown"
+                       data-bs-auto-close="outside" aria-expanded="false">
+                        Status <span><i class="bi bi-chevron-down"></i></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="status">
+                        @foreach (var status in ViewBag.Statuses)
+                        {
+                            <li>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" value="@status" name="Statuses" class="custom-control-input" id="@status">
+                                    <label class="custom-control-label" for="@status">@(((string)status).Humanize())</label>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="anime-btn btn-dark dropdown-toggle" id="sort-by" data-bs-toggle="dropdown"
+                       data-bs-auto-close="outside" aria-expanded="false">
+                        Sort by <span><i class="bi bi-chevron-down"></i></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="sort-by">
+                        
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="radio" name="Sorting" value="LastUpdated" class="custom-control-input" id="sort1">
+                                <label class="custom-control-label" for="sort1">Last Updated</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="radio" name="Sorting" value="ReleaseDate" class="custom-control-input" id="sort2">
+                                <label class="custom-control-label" for="sort2">Release Date</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="radio" name="Sorting" value="Chapter Count" class="custom-control-input" id="sort3">
+                                <label class="custom-control-label" for="sort3">Chapter Count</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="custom-control custom-checkbox">
+                                <input type="radio" name="Sorting" value="Chapter Count" class="custom-control-input" id="sort4">
+                                <label class="custom-control-label" for="sort4">A - Z</label>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="filter-block">
+                <li class="mb-0">
+                    <button class="anime-btn btn-dark border-change">Filter Now</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+</section>
+<section class="recent sec-mar">
+    <div class="container">
+        @if (Model.SearchResult.Any())
+        {
+            <div class="heading style-1">
+                <h2>Search Results</h2>
+            </div>
+            <div class="row">
+                @foreach (var comic in Model.SearchResult)
+                {
+                    <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+                        <div class="anime-blog">
+                            <div class="img-block">
+                                <img src="@comic.CoverImageUrl">
+                                <div class="action-overlay"><a asp-action="Comic" asp-controller="Comics" asp-route-id="@comic.Id"><i class="bi bi-book-half"></i> Read Now</a></div>
+                            </div>
+                            <div class="detail">
+                                <div class="tags">
+                                    @if (comic.Genres.Count() > 0)
+                                    {
+                                        @foreach (var genre in comic.Genres)
+                                        {
+                                            <a asp-controller="Comics" asp-action="Search" asp-route-genres="@genre.Name" class="text-box mb-1">@genre.Name</a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a class="text-box mb-1">No genres specified</a>
+                                    }
+                                </div>
+
+                            </div>
+                            <a asp-action="Comic" asp-controller="Comics" asp-route-id="@comic.Id"><p>@comic.Title</p></a>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="heading style-1">
+                <h2>No Results</h2>
+            </div>
+        }
+    </div>
+</section>

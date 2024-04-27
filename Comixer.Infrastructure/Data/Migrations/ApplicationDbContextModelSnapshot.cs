@@ -92,15 +92,15 @@ namespace Comixer.Infrastructure.Data.Migrations
                         {
                             Id = new Guid("c6c34844-3e79-4c96-bd46-6aeb571a2d2f"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "abaeae53-1584-4ae2-b26b-1bcc9acca86e",
+                            ConcurrencyStamp = "6d58f1a6-8ce6-41bf-8b4c-35966300aebe",
                             Email = "admin@comixer.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@COMIXER.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAVAyVDkFPaGehc98WhWdbFj6kNkrzNT+jqSvgCCjEzjWyAE8G07N0IxXZ1HIw472Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMlPyHn6yIGNL9kdxjbzfg3MkuHBvg5uoXmEgxaFEjChNEVnel1nJZ4FiXHDa+eqAA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4a5b9d43-0f61-4c0b-afba-0337cf71a012",
+                            SecurityStamp = "69cdf1b8-b7ad-4c29-8e5e-2fee98100e1c",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         },
@@ -108,15 +108,15 @@ namespace Comixer.Infrastructure.Data.Migrations
                         {
                             Id = new Guid("7386f2b2-a981-4944-ba58-12c6d42a595d"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3b4f96e7-e4e9-4fa2-9fc5-973734ee5e5c",
+                            ConcurrencyStamp = "1502eb11-26ba-466e-8be2-ad11b007507f",
                             Email = "author@comixer.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "AUTHOR@COMIXER.COM",
                             NormalizedUserName = "AUTHOR_1",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAZyVZnZn2wOD8IDesRARES1g3VyGasVmL1NkMeYy5mNgewzUH7Yqgpi/sOyzfzpnQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJEh+dlU+A4zfQ04cYNL3mG7+mL69BfEXBMa/XpWn4av0fjI//ctHvnNzSYegJOkXg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "920d3caa-f049-4822-a7f0-2f0c80d24d80",
+                            SecurityStamp = "73abc3f4-cb13-40b1-8645-70b7b41f058a",
                             TwoFactorEnabled = false,
                             UserName = "Author 1"
                         });
@@ -133,9 +133,6 @@ namespace Comixer.Infrastructure.Data.Migrations
 
                     b.Property<bool>("ProhibitComments")
                         .HasColumnType("bit");
-
-                    b.Property<double>("Rating")
-                        .HasColumnType("float");
 
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
@@ -157,8 +154,7 @@ namespace Comixer.Infrastructure.Data.Migrations
                             Id = new Guid("e5a73c63-1bef-425b-aaf7-425d55d21767"),
                             ComicId = new Guid("15ca4f3c-4bb6-47b0-9d5f-e902c0627c91"),
                             ProhibitComments = false,
-                            Rating = 4.0,
-                            ReleaseDate = new DateTime(2024, 4, 8, 20, 2, 51, 709, DateTimeKind.Local).AddTicks(2886),
+                            ReleaseDate = new DateTime(2024, 4, 16, 8, 39, 14, 410, DateTimeKind.Local).AddTicks(5553),
                             Title = "Comic 1 Chapter 1"
                         },
                         new
@@ -166,8 +162,7 @@ namespace Comixer.Infrastructure.Data.Migrations
                             Id = new Guid("ed32b753-7a35-4512-99c0-e2216185686e"),
                             ComicId = new Guid("15ca4f3c-4bb6-47b0-9d5f-e902c0627c91"),
                             ProhibitComments = false,
-                            Rating = 7.0,
-                            ReleaseDate = new DateTime(2024, 4, 10, 20, 2, 51, 709, DateTimeKind.Local).AddTicks(2977),
+                            ReleaseDate = new DateTime(2024, 4, 18, 8, 39, 14, 410, DateTimeKind.Local).AddTicks(5609),
                             Title = "Comic 1 Chapter 2"
                         },
                         new
@@ -175,8 +170,7 @@ namespace Comixer.Infrastructure.Data.Migrations
                             Id = new Guid("e4dca4c6-f29f-459c-a6ce-85fcdb01b5c2"),
                             ComicId = new Guid("58b58581-82c8-4bbc-bcf3-49914b71bd00"),
                             ProhibitComments = false,
-                            Rating = 7.0,
-                            ReleaseDate = new DateTime(2024, 4, 11, 19, 2, 51, 709, DateTimeKind.Local).AddTicks(2983),
+                            ReleaseDate = new DateTime(2024, 4, 19, 7, 39, 14, 410, DateTimeKind.Local).AddTicks(5613),
                             Title = "Comic 2 Chapter 1"
                         });
                 });
@@ -352,9 +346,6 @@ namespace Comixer.Infrastructure.Data.Migrations
                     b.Property<int>("Likes")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("ParrentCommentID")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("PostDate")
                         .HasColumnType("datetime2");
 
@@ -364,8 +355,6 @@ namespace Comixer.Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ChapterId");
-
-                    b.HasIndex("ParrentCommentID");
 
                     b.HasIndex("UserId");
 
@@ -378,7 +367,7 @@ namespace Comixer.Infrastructure.Data.Migrations
                             ChapterId = new Guid("e5a73c63-1bef-425b-aaf7-425d55d21767"),
                             Content = "Awesome chapter!",
                             Likes = 0,
-                            PostDate = new DateTime(2024, 4, 11, 19, 2, 51, 712, DateTimeKind.Local).AddTicks(1114),
+                            PostDate = new DateTime(2024, 4, 19, 7, 39, 14, 412, DateTimeKind.Local).AddTicks(1110),
                             UserId = new Guid("7386f2b2-a981-4944-ba58-12c6d42a595d")
                         },
                         new
@@ -387,7 +376,7 @@ namespace Comixer.Infrastructure.Data.Migrations
                             ChapterId = new Guid("e5a73c63-1bef-425b-aaf7-425d55d21767"),
                             Content = "More comin' up soon!",
                             Likes = 0,
-                            PostDate = new DateTime(2024, 4, 11, 20, 1, 51, 712, DateTimeKind.Local).AddTicks(1172),
+                            PostDate = new DateTime(2024, 4, 19, 8, 38, 14, 412, DateTimeKind.Local).AddTicks(1144),
                             UserId = new Guid("7386f2b2-a981-4944-ba58-12c6d42a595d")
                         });
                 });
@@ -496,9 +485,6 @@ namespace Comixer.Infrastructure.Data.Migrations
                     b.Property<bool>("IsAuthor")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsReadLater")
-                        .HasColumnType("bit");
-
                     b.HasKey("UserId", "ComicId");
 
                     b.HasIndex("ComicId");
@@ -511,8 +497,7 @@ namespace Comixer.Infrastructure.Data.Migrations
                             UserId = new Guid("7386f2b2-a981-4944-ba58-12c6d42a595d"),
                             ComicId = new Guid("15ca4f3c-4bb6-47b0-9d5f-e902c0627c91"),
                             IsArtist = true,
-                            IsAuthor = true,
-                            IsReadLater = false
+                            IsAuthor = true
                         });
                 });
 
@@ -547,14 +532,14 @@ namespace Comixer.Infrastructure.Data.Migrations
                         new
                         {
                             Id = new Guid("528726ea-e421-4a80-b303-f035355599de"),
-                            ConcurrencyStamp = "a9d2056a-3e30-4226-a793-613caba224b3",
+                            ConcurrencyStamp = "d6d20f4a-5729-4eb0-bb62-30e4c3794721",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = new Guid("5dd65fa9-eb2c-4372-8084-8c501347e74f"),
-                            ConcurrencyStamp = "23672930-bc99-497c-a959-736e59691fcf",
+                            ConcurrencyStamp = "5e72c08c-54df-425b-80b5-d21855313e8b",
                             Name = "Author",
                             NormalizedName = "AUTHOR"
                         });
@@ -723,11 +708,6 @@ namespace Comixer.Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Comixer.Infrastructure.Data.Entities.Comment", "ParrentComment")
-                        .WithMany()
-                        .HasForeignKey("ParrentCommentID")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.HasOne("Comixer.Infrastructure.Data.Entities.ApplicationUser", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
@@ -735,8 +715,6 @@ namespace Comixer.Infrastructure.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Chapter");
-
-                    b.Navigation("ParrentComment");
 
                     b.Navigation("User");
                 });
@@ -750,7 +728,7 @@ namespace Comixer.Infrastructure.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("Comixer.Infrastructure.Data.Entities.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("UsersComics")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -814,6 +792,8 @@ namespace Comixer.Infrastructure.Data.Migrations
             modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.ApplicationUser", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("UsersComics");
                 });
 
             modelBuilder.Entity("Comixer.Infrastructure.Data.Entities.Chapter", b =>

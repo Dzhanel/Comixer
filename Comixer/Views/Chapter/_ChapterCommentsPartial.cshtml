@@ -2,13 +2,35 @@
 @using System.Globalization
 @model List<CommentModel>
 
-@foreach (var comment in Model)
+@if (Model is null)
 {
-    <div class="row">
-        <div class="col-lg-11 col-10">
-            <h5><a href="profile.html">@comment.Username</a><b>@comment.PostDate.Humanize(false, culture: CultureInfo.InvariantCulture)</b></h5>
-            <p class="ms-2 h4">@comment.Content</p>
-            @* <a href="#" class="comment-btn"><i class="bi bi-heart"> 12</i></a> //TODO: AddComments *@
-        </div>
+    <div class="alert alert-danger" role="alert">
+        Something went wrong!
     </div>
+}
+else
+{
+    @if (Model.Count > 0)
+    {
+        @foreach (var comment in Model)
+        {
+            <div class="row">
+                <div class="col-lg-11 col-10">
+                    <h5><a>@comment.Username</a><b>@comment.PostDate.Humanize(false, culture: CultureInfo.InvariantCulture)</b></h5>
+                    <p class="ms-2 h4">@comment.Content</p> 
+
+                    @* <a href="#" class="comment-btn"><i class="bi bi-heart"> 12</i></a> //TODO: AddComments *@
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-lg-11 col-10">
+                Be first to comment!
+            </div>
+        </div>
+    }
+
 }

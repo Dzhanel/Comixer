@@ -7,6 +7,7 @@ namespace Comixer.Infrastructure.Data.Entities
     [EntityTypeConfiguration(typeof(ApplicationUserConfiguration))]
     public class ApplicationUser : IdentityUser<Guid>
     {
-        public ICollection<Comment> Comments { get; set; } = null!;
+        public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
+        public ICollection<UserComic> UsersComics { get; set; } = new HashSet<UserComic>();
     }
 }

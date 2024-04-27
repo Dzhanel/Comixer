@@ -166,16 +166,15 @@ input::-ms-clear {
 /* Style for the banner container */
 .banner {
   position: relative;
-  color: #fff;
+  color: #171717;
   text-align: center;
-  padding: 65px; /* Increase padding to make the banner larger */
+  padding: 65px;
   overflow: hidden;
 }
 
-/* Blurred background image */
 .banner::before {
   content: "";
-  background-image: url("/assets/home-page-banner.webp"); /* Replace 'background.jpg' with your blurred image */
+  background-image: url("/assets/home-page-banner.webp");
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -183,37 +182,45 @@ input::-ms-clear {
   left: 0;
   right: 0;
   bottom: 0;
-  filter: blur(8px); /* Adjust the blur effect as needed */
+  filter: blur(8px);
   z-index: -1;
 }
 
-/* Overlay to enhance text visibility */
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0); /* Adjust the opacity as needed */
+  background-color: rgba(0, 0, 0, 0);
 }
 
-/* Style for the logo */
 .logo {
-  min-width: 20%; /* Increase logo size */
+  animation: fadeIn steps(1s, step-start);
+  min-width: 20%;
   max-width: 20%;
   vertical-align: middle;
 }
 
-/* Style for the text */
 .text {
+  animation: fadeIn 1s;
   font-family: "Warden", sans-serif;
-  font-size: 100px; /* Increase font size */
+  font-size: 100px;
   display: block;
-  margin: 20px 0; /* Adjust the margin as needed */
+  margin: 20px 0;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    margin-top: -30px;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 @media (max-width: 576px) {
   .text {
-    font-size: 50px; /* Decrease font size for smaller screens */
+    font-size: 50px;
   }
 }

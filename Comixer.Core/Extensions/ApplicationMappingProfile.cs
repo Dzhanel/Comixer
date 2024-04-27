@@ -39,9 +39,9 @@ namespace Comixer.Core.Extensions
                           opt => opt.MapFrom(src => src.UsersComics
                                                .Where(uc => uc.IsArtist)
                                                .FirstOrDefault()!.User))
-               .ForMember(dest => dest.AverageRating,
-                          opt => opt.MapFrom(src => src.Chapters.Count == 0 ? 0 : Math.Round(src.Chapters
-                                               .Average(x => x.Rating), 2)))
+               //.ForMember(dest => dest.AverageRating,
+               //           opt => opt.MapFrom(src => src.Chapters.Count == 0 ? 0 : Math.Round(src.Chapters
+               //                                .Average(x => x.Rating), 2)))
                .ForMember(dest => dest.ReleaseDate,
                           opt => opt.MapFrom(src => src.Chapters.Count == 0 ? DateTime.UtcNow : src.Chapters.Min(x => x.ReleaseDate)));
         }

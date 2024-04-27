@@ -1,5 +1,4 @@
-﻿@using System.Globalization
-@using Microsoft.AspNetCore.Identity;
+﻿@using Microsoft.AspNetCore.Identity;
 @using Comixer.Extensions;
 @model ComicDetailsModel;
 @{
@@ -56,12 +55,12 @@
                                     @if (@Model.Chapters.Count() >= 1)
                                     {
                                         <a asp-action="Chapter" asp-controller="Chapter"
-                                           asp-route-id="@Model.Chapters.First().Id"
+                                           asp-route-id="@Model.Chapters.Last().Id"
                                            class="anime-btn btn-dark border-change me-3">READ FIRST</a>
                                     }
                                     @if (@Model.Chapters.Count() > 1)
                                     {
-                                        <a asp-action="Chapter" asp-controller="Chapter" asp-route-id="@Model.Chapters.Last().Id" class="anime-btn btn-dark">READ LAST</a>
+                                        <a asp-action="Chapter" asp-controller="Chapter" asp-route-id="@Model.Chapters.First().Id" class="anime-btn btn-dark">READ LAST</a>
                                     }
                                 </div>
                             </div>
@@ -76,7 +75,7 @@
                                     <span>Genres: </span>
                                     @foreach (var genre in Model.Genres)
                                     {
-                                        <a class="text-box genre-btn mb-1 m-0">@genre.Name</a>
+                                        <a asp-controller="Comics" asp-action="Search" asp-route-genres="@genre.Name" class="text-box genre-btn mb-1 m-0">@genre.Name</a>
                                     }
                                     @*<p><span>Scores:</span> @Model.AverageRating </p>*@
                             </div>

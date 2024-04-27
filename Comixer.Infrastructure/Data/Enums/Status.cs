@@ -4,8 +4,8 @@ namespace Comixer.Infrastructure.Enums
 {
     public enum Status
     {
-        [Display(Name = "To Be Released")]
-        ToBeReleased = 0,
+        [Display(Name = "Not Yet Released")]
+        NotYetReleased = 0,
         Releasing = 1,
         Completed = 2
     }

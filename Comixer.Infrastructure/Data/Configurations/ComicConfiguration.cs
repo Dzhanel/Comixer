@@ -38,7 +38,7 @@ namespace Comixer.Infrastructure.Data.Configurations
                     Title = "Comic 3",
                     CoverImageUrl = "https://res.cloudinary.com/dwyg7tvwc/image/upload/comic-cc41b9ea-0767-4a45-a7b4-37cb07bec4d3/cover.webp",
                     Description = "Comic 3 Description",
-                    Status = Status.ToBeReleased,
+                    Status = Status.NotYetReleased,
                 }
            };
         }

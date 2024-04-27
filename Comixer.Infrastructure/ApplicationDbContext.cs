@@ -1,4 +1,5 @@
-﻿using Comixer.Infrastructure.Data.Configurations;
+﻿using CloudinaryDotNet.Actions;
+using Comixer.Infrastructure.Data.Configurations;
 using Comixer.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -24,9 +25,8 @@ namespace Comixer.Infrastructure
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
-            builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new UserRoleConfiguration());
+            builder.ApplyConfiguration(new RoleConfiguration());
         }
     }
 }

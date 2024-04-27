@@ -8,9 +8,9 @@ namespace Comixer.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Comment> builder)
         {
-            builder.HasOne(x => x.ParrentComment)
-                .WithMany()
-                .OnDelete(DeleteBehavior.NoAction);
+            //builder.HasOne(x => x.ParrentComment)
+            //    .WithMany()
+            //    .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasData(SeedComments());
         }
@@ -26,7 +26,6 @@ namespace Comixer.Infrastructure.Data.Configurations
                     ChapterId = Guid.Parse("e5a73c63-1bef-425b-aaf7-425d55d21767"),
                     UserId = Guid.Parse("7386f2b2-a981-4944-ba58-12c6d42a595d"),
                     PostDate = DateTime.Now.AddHours(-1),
-                    ParrentCommentID = null
                 },
                 new()
                 {
@@ -35,7 +34,6 @@ namespace Comixer.Infrastructure.Data.Configurations
                     Content = "More comin' up soon!",
                     ChapterId = Guid.Parse("e5a73c63-1bef-425b-aaf7-425d55d21767"),
                     UserId = Guid.Parse("7386f2b2-a981-4944-ba58-12c6d42a595d"),
-                    ParrentCommentID = null
                 }
             };
         }

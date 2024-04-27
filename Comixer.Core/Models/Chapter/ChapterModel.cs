@@ -14,6 +14,6 @@ namespace Comixer.Core.Models.Chapter
         public ChapterModel? PreviousChapter { get; set; }
         public bool ProhibitComments { get; set; }
         public IEnumerable<ChapterImageModel> ChapterImages { get; set; } = new List<ChapterImageModel>();
-        public IEnumerable<CommentModel> Comments { get; set; } = new List<CommentModel>(); 
+        public List<CommentModel> Comments { get; set; } = new List<CommentModel>(); 
     }
 }

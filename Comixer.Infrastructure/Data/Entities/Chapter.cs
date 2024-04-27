@@ -17,7 +17,7 @@ namespace Comixer.Infrastructure.Data.Entities
         public string Title { get; set; } = null!;
         [AllowNull]
         public DateTime ReleaseDate { get; set; }
-        public double Rating { get; set; }
+        //public double Rating { get; set; }
         [ForeignKey(nameof(Comic))]
         public Guid ComicId { get; set; }
         public Comic Comic { get; set; } = null!;

@@ -31,6 +31,11 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LoginPath = new PathString("/Account/Login");
 });
 
+builder.Services.AddCoreAdmin(new CoreAdminOptions()
+{
+    RestrictToRoles = new string[] { "Administrator" },
+    Title = "Comixer Admin",
+});
 builder.Services.AddCoreAdmin("Administrator");
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Api:CloudinarySettings"));
 builder.Services.AddApplicationServices();
@@ -49,7 +54,6 @@ else
     app.UseHsts();
 }
 
-app.UseCoreAdminCustomTitle("Comixer");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -61,14 +65,18 @@ app.UseAuthorization();
 app.MapControllerRoute(name: "PublishComic",
                         pattern: "Comics/Publish",
                         defaults: new { controller = "Comics", action = "Publish" });
+app.MapControllerRoute(name: "Search",
+                        pattern: "Comics/Search/{search?}",
+                        defaults: new { controller = "Comics", action = "Search" });
+
 
 app.MapControllerRoute(name: "Comics",
                  pattern: "Comics/{id?}",
                  defaults: new { controller = "Comics", action = "Comic" });
 
-app.MapControllerRoute(name: "PostComment", 
+app.MapControllerRoute(name: "PostComment",
     pattern: "Chapter/PostComment",
-    defaults: new { controller = "Chapter", action = "PostComment"});
+    defaults: new { controller = "Chapter", action = "PostComment" });
 
 app.MapControllerRoute(name: "PostChapter",
     pattern: "Chapter/PostChapter/{id?}",

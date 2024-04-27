@@ -25,7 +25,7 @@ namespace Comixer.Core.Service
             var entity = await repo
                 .AllReadonly<Chapter>()
                 .Include(x => x.Comic)
-                .Include(x => x.Comments)
+                .Include(x => x.Comments.OrderByDescending(x => x.PostDate))
                 .ThenInclude(x => x.User)
                 .Include(x => x.ChapterImages)
                 .Where(x => x.Id == chapterId)

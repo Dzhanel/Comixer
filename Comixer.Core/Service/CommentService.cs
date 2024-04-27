@@ -18,17 +18,22 @@ namespace Comixer.Core.Service
             this.repo = repo;
         }
 
-        public async Task AddComment(AddCommentModel model, Guid userId)
+        public async Task<Guid> AddComment(AddCommentModel model, Guid userId)
         {
             var entity = mapper.Map<AddCommentModel, Comment>(model);
             entity.Id = Guid.NewGuid();
             entity.UserId = userId;
             entity.PostDate = DateTime.Now;
             await repo.AddAsync<Comment>(entity);
-            await repo.SaveChangesAsync();
+            int result = await repo.SaveChangesAsync();
+            if(result < 1)
+            {
+                throw new ArgumentException("Could not save the changes to the database");
+            }
+            return entity.Id;
         }
 
-        public async Task<IEnumerable<CommentModel>> GetCommentsByChapterId(Guid chapterId)
+        public async Task<List<CommentModel>> GetCommentsByChapterId(Guid chapterId)
         {
             var result = await repo.AllReadonly<Comment>()
                 .Where(c => c.ChapterId == chapterId)

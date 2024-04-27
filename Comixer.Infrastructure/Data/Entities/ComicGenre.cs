@@ -16,7 +16,7 @@ namespace Comixer.Infrastructure.Data.Entities
 
         public override string ToString()
         {
-            return $"{Comic.Title} - {Genre.Name}";
+            return $"{Comic} - {Genre}";
         }
     }
 }

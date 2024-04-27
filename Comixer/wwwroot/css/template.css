@@ -250,9 +250,11 @@ input,
         /* Firefox */
         opacity: 1;
     }
+
 .file-caption .input-group {
     align-items: stretch;
 }
+
 .input-group-text {
     border-color: var(--color-grey-light);
 }
@@ -324,6 +326,7 @@ input {
         input[type='checkbox']:checked {
             accent-color: var(--color-primary);
         }
+
             input[type='checkbox']:checked + .check-highlight {
                 color: var(--color-primary);
             }
@@ -504,6 +507,7 @@ a.text-box {
     margin-right: 10px;
     color: var(--color-medium-grey);
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 a.white {
@@ -3668,7 +3672,7 @@ ul.pagination {
     }
 
     .filter-block .dropdown-menu.show {
-        width: 200px;
+        width: 210px;
         padding: 10px;
     }
 
@@ -4712,7 +4716,7 @@ ul.pagination {
 }
 
     .relese h5:hover {
-        color:var(--color-purple)
+        color: var(--color-purple)
     }
 
     .relese h5 span {
@@ -4936,10 +4940,12 @@ ul.pagination {
     margin-bottom: 15px;
     font-family: var(--font-primary);
 }
-.profile .form-group input::placeholder,
-.profile .form-group textarea::after::placeholder {
-    color: var(--color-dark-grey);
-}
+
+    .profile .form-group input::placeholder,
+    .profile .form-group textarea::after::placeholder {
+        color: var(--color-dark-grey);
+    }
+
 .profile .anime-btn.btn-dark {
     width: 250px;
     padding: 5px 10px;

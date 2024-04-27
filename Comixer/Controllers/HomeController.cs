@@ -1,8 +1,10 @@
 ﻿using Comixer.Core.Contracts;
+using Comixer.Extensions;
 using Comixer.Models;
 using Comixer.Models.Home;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Linq.Expressions;
 
 namespace Comixer.Controllers
 {
@@ -20,8 +22,12 @@ namespace Comixer.Controllers
         {
             HomePageModel viewModel = new()
             {
-                Recent = await comicService.TakeRecentComics()
+                Recent = await comicService.TakeRecentComics(),
             };
+            if (User.IsInRole("Author"))
+            {
+                viewModel.MyComics = await comicService.GetComicsByAuthorId(this.User.Id());
+            }
             return View(viewModel);
         }
 

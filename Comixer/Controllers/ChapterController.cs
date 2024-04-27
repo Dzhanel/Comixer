@@ -14,30 +14,38 @@ namespace Comixer.Controllers
         private readonly ICommentService commentService;
         private readonly IComicService comicService;
 
-        public ChapterController(IChapterService _chapterService, ICommentService _commentService, IComicService _comicService)
+        public ChapterController(IChapterService _chapterService,
+                                 ICommentService _commentService,
+                                 IComicService _comicService)
         {
             this.chapterService = _chapterService;
             this.commentService = _commentService;
             this.comicService = _comicService;
         }
-
+        /// <summary>
+        /// This action creates a new comment in the database then returns the partial of the comment
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost]
         public async Task<PartialViewResult> PostComment(AddCommentModel viewModel)
         {
+            List<CommentModel>? comments = null;
             if (ModelState.IsValid)
             {
                 await commentService.AddComment(viewModel, User.Id());
+                comments = await commentService.GetCommentsByChapterId(viewModel.ChapterId);
                 ViewBag.ChapterId = viewModel.ChapterId;
-                var comments = await commentService.GetCommentsByChapterId(viewModel.ChapterId);
-                return PartialView("_ChapterCommentsPartial", comments);
             }
-            else
-            {
-                var comments = await commentService.GetCommentsByChapterId(viewModel.ChapterId);
-                return PartialView("_ChapterCommentPartial", comments);
-            }
+            return PartialView("_ChapterCommentsPartial", comments);
+
         }
+        /// <summary>
+        /// This action returns the comic page
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Chapter(Guid id)
@@ -47,6 +55,11 @@ namespace Comixer.Controllers
             ViewBag.ChaterId = model.Id;
             return View(model);
         }
+        /// <summary>
+        /// This action returns the page for posting a chapter
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> PostChapter(Guid id)
         {
@@ -70,6 +83,11 @@ namespace Comixer.Controllers
             }
             return RedirectToAction("/Index/Home");
         }
+        /// <summary>
+        /// This action creates a chapter, then redirects to the comic of the newly create chapter.
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> PostChapter(CreateChapterModel viewModel)
         {

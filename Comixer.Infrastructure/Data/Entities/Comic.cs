@@ -17,6 +17,7 @@ namespace Comixer.Infrastructure.Data.Entities
         public string Title { get; set; } = null!;
         [AllowNull]
         [MaxLength(DescriptionMaxLength)]
+        [DataType("Markdown")]
         public string Description { get; set; }
         public Status Status { get; set; }
         public string CoverImageUrl { get; set; } = null!;

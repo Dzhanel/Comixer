@@ -1,7 +1,10 @@
 ﻿using Comixer.Core.Contracts;
 using Comixer.Core.Models.Comic;
+using Comixer.Core.Models.Genre;
 using Comixer.Extensions;
 using Comixer.Infrastructure.Data.Entities;
+using Comixer.Infrastructure.Enums;
+using Comixer.Models.Comics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -77,10 +80,21 @@ namespace Comixer.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Search(string keyword)
+        [AllowAnonymous]
+        public async Task<IActionResult> Search(string search, [FromQuery] List<string> genres, [FromQuery] List<string> statuses, [FromQuery]string sorting)
         {
-            var result = await comicService.Search(keyword);
-            return View();
+            TempData["SearchTerm"] = search;
+            ViewBag.SearchTerm = search;
+            var result = await comicService.Search(search, genres, statuses, sorting);
+            ViewBag.Genres = await genreService.AllGenresAsync();
+            ViewBag.Statuses = comicService.GetAllStatusNames();
+            ComicsBrowseModel viewModel = new() 
+            {
+                Genres = genres,
+                SearchResult = result,
+                Sorting = sorting
+            };
+            return View(viewModel);
         }
 
     }

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Comixer.Core.Contracts;
 using Comixer.Core.Models.Comic;
-using Comixer.Core.Models.Genre;
 using Comixer.Infrastructure.Common;
 using Comixer.Infrastructure.Data.Entities;
+using Comixer.Infrastructure.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace Comixer.Core.Service
@@ -14,9 +14,9 @@ namespace Comixer.Core.Service
         private readonly IMapper mapper;
         private readonly IImageService imageService;
         private readonly IGenreService genreService;
-        public ComicsService(IRepository _repo, 
-            IMapper _mapper, 
-            IImageService _imageService, 
+        public ComicsService(IRepository _repo,
+            IMapper _mapper,
+            IImageService _imageService,
             IGenreService _genreService)
         {
             this.repo = _repo;
@@ -54,6 +54,7 @@ namespace Comixer.Core.Service
         }
         public async Task<ComicDetailsModel> GetComicById(Guid comicId)
         {
+
             var entity = await repo.AllReadonly<Comic>(x => x.Id == comicId)
                 .Include(c => c.ComicGenres)
                 .ThenInclude(cg => cg.Genre)
@@ -61,7 +62,7 @@ namespace Comixer.Core.Service
                 .ThenInclude(uc => uc.User)
                 .Include(c => c.Chapters.OrderByDescending(x => x.ReleaseDate))
                 .FirstOrDefaultAsync() ?? throw new KeyNotFoundException("Invalid Id");
-            
+
             return mapper
                 .Map<ComicDetailsModel>(source: entity);
         }
@@ -74,23 +75,54 @@ namespace Comixer.Core.Service
                     UserId = userId,
                     IsAuthor = isAuthor,
                     IsArtist = isArtist,
-                    IsReadLater = readLater
+                    //IsReadLater = readLater
                 });
         }
-
-        public async Task<List<ComicThumbnailModel>> Search(string keyword)
+        public async Task<List<ComicThumbnailModel>> GetComicsByAuthorId(Guid authorId)
         {
-            var genres = (await genreService.AllGenresAsync()).Select(x => x.Name).ToList();
-
-            var result = await repo.All<Comic>()
-                .Where(x => x.Title!.Contains(keyword))
-                .Include(x => x.ComicGenres)
+            return await repo.AllReadonly<UserComic>(x => x.IsAuthor && x.UserId == authorId)
+                .Include(x => x.Comic)
+                .ThenInclude(x => x.ComicGenres)
                 .ThenInclude(x => x.Genre)
-                .OrderBy(x => x.Chapters.Count)
-                .Select(x => mapper.Map<Comic, ComicThumbnailModel>(x))
+                .Select(x => mapper.Map<ComicThumbnailModel>(x.Comic))
                 .ToListAsync();
+        }
+        public List<string> GetAllStatusNames() => Enum.GetNames(typeof(Status)).ToList();
+        public async Task<List<ComicThumbnailModel>> Search(string? keyword, List<string> genres, List<string> statuses, string sorting)
+        {
+            var result = repo.AllReadonly<Comic>()
+                 .Include(x => x.ComicGenres)
+                 .ThenInclude(x => x.Genre)
+                 .AsQueryable();
 
-            return result;
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                result = result
+                    .Where(x => x.Title!.Contains(keyword));
+            }
+
+            if(genres.Count != 0)
+            {
+                result = result
+                    .Where(x => x.ComicGenres
+                        .Any(x => genres.Contains(x.Genre.Name)));
+            }
+
+            if(statuses.Count != 0)
+            {
+                result = result
+                    .Where(rs => statuses
+                        .Select(s => Enum.Parse(typeof(Status), s, true))
+                        .Contains(rs.Status));
+            }
+
+            if (!string.IsNullOrEmpty(sorting))
+            {
+
+            }
+
+
+            return await result.Select(x => mapper.Map<Comic, ComicThumbnailModel>(x)).ToListAsync();
         }
     }
 }

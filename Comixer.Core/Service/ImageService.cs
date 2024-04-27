@@ -63,7 +63,6 @@ namespace Comixer.Core.Service
                 await repo.AddAsync(entity);
                 imageUrls.Add(entity);
             }
-            await repo.SaveChangesAsync();
             return imageUrls;
         }
 
