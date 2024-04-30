@@ -92,6 +92,7 @@ namespace Comixer.Core.Service
             var result = repo.AllReadonly<Comic>()
                  .Include(x => x.ComicGenres)
                  .ThenInclude(x => x.Genre)
+                 .Include(x => x.Chapters)
                  .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(keyword))
@@ -117,9 +118,23 @@ namespace Comixer.Core.Service
 
             if (!string.IsNullOrEmpty(sorting))
             {
-                //if(sorting == )
+                if (sorting == Sorting.LastUpdated.ToString())
+                {
+                    result.OrderByDescending(x => x.Chapters.Max(x => x.ReleaseDate));
+                }
+                else if (sorting == Sorting.ChapterCount.ToString())
+                {
+                    result.OrderByDescending(x => x.Chapters);
+                }
+                else if (sorting == Sorting.ReleaseDate.ToString())
+                {
+                    result.OrderBy(x => x.Chapters.Min(x => x.ReleaseDate));
+                }
+                else if (sorting == Sorting.Alphabetical.ToString())
+                {
+                    result.OrderBy(x => x.Title);
+                }
             }
-
 
             return await result.Select(x => mapper.Map<Comic, ComicThumbnailModel>(x)).ToListAsync();
         }

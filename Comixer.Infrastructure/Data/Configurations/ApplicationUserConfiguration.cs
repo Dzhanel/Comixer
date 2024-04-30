@@ -34,7 +34,7 @@ namespace Comixer.Infrastructure.Data.Configurations
             {
                 Id = Guid.Parse("7386f2b2-a981-4944-ba58-12c6d42a595d"),
                 UserName = "Author 1",
-                NormalizedUserName = "AUTHOR_1",
+                NormalizedUserName = "AUTHOR 1",
                 Email = "author@comixer.com",
                 NormalizedEmail = "AUTHOR@COMIXER.COM",
                 SecurityStamp = Guid.NewGuid().ToString(),

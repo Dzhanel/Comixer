@@ -93,7 +93,8 @@ namespace Comixer.Controllers
             {
                 Genres = genres,
                 SearchResult = result,
-                Sorting = sorting
+                Sorting = sorting,
+                Statuses = statuses
             };
             return View(viewModel);
         }
@@ -109,12 +110,12 @@ namespace Comixer.Controllers
             {
                 return RedirectToAction("Comic", "Comics", new { id });
             }
-                var author = await comicService.GetAuthorByComicId(id);
-                if(User.Id() == author.Id)
-                {
-                    await comicService.DeleteComic(id);
-                }
-                return RedirectToAction("Index", "Home");
+            var author = await comicService.GetAuthorByComicId(id);
+            if (User.Id() == author.Id)
+            {
+                await comicService.DeleteComic(id);
+            }
+            return RedirectToAction("Index", "Home");
 
         }
 

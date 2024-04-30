@@ -57,7 +57,7 @@
                         {
                             <li>
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" value="@status" name="Statuses" class="custom-control-input" id="@status">
+                                    <input type="checkbox" value="@status" name="Statuses" class="custom-control-input" id="@status" @(Model.Statuses.Contains(status) ? "checked" : "")>
                                     <label class="custom-control-label" for="@status">@(((string)status).Humanize())</label>
                                 </div>
                             </li>
@@ -74,7 +74,7 @@
                         {
                             <li>
                                 <div class="custom-control custom-checkbox">
-                                    <input type="radio" name="Sorting" value="LastUpdated" class="custom-control-input" id="@sorting">
+                                    <input type="radio" name="Sorting" value="@sorting" class="custom-control-input" id="@sorting" @(Model.Sorting == sorting ? "checked" : "")>
                                     <label class="custom-control-label" for="@sorting">@(((string)sorting).Humanize())</label>
                                 </div>
                             </li>
