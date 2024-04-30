@@ -53,44 +53,43 @@
         </div>
     </div>
 </section>
-@if (isAuthenticated && User.IsInRole("Author"))
+@if (isAuthenticated && User.IsInRole("Author") && Model.MyComics.Any())
 {
-<section class="recent sec-mar">
-    <div class="container">
-        <div class="heading style-1">
-            <h2>My Comic Releases <span>@DateTime.Now.ToString("dddd dd MMM yyyy", CultureInfo.InvariantCulture)</span></h2>
-        </div>
-        <div class="row">
-            @foreach (var comic in Model.MyComics)
-            {
-                <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
-                    <div class="anime-blog">
-                        <div class="img-block">
-                            <img src="@comic.CoverImageUrl">
-                            <div class="action-overlay"><a asp-action="Comic" asp-controller="Comics" asp-route-id="@comic.Id"><i class="bi bi-book-half"></i> Read Now</a></div>
-                        </div>
-                        <div class="detail">
-                            <div class="tags">
-                                @if (comic.Genres.Count() > 0)
-                                {
-                                    @foreach (var genre in comic.Genres)
-                                    {
-                                        <a class="text-box mb-1">@genre.Name</a>
-                                    }
-                                }
-                                else
-                                {
-                                    <a class="text-box mb-1">No genres specified</a>
-                                }
+    <section class="recent sec-mar">
+        <div class="container">
+            <div class="heading style-1">
+                <h2>My Comic Releases <span>@DateTime.Now.ToString("dddd dd MMM yyyy", CultureInfo.InvariantCulture)</span></h2>
+            </div>
+            <div class="row">
+                @foreach (var comic in Model.MyComics)
+                {
+                    <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+                        <div class="anime-blog">
+                            <div class="img-block">
+                                <img src="@comic.CoverImageUrl">
+                                <div class="action-overlay"><a asp-action="Comic" asp-controller="Comics" asp-route-id="@comic.Id"><i class="bi bi-book-half"></i> Read Now</a></div>
                             </div>
+                            <div class="detail">
+                                <div class="tags">
+                                    @if (comic.Genres.Count() > 0)
+                                    {
+                                        @foreach (var genre in comic.Genres)
+                                        {
+                                            <a class="text-box mb-1">@genre.Name</a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a class="text-box mb-1">No genres specified</a>
+                                    }
+                                </div>
 
+                            </div>
+                            <a asp-action="Comic" asp-controller="Comics" asp-route-id="@comic.Id"><p>@comic.Title</p></a>
                         </div>
-                        <a asp-action="Comic" asp-controller="Comics" asp-route-id="@comic.Id"><p>@comic.Title</p></a>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
-    </div>
-</section>
-    
+    </section>
 }

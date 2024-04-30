@@ -8,5 +8,6 @@ namespace Comixer.Core.Contracts
         Task<List<ChapterImage>> UploadChapterImages(IFormFileCollection files, Guid chapterId, Guid comicId);
         Task<string> GetImageUrl(string publicId);
         Task<string> UploadComicCoverImage(IFormFile file, Guid comicUrl);
+        Task DeleteComicFolder(Guid comicId);
     }
 }

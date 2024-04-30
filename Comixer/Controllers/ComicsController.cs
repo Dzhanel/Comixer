@@ -81,20 +81,41 @@ namespace Comixer.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Search(string search, [FromQuery] List<string> genres, [FromQuery] List<string> statuses, [FromQuery]string sorting)
+        public async Task<IActionResult> Search(string search, [FromQuery] List<string> genres, [FromQuery] List<string> statuses, [FromQuery] string sorting)
         {
             TempData["SearchTerm"] = search;
             ViewBag.SearchTerm = search;
             var result = await comicService.Search(search, genres, statuses, sorting);
             ViewBag.Genres = await genreService.AllGenresAsync();
             ViewBag.Statuses = comicService.GetAllStatusNames();
-            ComicsBrowseModel viewModel = new() 
+            ViewBag.Sortings = comicService.GetAllSortingNames();
+            ComicsBrowseModel viewModel = new()
             {
                 Genres = genres,
                 SearchResult = result,
                 Sorting = sorting
             };
             return View(viewModel);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Author")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            try
+            {
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Comic", "Comics", new { id });
+            }
+                var author = await comicService.GetAuthorByComicId(id);
+                if(User.Id() == author.Id)
+                {
+                    await comicService.DeleteComic(id);
+                }
+                return RedirectToAction("Index", "Home");
+
         }
 
     }

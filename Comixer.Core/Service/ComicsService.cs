@@ -87,7 +87,6 @@ namespace Comixer.Core.Service
                 .Select(x => mapper.Map<ComicThumbnailModel>(x.Comic))
                 .ToListAsync();
         }
-        public List<string> GetAllStatusNames() => Enum.GetNames(typeof(Status)).ToList();
         public async Task<List<ComicThumbnailModel>> Search(string? keyword, List<string> genres, List<string> statuses, string sorting)
         {
             var result = repo.AllReadonly<Comic>()
@@ -101,14 +100,14 @@ namespace Comixer.Core.Service
                     .Where(x => x.Title!.Contains(keyword));
             }
 
-            if(genres.Count != 0)
+            if (genres.Count != 0)
             {
                 result = result
                     .Where(x => x.ComicGenres
                         .Any(x => genres.Contains(x.Genre.Name)));
             }
 
-            if(statuses.Count != 0)
+            if (statuses.Count != 0)
             {
                 result = result
                     .Where(rs => statuses
@@ -118,11 +117,37 @@ namespace Comixer.Core.Service
 
             if (!string.IsNullOrEmpty(sorting))
             {
-
+                //if(sorting == )
             }
 
 
             return await result.Select(x => mapper.Map<Comic, ComicThumbnailModel>(x)).ToListAsync();
+        }
+        public List<string> GetAllStatusNames() => Enum.GetNames(typeof(Status)).ToList();
+        public List<string> GetAllSortingNames() => Enum.GetNames(typeof(Sorting)).ToList();
+        public async Task<ComicAuthorModel> GetAuthorByComicId(Guid comicId)
+        {
+            var author = (await repo
+                .AllReadonly<UserComic>(x => x.IsAuthor && comicId == x.ComicId).Include(x => x.User)
+                .FirstOrDefaultAsync())?.User ?? throw new ArgumentException("This author does not have comicses");
+            return mapper.Map<ApplicationUser, ComicAuthorModel>(author);
+        }
+        public async Task DeleteComic(Guid comicId)
+        {
+            if (await repo.All<Comic>(x => x.Id == comicId).AnyAsync())
+            {
+                try
+                {
+                    await imageService.DeleteComicFolder(comicId);
+                    await repo.DeleteAsync<Comic>(comicId);
+                    await repo.SaveChangesAsync();
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception("Something went wrong");
+                }
+            }
         }
     }
 }

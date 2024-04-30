@@ -26,7 +26,7 @@ namespace Comixer.Core.Extensions
             CreateMap<CreateComicModel, Comic>();
             CreateMap<Comic, ComicThumbnailModel>()
                 .ForMember(dest => dest.Genres,
-                           opt => opt.MapFrom(src => src.ComicGenres.Select(cg => cg.Genre)));
+                           opt => opt.MapFrom(src => src.ComicGenres.Select(cg => cg.Genre).Take(3)));
             CreateMap<Comic, ComicDetailsModel>()
                .ForMember(dest => dest.Genres,
                           opt => opt.MapFrom(src => src.ComicGenres

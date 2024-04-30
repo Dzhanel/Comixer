@@ -71,5 +71,18 @@ namespace Comixer.Core.Service
         {
             return (await cloudinary.GetResourceAsync(publicId)).Url;
         }
+
+        public async Task DeleteComicFolder(Guid comicId)
+        {
+            try
+            {
+                await cloudinary.DeleteResourcesByPrefixAsync($"comic-{comicId}/");
+                await cloudinary.DeleteFolderAsync($"comic-{comicId}");
+            }
+            catch
+            {
+                throw new Exception("Something went wrong with the deletion form the cloud");
+            }
+        }
     }
 }

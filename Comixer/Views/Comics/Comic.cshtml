@@ -43,7 +43,7 @@
                                         <ul class="dropdown-menu bg-color-black pt-3 pb-3 ps-3 pe-3">
                                             <li>
                                                 <a href="#" class="none"><i class="bi bi-pen"></i> Edit</a>
-                                                <a href="#" class="none"><i class="bi bi-trash"></i> Delete</a>
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash"></i> Delete</a>
                                                 <a asp-controller="Chapter" asp-action="PostChapter" asp-route-id="@Model.Id"><i class="bi bi-plus-lg"></i> Add Chapter</a>
                                             </li>
                                         </ul>
@@ -86,4 +86,8 @@
         </div>
     </section>
     <partial name="_ComicChaptersPartial.cshtml" model="@Model.Chapters">
+    @if (isAuthenticated && User.IsInRole("Author") && User.Id() == Model.Author?.Id)
+    {
+        <partial name="_DeleteModalPartial" model="Model" />
+    }
 </div>

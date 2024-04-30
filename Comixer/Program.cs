@@ -68,6 +68,9 @@ app.MapControllerRoute(name: "PublishComic",
 app.MapControllerRoute(name: "Search",
                         pattern: "Comics/Search/{search?}",
                         defaults: new { controller = "Comics", action = "Search" });
+app.MapControllerRoute(name: "Search",
+                        pattern: "Comics/Delete/{id?}",
+                        defaults: new { controller = "Comics", action = "Delete" });
 
 
 app.MapControllerRoute(name: "Comics",

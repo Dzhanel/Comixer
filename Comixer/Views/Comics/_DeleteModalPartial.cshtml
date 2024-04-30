@@ -1,0 +1,18 @@
+﻿@model ComicDetailsModel
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete <span class="noir-bold">@Model.Title</span>?  </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <form method="GET">
+                    <input type="hidden" name="id" value="@Model.Id"/>
+                    <button asp-action="Delete" asp-controller="Comics" type="submit" class="btn btn-primary">Yes, delete it!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

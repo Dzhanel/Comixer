@@ -70,31 +70,15 @@
                         Sort by <span><i class="bi bi-chevron-down"></i></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="sort-by">
-                        
-                        <li>
-                            <div class="custom-control custom-checkbox">
-                                <input type="radio" name="Sorting" value="LastUpdated" class="custom-control-input" id="sort1">
-                                <label class="custom-control-label" for="sort1">Last Updated</label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="custom-control custom-checkbox">
-                                <input type="radio" name="Sorting" value="ReleaseDate" class="custom-control-input" id="sort2">
-                                <label class="custom-control-label" for="sort2">Release Date</label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="custom-control custom-checkbox">
-                                <input type="radio" name="Sorting" value="Chapter Count" class="custom-control-input" id="sort3">
-                                <label class="custom-control-label" for="sort3">Chapter Count</label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="custom-control custom-checkbox">
-                                <input type="radio" name="Sorting" value="Chapter Count" class="custom-control-input" id="sort4">
-                                <label class="custom-control-label" for="sort4">A - Z</label>
-                            </div>
-                        </li>
+                        @foreach (var sorting in ViewBag.Sortings)
+                        {
+                            <li>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="radio" name="Sorting" value="LastUpdated" class="custom-control-input" id="@sorting">
+                                    <label class="custom-control-label" for="@sorting">@(((string)sorting).Humanize())</label>
+                                </div>
+                            </li>
+                        }
                     </ul>
                 </li>
             </ul>
