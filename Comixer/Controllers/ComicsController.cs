@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Comixer.Controllers
 {
     [Authorize]
+    [AutoValidateAntiforgeryToken]
     public class ComicsController : Controller
     {
         private readonly IComicService comicService;

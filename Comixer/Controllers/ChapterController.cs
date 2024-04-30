@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Comixer.Controllers
 {
     [Authorize]
+    [AutoValidateAntiforgeryToken]
     public class ChapterController : Controller
     {
         private readonly IChapterService chapterService;

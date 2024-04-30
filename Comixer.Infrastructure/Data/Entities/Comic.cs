@@ -17,13 +17,13 @@ namespace Comixer.Infrastructure.Data.Entities
         public string Title { get; set; } = null!;
         [AllowNull]
         [MaxLength(DescriptionMaxLength)]
-        [DataType("Markdown")]
         public string Description { get; set; }
         public Status Status { get; set; }
         public string CoverImageUrl { get; set; } = null!;
         public ICollection<Chapter> Chapters { get; set; } = new HashSet<Chapter>();
         public ICollection<UserComic> UsersComics { get; set; } = new HashSet<UserComic>();
         public ICollection<ComicGenre> ComicGenres { get; set; } = new HashSet<ComicGenre>();
+        public bool IsApproved { get; set; }
         public override string ToString()
         {
             return $"{Title} - {Id}";

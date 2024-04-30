@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 
 namespace Comixer.Controllers
 {
+    [AutoValidateAntiforgeryToken]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

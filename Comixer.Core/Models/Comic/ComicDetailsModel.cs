@@ -21,5 +21,6 @@ namespace Comixer.Core.Models.Comic
         public double AverageRating { get; set; }
         public IEnumerable<GenreModel> Genres { get; set; } = new HashSet<GenreModel>();
         public List<ComicChaptersModel> Chapters { get; set; } = new List<ComicChaptersModel>();
+        public bool IsApproved { get; set; }
     }
 }

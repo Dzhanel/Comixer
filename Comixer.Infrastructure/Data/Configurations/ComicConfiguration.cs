@@ -23,6 +23,7 @@ namespace Comixer.Infrastructure.Data.Configurations
                     Description = "Comic 1 Description",
                     CoverImageUrl = "https://res.cloudinary.com/dwyg7tvwc/image/upload/comic-15ca4f3c-4bb6-47b0-9d5f-e902c0627c91/cover.jpg",
                     Status = Status.Completed,
+                    IsApproved = true
                 },
                 new()
                 {
@@ -31,6 +32,7 @@ namespace Comixer.Infrastructure.Data.Configurations
                     CoverImageUrl = "https://res.cloudinary.com/dwyg7tvwc/image/upload/comic-58b58581-82c8-4bbc-bcf3-49914b71bd00/cover.jpg",
                     Description = "Comic 2 Description",
                     Status = Status.Releasing,
+                    IsApproved = true
                 },
                 new()
                 {
@@ -39,6 +41,7 @@ namespace Comixer.Infrastructure.Data.Configurations
                     CoverImageUrl = "https://res.cloudinary.com/dwyg7tvwc/image/upload/comic-cc41b9ea-0767-4a45-a7b4-37cb07bec4d3/cover.webp",
                     Description = "Comic 3 Description",
                     Status = Status.NotYetReleased,
+                    IsApproved = true
                 }
            };
         }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Comixer.Controllers
 {
+    [AutoValidateAntiforgeryToken]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;

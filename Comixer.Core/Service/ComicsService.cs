@@ -44,7 +44,7 @@ namespace Comixer.Core.Service
         }
         public async Task<List<ComicThumbnailModel>> TakeRecentComics()
         {
-            return await repo.AllReadonly<Comic>()
+            return await repo.AllReadonly<Comic>(x => x.IsApproved)
                 .Include(x => x.ComicGenres)
                 .ThenInclude(x => x.Genre)
                 .OrderByDescending(x => x.Chapters.Max(x => x.ReleaseDate))
@@ -54,7 +54,6 @@ namespace Comixer.Core.Service
         }
         public async Task<ComicDetailsModel> GetComicById(Guid comicId)
         {
-
             var entity = await repo.AllReadonly<Comic>(x => x.Id == comicId)
                 .Include(c => c.ComicGenres)
                 .ThenInclude(cg => cg.Genre)
@@ -89,7 +88,7 @@ namespace Comixer.Core.Service
         }
         public async Task<List<ComicThumbnailModel>> Search(string? keyword, List<string> genres, List<string> statuses, string sorting)
         {
-            var result = repo.AllReadonly<Comic>()
+            var result = repo.AllReadonly<Comic>(x => x.IsApproved)
                  .Include(x => x.ComicGenres)
                  .ThenInclude(x => x.Genre)
                  .Include(x => x.Chapters)
@@ -132,7 +131,7 @@ namespace Comixer.Core.Service
                 }
                 else if (sorting == Sorting.Alphabetical.ToString())
                 {
-                    result.OrderBy(x => x.Title);
+                    result.OrderByDescending(x => x.Title);
                 }
             }
 

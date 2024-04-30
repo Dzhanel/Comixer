@@ -21,11 +21,11 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 })
     .AddRoles<IdentityRole<Guid>>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddControllersWithViews()
-    .AddMvcOptions(options =>
-    {
-        options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
-    });
+builder.Services.AddControllersWithViews();
+    //.AddMvcOptions(options =>
+    //{
+    //    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+    //});
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = new PathString("/Account/Login");
@@ -36,7 +36,6 @@ builder.Services.AddCoreAdmin(new CoreAdminOptions()
     RestrictToRoles = new string[] { "Administrator" },
     Title = "Comixer Admin",
 });
-builder.Services.AddCoreAdmin("Administrator");
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Api:CloudinarySettings"));
 builder.Services.AddApplicationServices();
 

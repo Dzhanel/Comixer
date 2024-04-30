@@ -13,6 +13,7 @@ namespace Comixer.Core.Models.Comic
         public string Title { get; set; } = null!;
         public string CoverImageUrl { get; set; } = null!;
         public List<GenreModel> Genres { get; set; } = new List<GenreModel>();
+        public bool IsApproved { get; set; }
 
     }
 }
