@@ -93,25 +93,6 @@ namespace Comixer.Core.Service
                  .Include(x => x.ComicGenres)
                  .ThenInclude(x => x.Genre)
                  .AsQueryable();
-            if (!string.IsNullOrEmpty(sorting))
-            {
-                if (sorting == Sorting.LastUpdated.ToString())
-                {
-                    result.OrderByDescending(x => x.Chapters.Max(x => x.ReleaseDate));
-                }
-                else if (sorting == Sorting.ChapterCount.ToString())
-                {
-                    result.OrderByDescending(x => x.Chapters);
-                }
-                else if (sorting == Sorting.ReleaseDate.ToString())
-                {
-                    result.OrderBy(x => x.Chapters.Min(x => x.ReleaseDate));
-                }
-                else if (sorting == Sorting.Alphabetical.ToString())
-                {
-                    result.OrderBy(x => x.Title);
-                }
-            }
 
             if (!string.IsNullOrWhiteSpace(keyword))
             {
@@ -134,8 +115,27 @@ namespace Comixer.Core.Service
                         .Contains(rs.Status));
             }
 
+            if (!string.IsNullOrEmpty(sorting))
+            {
+                if (sorting == Sorting.LastUpdated.ToString())
+                {
+                    result = result.OrderByDescending(x => x.Chapters.Max(x => x.ReleaseDate));
+                }
+                else if (sorting == Sorting.ChapterCount.ToString())
+                {
+                    result = result.OrderByDescending(x => x.Chapters.Count);
+                }
+                else if (sorting == Sorting.ReleaseDate.ToString())
+                {
+                    result = result.OrderBy(x => x.Chapters.Min(x => x.ReleaseDate));
+                }
+                else if (sorting == Sorting.Alphabetical.ToString())
+                {
+                    result = result.OrderBy(x => x.Title);
+                }
+            }
 
-            return (await result.ToListAsync()).Select(x => mapper.Map<Comic, ComicThumbnailModel>(x)).ToList();
+            return await result.Select(x => mapper.Map<Comic, ComicThumbnailModel>(x)).ToListAsync();
         }
         public List<string> GetAllStatusNames() => Enum.GetNames(typeof(Status)).ToList();
         public List<string> GetAllSortingNames() => Enum.GetNames(typeof(Sorting)).ToList();
