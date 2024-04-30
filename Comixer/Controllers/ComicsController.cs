@@ -19,7 +19,10 @@ namespace Comixer.Controllers
         private readonly IImageService imageService;
         private readonly IGenreService genreService;
         private readonly UserManager<ApplicationUser> userManager;
-        public ComicsController(IComicService _comicService, IImageService _imageService, IGenreService _genreService, UserManager<ApplicationUser> userManager)
+        public ComicsController(IComicService _comicService,
+                                IImageService _imageService,
+                                IGenreService _genreService,
+                                UserManager<ApplicationUser> userManager)
         {
             this.comicService = _comicService;
             this.imageService = _imageService;
@@ -38,9 +41,9 @@ namespace Comixer.Controllers
                 }
                 return View(comic);
             }
-            catch (Exception ex)
+            catch
             {
-                return NotFound(ex.Message);
+                return RedirectToAction("Index", "Home");
             }
         }
         [Authorize]
@@ -80,7 +83,6 @@ namespace Comixer.Controllers
             {
                 viewModel.Genres = await genreService.AllGenresAsync();
                 return View(viewModel);
-                throw;
             }
 
         }
@@ -111,18 +113,37 @@ namespace Comixer.Controllers
         {
             try
             {
+                var author = await comicService.GetAuthorByComicId(id);
+                if (User.Id() == author.Id)
+                {
+                    await comicService.DeleteComic(id);
+                }
+                return RedirectToAction("Index", "Home");
             }
-            catch (Exception ex)
+            catch
             {
                 return RedirectToAction("Comic", "Comics", new { id });
             }
-            var author = await comicService.GetAuthorByComicId(id);
-            if (User.Id() == author.Id)
-            {
-                await comicService.DeleteComic(id);
-            }
-            return RedirectToAction("Index", "Home");
 
+        }
+
+        public async Task<IActionResult> MarkCompleted(Guid id)
+        {
+            var author = await comicService.GetAuthorByComicId(id);
+            if (author.Id == User.Id() || User.IsInRole("Administrator"))
+            {
+                await comicService.ChangeToStatus(Status.Completed, id);
+            }
+            return RedirectToAction("Comic", "Comics", new { id });
+        }
+        public async Task<IActionResult> MarkReleasing(Guid id)
+        {
+            var author = await comicService.GetAuthorByComicId(id);
+            if (author.Id == User.Id() || User.IsInRole("Administrator"))
+            {
+                await comicService.ChangeToStatus(Status.Releasing, id);
+            }
+            return RedirectToAction("Comic", "Comics", new { id });
         }
 
     }

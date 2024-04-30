@@ -89,10 +89,29 @@ namespace Comixer.Core.Service
         public async Task<List<ComicThumbnailModel>> Search(string? keyword, List<string> genres, List<string> statuses, string sorting)
         {
             var result = repo.AllReadonly<Comic>(x => x.IsApproved)
+                 .Include(x => x.Chapters)
                  .Include(x => x.ComicGenres)
                  .ThenInclude(x => x.Genre)
-                 .Include(x => x.Chapters)
                  .AsQueryable();
+            if (!string.IsNullOrEmpty(sorting))
+            {
+                if (sorting == Sorting.LastUpdated.ToString())
+                {
+                    result.OrderByDescending(x => x.Chapters.Max(x => x.ReleaseDate));
+                }
+                else if (sorting == Sorting.ChapterCount.ToString())
+                {
+                    result.OrderByDescending(x => x.Chapters);
+                }
+                else if (sorting == Sorting.ReleaseDate.ToString())
+                {
+                    result.OrderBy(x => x.Chapters.Min(x => x.ReleaseDate));
+                }
+                else if (sorting == Sorting.Alphabetical.ToString())
+                {
+                    result.OrderBy(x => x.Title);
+                }
+            }
 
             if (!string.IsNullOrWhiteSpace(keyword))
             {
@@ -115,27 +134,8 @@ namespace Comixer.Core.Service
                         .Contains(rs.Status));
             }
 
-            if (!string.IsNullOrEmpty(sorting))
-            {
-                if (sorting == Sorting.LastUpdated.ToString())
-                {
-                    result.OrderByDescending(x => x.Chapters.Max(x => x.ReleaseDate));
-                }
-                else if (sorting == Sorting.ChapterCount.ToString())
-                {
-                    result.OrderByDescending(x => x.Chapters);
-                }
-                else if (sorting == Sorting.ReleaseDate.ToString())
-                {
-                    result.OrderBy(x => x.Chapters.Min(x => x.ReleaseDate));
-                }
-                else if (sorting == Sorting.Alphabetical.ToString())
-                {
-                    result.OrderByDescending(x => x.Title);
-                }
-            }
 
-            return await result.Select(x => mapper.Map<Comic, ComicThumbnailModel>(x)).ToListAsync();
+            return (await result.ToListAsync()).Select(x => mapper.Map<Comic, ComicThumbnailModel>(x)).ToList();
         }
         public List<string> GetAllStatusNames() => Enum.GetNames(typeof(Status)).ToList();
         public List<string> GetAllSortingNames() => Enum.GetNames(typeof(Sorting)).ToList();
@@ -161,6 +161,16 @@ namespace Comixer.Core.Service
 
                     throw new Exception("Something went wrong");
                 }
+            }
+        }
+        public async Task ChangeToStatus(Status status, Guid comicId)
+        {
+            var comic = await repo.GetByIdAsync<Comic>(comicId);
+            comic.Status = status;
+            int result = await repo.SaveChangesAsync();
+            if (result < 1)
+            {
+                throw new ArgumentException("Could not update status");
             }
         }
     }

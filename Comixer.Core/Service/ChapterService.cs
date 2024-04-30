@@ -4,6 +4,7 @@ using Comixer.Core.Models.Chapter;
 using Comixer.Infrastructure.Common;
 using Comixer.Infrastructure.Data.Entities;
 using Comixer.Infrastructure.Enums;
+using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
 
 namespace Comixer.Core.Service
@@ -27,7 +28,7 @@ namespace Comixer.Core.Service
                 .Include(x => x.Comic)
                 .Include(x => x.Comments.OrderByDescending(x => x.PostDate))
                 .ThenInclude(x => x.User)
-                .Include(x => x.ChapterImages)
+                .Include(x => x.ChapterImages.OrderBy(x => x.ImagePath))
                 .Where(x => x.Id == chapterId)
                 .FirstOrDefaultAsync();
 
@@ -102,6 +103,13 @@ namespace Comixer.Core.Service
             {
                 throw;
             }
+        }
+
+        public async Task MarkAsCompleted(Guid comicId)
+        {
+            var comic = await repo.GetByIdAsync<Comic>(comicId);
+            comic.Status = Status.Completed;
+            await repo.SaveChangesAsync();
         }
     }
 }

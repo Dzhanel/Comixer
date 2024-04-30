@@ -14,6 +14,7 @@ namespace Comixer.Core.Models.Comic
         public string Title { get; set; } = null!;
         [AllowNull]
         public string? Description { get; set; }
+        public bool IsApproved { get; set; }
         [Required]
         [Display(Name = "Cover Image")]
         [FormFileMaxSize(maxFileSize: MaxImageFileSize)]

@@ -6,7 +6,7 @@ namespace Comixer.Models.Comics
     {
         public List<string> Genres { get; set; } = new();
         public List<string> Statuses { get; set; } = new();
-        public List<ComicThumbnailModel> SearchResult { get; set; } = null!;
+        public List<ComicThumbnailModel> SearchResult { get; set; } = new List<ComicThumbnailModel>();
         public string? Sorting { get; set; }
 
     }

@@ -59,5 +59,6 @@ namespace Comixer.Core.Contracts
         /// <param name="comicId"></param>
         /// <returns></returns>
         Task DeleteComic(Guid comicId);
+        Task ChangeToStatus(Status status, Guid comicId);
     }
 }
