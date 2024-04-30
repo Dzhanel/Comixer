@@ -36,9 +36,9 @@ namespace Comixer.Core.Service
         }
         public async Task AddGenresToComicAsync(int[] genreIds, Guid comicId)
         {
-            int length = genreIds.Length;
-            if (length > 0)
+            if (genreIds is not null && genreIds.Length > 0)
             {
+                var length = genreIds.Length;
                 ComicGenre[] comicGenres = new ComicGenre[length];
                 for (var i = 0; i < length; i++)
                 {

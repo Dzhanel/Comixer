@@ -65,13 +65,10 @@ namespace Comixer.Core.Service
             }
             return imageUrls;
         }
-
-
         public async Task<string> GetImageUrl(string publicId)
         {
             return (await cloudinary.GetResourceAsync(publicId)).Url;
         }
-
         public async Task DeleteComicFolder(Guid comicId)
         {
             try

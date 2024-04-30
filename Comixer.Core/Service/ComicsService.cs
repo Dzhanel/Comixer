@@ -65,7 +65,7 @@ namespace Comixer.Core.Service
             return mapper
                 .Map<ComicDetailsModel>(source: entity);
         }
-        private async Task AddUserComicRelation(Guid comicId, Guid userId, bool isAuthor, bool isArtist = false, bool readLater = false)
+        public async Task AddUserComicRelation(Guid comicId, Guid userId, bool isAuthor, bool isArtist = false, bool readLater = false)
         {
             await repo.AddAsync(
                 new UserComic()
@@ -165,13 +165,9 @@ namespace Comixer.Core.Service
         }
         public async Task ChangeToStatus(Status status, Guid comicId)
         {
-            var comic = await repo.GetByIdAsync<Comic>(comicId);
+            var comic = await repo.GetByIdAsync<Comic>(comicId) ?? throw new ArgumentException("Comic not found");
             comic.Status = status;
-            int result = await repo.SaveChangesAsync();
-            if (result < 1)
-            {
-                throw new ArgumentException("Could not update status");
-            }
+            await repo.SaveChangesAsync();
         }
     }
 }

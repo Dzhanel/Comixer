@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comixer.Core", "Comixer.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comixer.Infrastructure", "Comixer.Infrastructure\Comixer.Infrastructure.csproj", "{F08B82B9-51CD-4937-9B7B-D2F04DB49907}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comixer.Common", "Comixer.Common\Comixer.Common.csproj", "{C7D13AE1-EFCB-444B-BE18-7E6CE473196F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comixer.Common", "Comixer.Common\Comixer.Common.csproj", "{C7D13AE1-EFCB-444B-BE18-7E6CE473196F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comixer.Tests", "Comixer.Tests\Comixer.Tests.csproj", "{9FBA5AF8-D471-4AF8-B5F4-2F2D41C67758}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{C7D13AE1-EFCB-444B-BE18-7E6CE473196F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7D13AE1-EFCB-444B-BE18-7E6CE473196F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7D13AE1-EFCB-444B-BE18-7E6CE473196F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FBA5AF8-D471-4AF8-B5F4-2F2D41C67758}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FBA5AF8-D471-4AF8-B5F4-2F2D41C67758}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FBA5AF8-D471-4AF8-B5F4-2F2D41C67758}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FBA5AF8-D471-4AF8-B5F4-2F2D41C67758}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

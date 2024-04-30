@@ -38,7 +38,7 @@ namespace Comixer.Core.Service
 
             return model;
         }
-        private async Task<ChapterModel?> GetPreviousChapterAsync(Guid currentChapterId)
+        public async Task<ChapterModel?> GetPreviousChapterAsync(Guid currentChapterId)
         {
             Guid comicId = (await repo.GetByIdAsync<Chapter>(currentChapterId)).ComicId;
             var allChapters = await repo
@@ -53,7 +53,7 @@ namespace Comixer.Core.Service
                                 mapper.Map<ChapterModel?>(allChapters[chapterIndex]) : null;
 
         }
-        private async Task<ChapterModel?> GetNextChapterAsync(Guid currentChapterId)
+        public async Task<ChapterModel?> GetNextChapterAsync(Guid currentChapterId)
         {
             Guid? comicId = (await repo.GetByIdAsync<Chapter>(currentChapterId))?.ComicId;
             var allChapters = await repo
@@ -104,7 +104,6 @@ namespace Comixer.Core.Service
                 throw;
             }
         }
-
         public async Task MarkAsCompleted(Guid comicId)
         {
             var comic = await repo.GetByIdAsync<Comic>(comicId);
