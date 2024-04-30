@@ -31,7 +31,12 @@ namespace Comixer.Controllers
         {
             try
             {
-                return View(await comicService.GetComicById(Id));
+                var comic = await comicService.GetComicById(Id);
+                if (!comic.IsApproved && (!User.IsInRole("Administrator") || User.Id() != comic.Author?.Id))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                return View(comic);
             }
             catch (Exception ex)
             {
